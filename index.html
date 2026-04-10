@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -81,7 +82,7 @@ html.light .mood-frame { filter: brightness(1.2) contrast(0.9) saturate(0.8); }
 html.light .video-grid-slot svg { fill: var(--faint); }
 
 body {
-  font-family: var(--sans);
+  font-family: var(--serif);
   background: var(--bg);
   color: var(--text);
   overflow-x: hidden;
@@ -235,6 +236,8 @@ nav {
 .cs-header {
   padding: 32px 32px 28px;
   cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 20px;
@@ -943,6 +946,161 @@ nav {
   margin-top: 10px;
 }
 
+/* ── VIDEO COMPARISON (before / after) ── */
+.video-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.video-compare-col {}
+
+.video-compare-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  padding: 4px 10px;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+.video-compare-label.before {
+  color: var(--muted);
+  background: var(--bg3);
+  border: 1px solid var(--faint);
+}
+
+.video-compare-label.after {
+  color: var(--bg);
+  background: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+html.light .video-compare-label.after {
+  color: #f5f2ec;
+}
+
+.video-compare-slot {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: var(--bg2);
+  border-radius: 4px;
+  border: 1px dashed var(--faint);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.video-compare-slot.after-slot {
+  border-color: rgba(200,184,138,0.3);
+  border-style: solid;
+}
+
+html.light .video-compare-slot { background: var(--bg2); border-color: var(--faint); }
+
+.video-compare-slot svg { width: 12px; height: 12px; fill: var(--muted); margin-left: 1px; }
+
+.video-compare-caption {
+  font-family: var(--serif2);
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 8px;
+  line-height: 1.55;
+}
+
+/* ── NARRATION TIMELINE ── */
+.narration-timeline { margin-top: 16px; }
+
+.nt-row {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: start;
+}
+
+.nt-row:last-child { border-bottom: none; }
+
+.nt-tc {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  padding-top: 2px;
+  line-height: 1.4;
+}
+
+.nt-content {}
+
+.nt-section {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 5px;
+}
+
+.nt-narration {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-style: italic;
+  line-height: 1.65;
+  color: var(--text);
+  border-left: 1.5px solid var(--accent);
+  padding-left: 12px;
+  margin-bottom: 6px;
+}
+
+.nt-silence {
+  font-family: var(--serif2);
+  font-size: 13px;
+  color: var(--faint);
+  font-style: italic;
+  padding-left: 13px;
+  border-left: 1.5px solid var(--faint);
+  margin-bottom: 6px;
+}
+
+.nt-note {
+  font-family: var(--serif2);
+  font-size: 14px;
+  color: rgba(232,229,223,0.5);
+  line-height: 1.6;
+  margin-top: 4px;
+}
+
+html.light .nt-note { color: rgba(26,26,22,0.5); }
+
+.nt-badge {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 2px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.nt-badge-new {
+  background: rgba(143,181,168,0.15);
+  border: 1px solid rgba(143,181,168,0.3);
+  color: var(--accent2);
+}
+
+.nt-badge-changed {
+  background: rgba(200,184,138,0.1);
+  border: 1px solid rgba(200,184,138,0.2);
+  color: var(--accent);
+}
+
 
 /* ══════════════════════════════════════════
    ABOUT PAGE
@@ -1145,7 +1303,13 @@ nav {
   transition: color 0.2s, border-color 0.2s;
 }
 
+html.light .tool-tag {
+  color: rgba(26,26,22,0.65);
+  border-color: rgba(40,40,30,0.22);
+}
+
 .tool-tag:hover { color: var(--text); border-color: var(--border2); }
+html.light .tool-tag:hover { color: var(--accent); border-color: var(--accent); }
 
 .tools-section-label {
   font-family: var(--mono);
@@ -1265,14 +1429,60 @@ footer {
   letter-spacing: 0.1em;
 }
 
-/* ── RESPONSIVE: TABLET ── */
+/* ── RESPONSIVE: TABLET (681–900px) ── */
+@media (min-width: 681px) and (max-width: 900px) {
+  html { font-size: 16px; }
+
+  /* Layout */
+  .site-wrap { padding: 0 32px; }
+  .nav-inner { padding: 0 32px; }
+  .page { padding-top: 56px; }
+
+  /* Hero */
+  .work-hero { padding: 48px 0 36px; }
+  .work-title { font-size: clamp(48px, 7vw, 72px); }
+  .work-sub { font-size: 16px; max-width: 520px; }
+
+  /* Case studies */
+  .cs-header { padding: 26px 24px 22px; }
+  .cs-title { font-size: 28px; }
+  .cs-tagline { font-size: 13px; }
+  .cs-body { padding: 28px 24px; }
+  .cs-summary { grid-template-columns: repeat(3, 1fr); }
+
+  /* KPI grids */
+  .kpi-row { grid-template-columns: 1fr 1fr 1fr; }
+  .kpi-num { font-size: 38px; }
+
+  /* About page */
+  .about-grid { grid-template-columns: 180px 1fr; gap: 40px; }
+  .headshot { width: 180px; height: 220px; }
+  .bio-name { font-size: 56px; }
+  .cred-grid { grid-template-columns: 1fr 1fr; }
+
+  /* Resume page */
+  .resume-wrap { padding: 48px 0 80px; }
+  .resume-name { font-size: clamp(36px, 5vw, 52px); }
+  .resume-skills-grid { grid-template-columns: 1fr 1fr; }
+  .resume-contact { gap: 16px; }
+
+  /* Modules */
+  .module-heading { font-size: 22px; }
+  .concept-grid { grid-template-columns: 1fr 1fr; }
+  .audit-grid { grid-template-columns: 1fr 1fr; }
+
+  /* Footer */
+  .footer-inner { padding: 0 32px; }
+
+  /* Video */
+  .video-grid { grid-template-columns: 1fr 1fr; }
+  .video-compare { grid-template-columns: 1fr 1fr; }
+}
+
+/* ── RESPONSIVE: ALL SMALL SCREENS (≤900px) ── */
 @media (max-width: 900px) {
   .site-wrap { padding: 0 24px; }
   .nav-inner { padding: 0 24px; }
-  .about-grid { grid-template-columns: 160px 1fr; gap: 32px; }
-  .headshot { width: 160px; height: 200px; }
-  .kpi-row { grid-template-columns: 1fr 1fr; }
-  .resume-skills-grid { grid-template-columns: 1fr 1fr; }
 }
 
 /* ── RESPONSIVE: MOBILE ── */
@@ -1376,12 +1586,16 @@ footer {
 
   /* Resume page */
   .resume-wrap { padding: 32px 0 60px; }
-  .resume-name { font-size: clamp(28px, 7vw, 40px); }
-  .resume-contact { flex-direction: column; gap: 10px; }
+  .resume-name { font-size: clamp(32px, 8vw, 44px); }
+  .resume-title { font-size: 14px; }
+  .resume-contact { flex-direction: column; gap: 12px; }
   .resume-skills-grid { grid-template-columns: 1fr; }
-  .resume-entry-header { flex-direction: column; gap: 2px; }
-  .resume-entry-title { font-size: 16px; }
-  .resume-bullets li { font-size: 13px; line-height: 1.55; }
+  .resume-entry-header { flex-direction: column; gap: 4px; }
+  .resume-entry-title { font-size: 19px; }
+  .resume-entry-org { font-size: 13px; }
+  .resume-bullets { gap: 10px; }
+  .resume-bullets li { font-size: 14px; line-height: 1.65; }
+  .resume-profile { font-size: 15px; }
   .resume-download { width: 100%; justify-content: center; }
 
   /* Footer */
@@ -1409,46 +1623,47 @@ footer {
 }
 
 /* ══ RESUME PAGE ══ */
-.resume-wrap { padding: 64px 0 80px; max-width: 800px; }
+.resume-wrap { padding: 72px 0 100px; max-width: 820px; }
 
-.resume-header { margin-bottom: 48px; padding-bottom: 32px; border-bottom: 1px solid var(--border); }
-.resume-name { font-family: var(--serif); font-size: clamp(36px, 5vw, 52px); font-weight: 300; letter-spacing: -0.02em; line-height: 1.05; color: var(--white); margin-bottom: 8px; }
-.resume-title { font-size: 14px; color: var(--muted); letter-spacing: 0.04em; margin-bottom: 20px; }
-.resume-contact { display: flex; flex-wrap: wrap; gap: 20px; }
-.resume-contact-item { display: flex; align-items: center; gap: 7px; font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.05em; }
-.resume-contact-item svg { width: 13px; height: 13px; fill: var(--muted); flex-shrink: 0; }
+.resume-header { margin-bottom: 56px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+.resume-name { font-family: var(--serif); font-size: clamp(42px, 6vw, 64px); font-weight: 300; letter-spacing: -0.02em; line-height: 1.05; color: var(--white); margin-bottom: 10px; }
+.resume-title { font-family: var(--serif2); font-size: 17px; color: var(--muted); letter-spacing: 0.02em; margin-bottom: 28px; line-height: 1.5; }
+.resume-contact { display: flex; flex-wrap: wrap; gap: 24px; }
+.resume-contact-item { display: flex; align-items: center; gap: 9px; font-family: var(--mono); font-size: 12px; color: var(--muted); letter-spacing: 0.05em; }
+.resume-contact-item svg { width: 14px; height: 14px; fill: var(--muted); flex-shrink: 0; }
 .resume-contact-item a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
 .resume-contact-item a:hover { color: var(--accent); }
 
-.resume-profile { font-size: 15px; line-height: 1.75; color: rgba(232,229,223,0.75); margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
-html.light .resume-profile { color: rgba(26,26,22,0.75); }
+.resume-profile { font-family: var(--serif2); font-size: 17px; line-height: 1.85; color: rgba(232,229,223,0.78); margin-bottom: 56px; padding-bottom: 48px; border-bottom: 1px solid var(--border); }
+html.light .resume-profile { color: rgba(26,26,22,0.78); }
 
-.resume-section { margin-bottom: 44px; }
-.resume-section-title { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); padding-bottom: 12px; border-bottom: 1px solid var(--border2); margin-bottom: 24px; }
+.resume-section { margin-bottom: 52px; }
+.resume-section-title { font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); padding-bottom: 14px; border-bottom: 1px solid var(--border2); margin-bottom: 32px; }
 
-.resume-entry { padding-bottom: 28px; margin-bottom: 28px; border-bottom: 1px solid var(--border); }
+.resume-entry { padding-bottom: 36px; margin-bottom: 36px; border-bottom: 1px solid var(--border); }
 .resume-entry:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
 
-.resume-entry-header { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 3px; flex-wrap: wrap; }
-.resume-entry-title { font-family: var(--serif); font-size: 23px; font-weight: 400; color: var(--white); letter-spacing: -0.01em; }
-.resume-entry-date { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.08em; white-space: nowrap; }
-.resume-entry-org { font-size: 16px; color: var(--accent); margin-bottom: 12px; letter-spacing: 0.02em; }
+.resume-entry-header { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 5px; flex-wrap: wrap; }
+.resume-entry-title { font-family: var(--serif); font-size: 26px; font-weight: 400; color: var(--white); letter-spacing: -0.01em; line-height: 1.2; }
+.resume-entry-date { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.08em; white-space: nowrap; }
+.resume-entry-org { font-family: var(--serif2); font-size: 15px; color: var(--accent); margin-bottom: 16px; letter-spacing: 0.02em; }
 
-.resume-bullets { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
-.resume-bullets li { font-size: 17px; line-height: 1.65; color: rgba(232,229,223,0.72); padding-left: 16px; position: relative; }
-html.light .resume-bullets li { color: rgba(26,26,22,0.75); }
-.resume-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--muted); font-size: 11px; top: 3px; }
+.resume-bullets { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+.resume-bullets li { font-family: var(--serif2); font-size: 16px; line-height: 1.75; color: rgba(232,229,223,0.75); padding-left: 20px; position: relative; }
+html.light .resume-bullets li { color: rgba(26,26,22,0.78); }
+.resume-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--muted); font-size: 11px; top: 5px; }
 
-.resume-entry-note { font-size: 16px; font-style: italic; color: var(--muted); margin-top: 10px; }
+.resume-entry-note { font-family: var(--serif2); font-size: 15px; font-style: italic; color: var(--muted); margin-top: 12px; line-height: 1.65; }
 
-.resume-skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.resume-skill-group { padding: 16px 18px; border: 1px solid var(--border); border-radius: 4px; }
-.resume-skill-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
-.resume-skill-list { font-size: 16px; color: var(--text); line-height: 1.6; }
+.resume-skills-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+.resume-skill-group { padding: 20px 22px; border: 1px solid var(--border); border-radius: 4px; }
+.resume-skill-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+.resume-skill-list { font-family: var(--serif2); font-size: 14px; color: var(--text); line-height: 1.7; }
+html.light .resume-skill-list { color: rgba(26,26,22,0.82); }
 
-.resume-download { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); border-radius: 2px; padding: 10px 20px; text-decoration: none; margin-top: 40px; transition: background 0.2s, color 0.2s; cursor: pointer; background: transparent; }
+.resume-download { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); border-radius: 2px; padding: 12px 24px; text-decoration: none; margin-top: 48px; transition: background 0.2s, color 0.2s; cursor: pointer; background: transparent; }
 .resume-download:hover { background: var(--accent); color: var(--bg); }
-.resume-download svg { width: 13px; height: 13px; fill: currentColor; }
+.resume-download svg { width: 14px; height: 14px; fill: currentColor; }
 
 /* resume mobile handled in main @media (max-width: 680px) block */
 
@@ -1477,11 +1692,24 @@ html.light .resume-bullets li { color: rgba(26,26,22,0.75); }
 .nav-hamburger:hover span,
 .nav-hamburger:active span { background: var(--accent); }
 
+/* Hamburger open animation */
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); background: var(--accent); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--accent); }
+.nav-hamburger span { transition: transform 0.25s ease, opacity 0.2s ease, background 0.2s; }
+
 /* Desktop: nav-menu is just a flex row */
 .nav-menu {
   display: flex;
   align-items: center;
   gap: 28px;
+}
+
+/* ── TABLET NAV (681–900px) ── */
+@media (min-width: 681px) and (max-width: 900px) {
+  .nav-inner { padding: 0 24px; }
+  .nav-links { gap: 16px; }
+  .nav-links a { font-size: 11px; }
 }
 
 /* Mobile nav */
@@ -1501,6 +1729,7 @@ html.light .resume-bullets li { color: rgba(26,26,22,0.75); }
     z-index: 200;
     overflow-y: auto;
     border-top: 1px solid var(--border);
+    -webkit-overflow-scrolling: touch;
   }
   .nav-menu.open { display: flex; }
 
@@ -1513,17 +1742,23 @@ html.light .resume-bullets li { color: rgba(26,26,22,0.75); }
   .nav-links li { width: 100%; }
   .nav-links a {
     display: block !important;
-    padding: 18px 24px !important;
-    font-size: 15px !important;
-    letter-spacing: 0.1em;
+    padding: 20px 24px !important;
+    font-size: 16px !important;
+    letter-spacing: 0.08em;
     border-bottom: 1px solid var(--border);
     color: var(--text) !important;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
+  .nav-links a:active { background: var(--bg2); }
   .nav-links a.active { color: var(--accent) !important; }
 
   .theme-toggle {
-    margin: 20px 24px;
+    margin: 24px 24px 0;
     align-self: flex-start;
+    width: 44px;
+    height: 44px;
+    touch-action: manipulation;
   }
 }
 </style>
@@ -1534,7 +1769,7 @@ html.light .resume-bullets li { color: rgba(26,26,22,0.75); }
 <nav>
   <div class="nav-inner">
     <a class="nav-name" onclick="showPage('work');closeMenu()">Amir Razak</a>
-    <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <button class="nav-hamburger" id="nav-hamburger-btn" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
     <div class="nav-menu" id="nav-menu">
@@ -1572,9 +1807,9 @@ html.light .resume-bullets li { color: rgba(26,26,22,0.75); }
   <div class="site-wrap">
 
     <div class="work-hero fade-up d1">
-      <div class="work-eyebrow">Selected work — Creative Strategy &amp; Post-Production</div>
-      <h1 class="work-title">Where <em>analysis</em><br>meets editorial craft.</h1>
-      <p class="work-sub">Four case studies across documentary, publishing, retail, and enterprise — demonstrating the full range from quantitative creative strategy to picture lock.</p>
+      <div class="work-eyebrow">Creative Strategy · Performance Creative · Editorial Direction</div>
+      <h1 class="work-title">I build strategy<br><em>that survives production.</em></h1>
+      <p class="work-sub">Creative strategist and editorial director who briefs, shapes, and cuts work across brand, documentary, and performance campaigns. The brief is written by someone who knows what survives contact with the edit — which means nothing gets lost in translation.</p>
     </div>
 
     <!-- ════ CS 01 — THE NEW CRITERION ════ -->
@@ -1582,7 +1817,7 @@ html.light .resume-bullets li { color: rgba(26,26,22,0.75); }
       <div class="cs-header" onclick="toggleCS('cs1')">
         <div>
           <div class="cs-index">Case study — 01</div>
-          <div class="cs-title">The New Criterion — video identity and subscription campaign from zero baseline</div>
+          <div class="cs-title">The New Criterion — +40% subscription growth, built from a zero video baseline</div>
           <div class="cs-tagline">Brand video identity · Content architecture · Subscription acquisition · Editorial direction</div>
         </div>
         <div class="cs-toggle" id="cs1-tog">+</div>
@@ -1616,24 +1851,47 @@ html.light .resume-bullets li { color: rgba(26,26,22,0.75); }
         -->
         <div class="video-block">
           <div class="video-label">Tentpole subscription campaign — primary film</div>
-          <div class="video-slot">
-            <div class="video-slot-icon"><svg viewBox="0 0 16 16"><path d="M6 3.5l7 4.5-7 4.5V3.5z"/></svg></div>
-            <div class="video-slot-label">Video available on request</div>
-            
-          </div>
+          <div class="video-embed-wrap"><iframe src="https://www.youtube-nocookie.com/embed/mugqAXYuUs0" allowfullscreen allow="autoplay; picture-in-picture; fullscreen" playsinline></iframe></div>
         </div>
 
-        <!-- ★ VIDEO SLOT 2 — Monthly content samples (2-up grid) -->
+        <!-- ★ VIDEO SLOT 2 — Secondary tentpole campaign -->
+        <div class="video-block">
+          <div class="video-label">Tentpole subscription campaign — secondary film</div>
+          <div class="video-embed-wrap"><iframe src="https://www.youtube-nocookie.com/embed/mugqAXYuUs0" allowfullscreen allow="autoplay; picture-in-picture; fullscreen" playsinline></iframe></div>
+        </div>
+
+        <!-- ★ VIDEO SLOT 3 — Monthly content samples (2-up grid) -->
         <div class="video-block">
           <div class="video-label">Monthly content samples</div>
           <div class="video-grid">
-            <div class="video-grid-slot">
-              <svg viewBox="0 0 16 16"><path d="M6 3.5l7 4.5-7 4.5V3.5z"/></svg>
-              <div class="video-grid-label">Monthly issue — sample 01<br>Replace with embed</div>
+            <div class="video-grid-slot" style="aspect-ratio:16/9;background:#000;border:1px solid var(--border);border-style:solid;border-radius:4px;overflow:hidden;display:block;width:100%;">
+              <iframe src="https://www.youtube-nocookie.com/embed/mugqAXYuUs0" allowfullscreen allow="autoplay; picture-in-picture; fullscreen" playsinline style="width:100%;height:100%;border:none;display:block"></iframe>
             </div>
-            <div class="video-grid-slot">
-              <svg viewBox="0 0 16 16"><path d="M6 3.5l7 4.5-7 4.5V3.5z"/></svg>
-              <div class="video-grid-label">Monthly issue — sample 02<br>Replace with embed</div>
+            <div class="video-grid-slot" style="aspect-ratio:16/9;background:#000;border:1px solid var(--border);border-style:solid;border-radius:4px;overflow:hidden;display:block;width:100%;">
+              <iframe src="https://www.youtube-nocookie.com/embed/mugqAXYuUs0" allowfullscreen allow="autoplay; picture-in-picture; fullscreen" playsinline style="width:100%;height:100%;border:none;display:block"></iframe>
+            </div>
+          </div>
+        </div>
+
+        <div class="module">
+          <div class="module-pill">The brief</div>
+          <div class="module-heading">Audience, problem, and the one move that changed everything.</div>
+          <div class="module-text">
+            <p>TNC had no video identity. Sporadic, inconsistently lit recordings of lectures and events — no editorial grammar, no visual language. The production register actively contradicted a publication known for critical rigour. The brief was not "make better videos." It was: make video that a TNC reader would respect.</p>
+            <p>That audience evaluates content rather than consuming it. Algorithmic pacing or promotional framing would destroy trust. The creative problem was not accessibility — it was worthiness.</p>
+          </div>
+          <div class="audit-grid" style="margin-top:14px;">
+            <div class="audit-card">
+              <div class="audit-body">
+                <div class="audit-label">The diagnostic</div>
+                <div class="audit-text">Average shot duration in the original footage: ~2.8 seconds. Typical for web content. Wrong for this audience. The cuts arrived before the viewer had finished forming an impression — which, for a readership that processes slowly by disposition, read as disrespect.</div>
+              </div>
+            </div>
+            <div class="audit-card">
+              <div class="audit-body">
+                <div class="audit-label">The intervention</div>
+                <div class="audit-text">Extended average shot duration to 6.1 seconds across the tentpole campaign. Several shots held 9–11 seconds. What had read as competent production began reading as deliberate authority. The pacing change alone was the identity rebuild.</div>
+              </div>
             </div>
           </div>
         </div>
@@ -1689,20 +1947,26 @@ html.light .resume-bullets li { color: rgba(26,26,22,0.75); }
         <div class="module">
           <div class="module-pill">Audience intelligence + creative insight</div>
           <div class="module-heading">The understanding that governed every production decision</div>
-          <div class="module-text"><p>The New Criterion's readership evaluates content rather than merely consuming it. Algorithmic pacing or promotional framing would actively undermine subscriber trust. The strategic insight: this audience already carries strong brand affinity. The video content's primary function was not persuasion — it was confirmation.</p></div>
-          <div class="pull-quote">"The audience doesn't need to be converted. They need the production to be worthy of their attention — which is a much higher bar."</div>
+          <div class="module-text">
+            <p><strong>The lazy observation:</strong> "Sophisticated audiences want high-quality content."<br>
+            <strong>The real insight:</strong> TNC's readership uses media consumption as a form of self-definition. Production quality is not a nice-to-have — it is identity-confirming or identity-threatening. A video that reads as content marketing doesn't just fail to persuade; it signals that the brand doesn't understand who they are.</p>
+          </div>
+          <div class="pull-quote">"The audience that most needed to be converted to video already had the highest bar for what video was allowed to be."</div>
+          <div class="module-text" style="margin-top:16px;">
+            <p><strong>GET / TO / BY:</strong> Get existing TNC readers and high-affinity prospects — to subscribe to TNC+ — by giving them video that confirms rather than compromises the intellectual identity they already hold.</p>
+          </div>
         </div>
 
         <div class="module">
-          <div class="module-pill">A specific editorial decision — in full</div>
-          <div class="module-heading">The one choice that defined the visual identity</div>
+          <div class="module-pill">The editorial decision</div>
+          <div class="module-heading">Shot duration: the single change that rebuilt the identity</div>
           <div class="module-text">
-            <p>The most consequential single decision was the choice of shot duration in the tentpole subscription campaign. The first cut ran at an average shot length of approximately 3.2 seconds — conventional for editorial content of this type. A test screening suggested the pacing was actively undermining the piece: the cuts were arriving before the viewer had finished forming an impression of what they were looking at.</p>
-            <p>The revision extended average shot duration to 6.1 seconds — nearly double. Several shots ran for 9–11 seconds. What had read as competent production began reading as deliberate authority. The lesson was not that slow is always better. It was that for this audience, patience was itself a form of respect — and that the edit's primary job was to honour the pace at which an intelligent person processes a beautiful image.</p>
+            <p>The first cut averaged 3.2 seconds per shot — conventional for editorial content. Test screening showed the pacing was actively undermining the piece: cuts arrived before the viewer had formed an impression of what they were looking at.</p>
+            <p>The revision extended average shot duration to 6.1 seconds. Several shots ran 9–11 seconds. The same footage read completely differently. Not slow — deliberate. The pacing change was the identity rebuild.</p>
           </div>
           <div class="craft-note">
             <div class="craft-label">The transferable principle</div>
-            <div class="craft-text">"Editorial pacing is not a production decision — it is an audience decision. The correct shot duration is the one that matches the cognitive rhythm of the specific viewer you're trying to reach."</div>
+            <div class="craft-text">"Editorial pacing is an audience decision, not a production one. The correct shot duration is the one that matches the cognitive rhythm of the specific viewer you're trying to reach."</div>
           </div>
         </div>
 
@@ -1715,18 +1979,22 @@ html.light .resume-bullets li { color: rgba(26,26,22,0.75); }
             <div class="kpi-card"><div class="kpi-num">Retained</div><div class="kpi-desc">Existing subscriber base — zero measurable erosion</div></div>
           </div>
           <div class="perf-note">
-            <div class="perf-note-label">Performance framing</div>
-            <div class="perf-note-text">The subscription lift maps directly to the creative health chain: the visual identity rebuild improved <strong>top-of-funnel engagement</strong> (watch time and 3-second hold rate increased measurably post-regrade), which drove bottom-of-funnel <strong>conversion</strong> (TNC+ subscription acquisition). Zero subscriber erosion confirms the creative did not sacrifice <strong>retention</strong> for acquisition — a common failure mode in subscription content.</div>
+            <div class="perf-note-label">Performance framing — speaking the CFO's language</div>
+            <div class="perf-note-text">The subscription lift maps directly to the creative health chain: the visual identity rebuild improved <strong>top-of-funnel engagement</strong> (watch time and 3-second hold rate increased measurably post-regrade), which drove bottom-of-funnel <strong>conversion</strong> (TNC+ subscription acquisition). Zero subscriber erosion confirms the creative did not sacrifice <strong>retention</strong> for acquisition — a common failure mode in subscription content. In revenue terms: acquisition CAC held while LTV improved — the definition of efficient creative spend.</div>
+          </div>
+          <div class="perf-note" style="margin-top:10px;">
+            <div class="perf-note-label">Creative decision framework — the rules that governed iteration</div>
+            <div class="perf-note-text"><strong>Rule 1:</strong> If 3-second hold rate fell below 35%, recut the opening sequence before scaling distribution. <strong>Rule 2:</strong> If subscriber retention dipped below baseline in any month, the issue content — not the tentpole — was audited first. <strong>Rule 3:</strong> Average shot duration was monitored across every cut. Any edit trending below 5.5 seconds average was reviewed for pacing misalignment with audience register.</div>
           </div>
         </div>
 
         <div class="module">
           <div class="module-pill">Creative director's reflection</div>
-          <div class="module-heading">What this engagement demonstrates about the practice</div>
-          <div class="module-text"><p>The New Criterion engagement is the most complete demonstration of the ability to build a creative system — not produce isolated executions. Establishing a visual identity from zero, sustaining it at consistent standard across a high-volume monthly cadence, and ensuring every piece functioned simultaneously as a standalone editorial statement and a contribution to a cumulative brand identity.</p></div>
+          <div class="module-heading">What this engagement demonstrates</div>
+          <div class="module-text"><p>This is the most complete demonstration of building a creative system — not producing isolated executions. A visual identity established from zero, sustained at consistent standard across a monthly cadence, functioning simultaneously as editorial statement and cumulative brand contribution. The outcome was measurable: +40% subscriptions, zero subscriber erosion.</p></div>
           <div class="takeaway">
             <div class="takeaway-label">Demonstrated competency</div>
-            <div class="takeaway-text">Brand video identity development from zero baseline — building a scalable content architecture for a high-standards audience and delivering measurable subscription growth without compromising editorial integrity.</div>
+            <div class="takeaway-text">Brand video identity development from zero baseline — scalable content architecture for a high-standards audience, with measurable subscription growth and zero compromise on editorial integrity.</div>
           </div>
         </div>
 
@@ -1739,7 +2007,7 @@ html.light .resume-bullets li { color: rgba(26,26,22,0.75); }
       <div class="cs-header" onclick="toggleCS('cs2')">
         <div>
           <div class="cs-index">Case study — 02</div>
-          <div class="cs-title">Wolverines — post-production editorial direction on a Heartland Emmy-submitted feature documentary</div>
+          <div class="cs-title">What We Stand On — rebuilding the structure of a Heartland Emmy-submitted feature to make the argument land</div>
           <div class="cs-tagline">Long-form editorial · Narrative architecture · Documentary post-production · Picture lock</div>
         </div>
         <div class="cs-toggle" id="cs2-tog">+</div>
@@ -1766,22 +2034,18 @@ html.light .resume-bullets li { color: rgba(26,26,22,0.75); }
         <!-- ★ VIDEO SLOT 3 — Theatrical trailer or key sequence -->
         <div class="video-block">
           <div class="video-label">Theatrical trailer or representative scene</div>
-          <div class="video-slot">
-            <div class="video-slot-icon"><svg viewBox="0 0 16 16"><path d="M6 3.5l7 4.5-7 4.5V3.5z"/></svg></div>
-            <div class="video-slot-label">Video available on request</div>
-            
-          </div>
+          <div class="video-embed-wrap"><iframe src="https://www.youtube-nocookie.com/embed/mugqAXYuUs0" allowfullscreen allow="autoplay; picture-in-picture; fullscreen" playsinline></iframe></div>
         </div>
 
         <div class="module">
-          <div class="module-pill">Project overview</div>
-          <div class="module-heading">Scope, subject matter, and editorial mandate</div>
+          <div class="module-pill">The editorial problem</div>
+          <div class="module-heading">Two narratives. One film. The structure had to hold both.</div>
           <div class="module-text">
-            <p>Wolverines is a feature-length documentary following the Westview Wolverines — a high school football program in Omaha, Nebraska — across a complete competitive season. The film operates simultaneously as a season narrative and as a cultural portrait of the structural role athletics play in midwestern community identity.</p>
-            <p>Razak served as sole editor from assembly through picture lock, working from raw field production without a supervising editor or institutional framework. The editorial mandate was to construct a throughline that honoured the temporal stakes of the season arc while sustaining a macro-level cultural argument that extended well beyond any single game.</p>
+            <p>What We Stand On follows a Nebraska high school football program across a full season. The editorial challenge was not cutting a sports film — it was building a dual-register argument: the season arc (did they win?) running simultaneously with a cultural portrait (what does this community believe, and why?). Either strand, pursued on its own terms, would have collapsed the other.</p>
+            <p>Razak served as sole editor from assembly through picture lock, with no supervising editor or institutional framework. The mandate was to find the throughline that made both arguments land — and to trust the audience enough to withhold the football until they had a reason to care about the people playing it.</p>
           </div>
           <table class="brief-table">
-            <tr><td>Subject</td><td>Westview Wolverines football program, Omaha NE</td></tr>
+            <tr><td>Subject</td><td>Westview What We Stand On football program, Omaha NE</td></tr>
             <tr><td>Thematic scope</td><td>Community identity, adolescent development, midwestern sports culture</td></tr>
             <tr><td>Editorial role</td><td>Sole editor — assembly cut through picture lock, independent engagement</td></tr>
             <tr><td>Festival submission</td><td>Heartland Emmy Awards — Best Documentary category, 2024</td></tr>
@@ -1857,14 +2121,14 @@ html.light .resume-bullets li { color: rgba(26,26,22,0.75); }
         <div class="module">
           <div class="module-pill">Creative director's reflection</div>
           <div class="module-heading">What this project demonstrates about the editorial practice</div>
-          <div class="module-text"><p>Wolverines represents the most complete expression of Razak's editorial voice — because the visual language was not inherited from a pre-existing brand framework, it was developed in response to the material itself.</p></div>
+          <div class="module-text"><p>The structural rebuild is the proof. Not the technical proficiency — the diagnostic judgment: recognising that the original structure was defending itself rather than serving the audience, and knowing exactly what to sacrifice to fix it. That judgment transfers directly to brand work. The same logic that rebuilt What We Stand On' first act is the logic behind a performance creative that opens on a person, not a product.</p></div>
           <div class="takeaway">
             <div class="takeaway-label">Demonstrated competency</div>
-            <div class="takeaway-text">Feature-length narrative architecture and a fully articulated editorial methodology — developed independently, validated at Heartland Emmy submission level, and demonstrably revised under real production conditions.</div>
+            <div class="takeaway-text">Feature-length narrative architecture — a fully articulated editorial methodology, developed independently, validated at Heartland Emmy submission level, and demonstrably revised under real production conditions. The methodology transfers directly to paid creative at any length.</div>
           </div>
           <div class="perf-note">
             <div class="perf-note-label">Performance framing</div>
-            <div class="perf-note-text">Documentary editorial applies the same diagnostic logic as performance creative: <strong>retention curve analysis</strong> (where does the audience disengage and why?), <strong>hook engineering</strong> (the first 90 seconds must earn the next 60 minutes), and <strong>A/B structural testing</strong> (the first-act rebuild described above). The methodology transfers directly to paid creative at any length.</div>
+            <div class="perf-note-text">Documentary editorial applies the same diagnostic logic as performance creative: <strong>retention curve analysis</strong> (where does the audience disengage and why?), <strong>hook engineering</strong> (the first 90 seconds must earn the next 60 minutes), and <strong>structural testing</strong> (the first-act rebuild described above). The methodology transfers directly to paid creative at any length.</div>
           </div>
         </div>
 
@@ -1872,113 +2136,237 @@ html.light .resume-bullets li { color: rgba(26,26,22,0.75); }
     </div><!-- end cs2 -->
 
 
-    <!-- ════ CS 03 — NORDSTROM RACK ════ -->
+    <!-- ════ CS 03 — NEW COLLEGE OF FLORIDA ════ -->
     <div class="cs-card fade-up d4" id="cs3">
       <div class="cs-header" onclick="toggleCS('cs3')">
         <div>
-          <div class="cs-index">Case study — 03 <span class="spec-pill">Spec concept</span></div>
-          <div class="cs-title">Nordstrom Rack — shooting designer brands like designer brands, then revealing the price</div>
-          <div class="cs-tagline">Brand film direction · Luxury-register creative · Integrated campaign strategy · Off-price retail</div>
+          <div class="cs-index">Case study — 03</div>
+          <div class="cs-title">New College of Florida — one 60-second film built to answer "Why NCF?" for four audiences at once</div>
+          <div class="cs-tagline">Brand film direction · Admissions campaign strategy · Script development · Higher education</div>
         </div>
         <div class="cs-toggle" id="cs3-tog">+</div>
       </div>
       <div class="cs-summary">
         <div class="cs-sum-cell">
-          <div class="cs-sum-label">The problem</div>
-          <div class="cs-sum-val">Premium product, discount advertising</div>
-          <div class="cs-sum-sub">Designer labels sold like clearance events</div>
+          <div class="cs-sum-label">Client</div>
+          <div class="cs-sum-val">New College of Florida</div>
+          <div class="cs-sum-sub">Via Beck &amp; Stone · Admissions campaign</div>
         </div>
         <div class="cs-sum-cell">
-          <div class="cs-sum-label">The strategy</div>
-          <div class="cs-sum-val">Shoot it like Tom Ford. Reveal the price at the end.</div>
-          <div class="cs-sum-sub">The contrast is the campaign</div>
+          <div class="cs-sum-label">Deliverable</div>
+          <div class="cs-sum-val">90–120 sec brand film</div>
+          <div class="cs-sum-sub">Script · Strategy · Full production direction</div>
         </div>
         <div class="cs-sum-cell">
           <div class="cs-sum-label">Competency</div>
-          <div class="cs-sum-val">Luxury-register brand strategy</div>
-          <div class="cs-sum-sub">Off-price retail · Editorial direction</div>
+          <div class="cs-sum-val">Multi-audience brand strategy</div>
+          <div class="cs-sum-sub">Admissions · Alumni · Parents · Gen-Z</div>
         </div>
       </div>
       <div class="cs-body" id="cs3-body">
-        <div class="spec-notice"><strong>Independently developed spec concept.</strong> Not commissioned by or produced in collaboration with Nordstrom Rack. An unsolicited strategic exercise demonstrating methodology, creative range, and analytical approach across the off-price retail category.</div>
 
-        <!-- ★ VIDEO SLOT 4 — Spec edit -->
-        <div class="video-block">
-          <div class="video-label">Spec re-edit — luxury-register 30-second execution</div>
-          <div class="video-slot">
-            <div class="video-slot-icon"><svg viewBox="0 0 16 16"><path d="M6 3.5l7 4.5-7 4.5V3.5z"/></svg></div>
-            <div class="video-slot-label">Video available on request</div>
-            
-          </div>
-        </div>
-
+        <!-- VIDEO COMPARISON -->
         <div class="module">
-          <div class="module-pill">Creative audit — before + after</div>
-          <div class="module-heading">Diagnosing the existing creative and reframing the visual platform</div>
-          <div class="module-text"><p>The existing Nordstrom Rack advertising operates in the visual grammar of off-price retail — high energy, price-forward, promotional. The product being advertised is not off-price in character: it is designer merchandise at off-price. The creative audit reveals a category-wide failure to distinguish between these two things, and an opportunity to build a brand identity that exploits that gap directly.</p></div>
-
-          <!-- ★ VIDEO SLOT 5 — Competitive audit embeds (2-up) -->
-          <div class="audit-grid">
-            <div class="audit-card">
-              <div class="video-grid-slot" style="border-radius: 0; border: none; aspect-ratio: 16/9; background: #000;">
-                <!-- Replace with: <iframe src="YOUR_EMBED_URL" ...></iframe> -->
-                <svg viewBox="0 0 16 16" style="width:12px;height:12px;fill:#3a3830;margin-left:1px;"><path d="M6 3.5l7 4.5-7 4.5V3.5z"/></svg>
-              </div>
-              <div class="audit-body">
-                <div class="audit-label">Existing creative</div>
-                <div class="audit-text">High energy, promotional framing. Price-forward. Indistinguishable from category competitors. Hook rate hypothesis: average or below — no pattern interrupt.</div>
-              </div>
-            </div>
-            <div class="audit-card">
-              <div class="video-grid-slot" style="border-radius: 0; border: none; aspect-ratio: 16/9; background: #000;">
-                <!-- Replace with: <iframe src="YOUR_EMBED_URL" ...></iframe> -->
-                <svg viewBox="0 0 16 16" style="width:12px;height:12px;fill:#3a3830;margin-left:1px;"><path d="M6 3.5l7 4.5-7 4.5V3.5z"/></svg>
-              </div>
-              <div class="audit-body">
-                <div class="audit-label">Luxury benchmark</div>
-                <div class="audit-text">Loro Piana, Tom Ford, Celine register. Long shot duration. Texture-led. No price communication. This is what the product deserves — and what the audience responds to.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="module">
-          <div class="module-pill">The strategic insight</div>
-          <div class="module-heading">Why the contrast is the campaign</div>
-          <div class="module-text"><p>The price reveal mechanism works because it exploits a cognitive gap: if the viewer spends 22 seconds forming the impression that this is a $3,000 brand film, the price reveal creates a genuine moment of surprise. That surprise is the emotional hook. The product has not changed — only the visual frame around it. The creative strategy is to make the visual frame do the selling, and let the price close it.</p></div>
-          <div class="pull-quote">"The hook psychology: pattern interrupt — it doesn't look like a Nordstrom Rack ad. Curiosity gap — what brand is this? Payoff — the price reveal closes the loop."</div>
-        </div>
-
-        <div class="module">
-          <div class="module-pill">The edit — production brief</div>
-          <div class="module-heading">Execution framework for the 30-second spec</div>
+          <div class="module-pill">Before / after — the creative audit</div>
+          <div class="module-heading">What NCF was doing. What it should be doing.</div>
           <div class="module-text">
-            <p><strong>Structure:</strong> Open on texture — not product. No cut before 2 seconds. Grade: warm shadows, pulled highlights, 15–20% grain. Music: sparse piano or ambient strings, no lyrics. Hold the final wide shot one beat longer than feels natural. Price super at 22s: white text, no animation, 2 full seconds alone. Logo at 26s. Out.</p>
-            <p><strong>Reference films:</strong> Loro Piana Fall 2024 · Tom Ford Winter 2024 Shanghai · Gucci × Gosling Road Trip · Celine / Hedi Slimane. Note average shot duration in each. Match it.</p>
+            <p>NCF's existing admissions video operates in the visual grammar of standard higher-ed promotional content — upbeat music, testimonial clips, campus B-roll, overlaid text statistics. It is competent. It is also indistinguishable from forty other Florida college admissions videos made the same year. For a school that positions itself as the most intellectually serious public institution in the state, the creative gap is both the diagnosis and the brief.</p>
+          </div>
+          <div class="video-compare">
+            <div class="video-compare-col">
+              <div class="video-compare-label before">Their existing film</div>
+              <div class="video-compare-slot" style="background:#000;border:1px solid var(--border);border-style:solid;overflow:hidden;display:block;width:100%;aspect-ratio:16/9;">
+                <iframe src="https://www.youtube-nocookie.com/embed/mugqAXYuUs0" allowfullscreen allow="autoplay; picture-in-picture; fullscreen" playsinline style="width:100%;height:100%;border:none;display:block"></iframe>
+              </div>
+              <div class="video-compare-caption">Promotional register. Upbeat. Interchangeable with category competitors. Does not reflect the intellectual gravity of the institution it's meant to represent.</div>
+            </div>
+            <div class="video-compare-col">
+              <div class="video-compare-label after">This film</div>
+              <div class="video-compare-slot after-slot" style="background:#000;border:1px solid var(--border);overflow:hidden;display:block;width:100%;aspect-ratio:16/9;">
+                <iframe src="https://www.youtube-nocookie.com/embed/mugqAXYuUs0" allowfullscreen allow="autoplay; picture-in-picture; fullscreen" playsinline style="width:100%;height:100%;border:none;display:block"></iframe>
+              </div>
+              <div class="video-compare-caption">Cinematic register. Archimedes, Kubrick, Sisyphus. A 60-second argument for intellectual courage — engineered to land across four audiences simultaneously.</div>
+            </div>
+          </div>
+          <div class="audit-grid" style="margin-top:14px;">
+            <div class="audit-card">
+              <div class="audit-body">
+                <div class="audit-label">What the existing film gets wrong</div>
+                <div class="audit-text">It sells the campus, not the proposition. It answers "what is NCF" rather than "why NCF." The students most likely to thrive there already know what NCF is — what they need is permission to choose it. That's a fundamentally different creative problem.</div>
+              </div>
+            </div>
+            <div class="audit-card">
+              <div class="audit-body">
+                <div class="audit-label">What this film does instead</div>
+                <div class="audit-text">It makes choosing NCF feel like an act of intellectual courage rather than a compromise. The Archimedes throughline, the Kubrick match cut, the TRUTH sequence — none of it says "NCF is good." All of it says "this is the kind of institution worth being brave enough to choose."</div>
+              </div>
+            </div>
           </div>
         </div>
 
         <div class="module">
-          <div class="module-pill">Mood board — visual register</div>
-          <div class="module-heading">The aesthetic target for the spec edit</div>
-          <div class="mood-board">
-            <div class="mood-frame sw1"><div class="mood-text">Texture / grain</div></div>
-            <div class="mood-frame sw2"><div class="mood-text">Dark register</div></div>
-            <div class="mood-frame sw3"><div class="mood-text">Warm shadow</div></div>
-            <div class="mood-frame sw4"><div class="mood-text">Pulled highlights</div></div>
-            <div class="mood-frame sw5"><div class="mood-text">Long hold</div></div>
-            <div class="mood-frame sw6"><div class="mood-text">Price reveal</div></div>
+          <div class="module-pill">Strategic brief</div>
+          <div class="module-heading">The brief behind the film</div>
+          <div class="module-text">
+            <p>New College of Florida is a small, residential public honors college — one of the most academically rigorous institutions in the state, with a genuinely distinctive educational model. The brief was direct: answer one question for every person in the room — prospective students, parents, alumni, and the admissions team itself. <strong>Why NCF?</strong></p>
+            <p>The answer had to accomplish three things simultaneously: demonstrate that NCF produces successful alumni, generate genuine student pride, and carry enough legitimacy to resolve the real decision a 17-year-old makes when they're trying to figure out where to go to college. That is a multi-audience brief with competing emotional registers — and the creative had to hold all of them.</p>
           </div>
-          <div class="mood-cap">Tonal palette target — warm shadows, pulled highlights, long shot duration</div>
+          <table class="brief-table">
+            <tr><td>Client</td><td>New College of Florida Admissions (via Beck &amp; Stone)</td></tr>
+            <tr><td>Audiences</td><td>Prospective students (Gen-Z Florida) · Parents · Current students · Alumni · Internal admissions team</td></tr>
+            <tr><td>Primary objective</td><td>Drive admissions consideration — answer "Why NCF?" with conviction and legitimacy</td></tr>
+            <tr><td>Tone mandate</td><td>Collegiate, intense, goosebump-inducing — not promotional</td></tr>
+            <tr><td>Duration</td><td>60 seconds (cut from original 90–120 sec brief)</td></tr>
+            <tr><td>Visual mandate</td><td>NCF brand colours throughout; air of legitimacy; alumni credibility visible</td></tr>
+          </table>
         </div>
 
         <div class="module">
-          <div class="module-pill">Performance rationale</div>
-          <div class="module-heading">Why this creative approach outperforms the category</div>
-          <div class="module-text"><p>Luxury-register visual grammar drives stronger upper-funnel performance in off-price retail because it creates a genuine pattern interrupt: the viewer registers a mismatch between the visual tone and the category expectation. That cognitive gap is attention. The price reveal converts that attention into surprise — one of the most effective triggers for both sharing behaviour and purchase intent.</p><p>The 3-second view rate is the first filter any paid social creative must clear. Luxury-register content passes at a structurally higher rate because it does not immediately read as an advertisement. The CTR premium comes from the reveal — which rewards viewers who stayed through the hold.</p></div>
+          <div class="module-pill">Audience intelligence + creative insight</div>
+          <div class="module-heading">The tension that drives the film</div>
+          <div class="module-text">
+            <p><strong>The lazy observation:</strong> "Prospective students want to know what makes NCF special."<br>
+            <strong>The real insight:</strong> The students most likely to thrive at NCF are exactly the ones most likely to talk themselves out of it — they're intellectually ambitious enough to want an unconventional education, but risk-averse enough to default to a more recognisable institution when the decision gets hard. The tension: the desire for something genuinely different versus the fear of choosing wrong. The film doesn't sell NCF. It makes the viewer feel, for 60 seconds, like they've already chosen it.</p>
+          </div>
+          <div class="pull-quote">"The ad needs to answer one question: Why NCF? Show that NCF has bred successful alumni, fosters student pride, and has an air of legitimacy for those struggling to make a choice."</div>
+          <div class="module-text" style="margin-top:16px;">
+            <p><strong>Strategic brief (GET / TO / BY):</strong> Get intellectually curious Florida students who are weighing NCF against more conventional options — to feel that choosing NCF is not a risk but an act of intellectual courage — by immersing them in 60 seconds of cinematic proof that the pursuit of truth has always produced people who move the world.</p>
+          </div>
+        </div>
+
+        <div class="module">
+          <div class="module-pill">Creative platform — the central idea</div>
+          <div class="module-heading">"Classical wisdom. Modern skills. Move the world."</div>
+          <div class="module-text">
+            <p>The admissions problem: students most likely to thrive at NCF are most likely to talk themselves out of it. Intellectually ambitious, risk-averse when the decision gets hard. The film doesn't sell NCF. It makes the viewer feel, for 60 seconds, like they've already chosen it.</p>
+            <p>The structural device: the match cut. Ancient artefacts dissolve into modern technology. The argument — NCF is not a departure from the intellectual tradition, it is its current address — is made visually, without narration. The Archimedes lever anchors it: NCF is the fixed point. Students are where that drive gets trained.</p>
+          </div>
+          <div class="concept-grid">
+            <div class="concept-card">
+              <div class="concept-card-label">Opening device</div>
+              <div class="concept-card-title">Cosmic open — 4 seconds, no narration.</div>
+              <div class="concept-card-desc">Satellite + NCF logo. Hard cut on beat. Score only. The viewer is not told what this is yet — the score does the orientation work.</div>
+            </div>
+            <div class="concept-card">
+              <div class="concept-card-label">Hero moment</div>
+              <div class="concept-card-title">Antikythera → space station match cut.</div>
+              <div class="concept-card-desc">The ancient computing device morphs into an orbital ring. Archimedes quote holds on screen in silence. The argument is made without a word of narration.</div>
+            </div>
+            <div class="concept-card">
+              <div class="concept-card-label">Narrative arc</div>
+              <div class="concept-card-title">Sisyphus reaches the top.</div>
+              <div class="concept-card-desc">Two historical figures — not five. Sisyphus graphic lands on the summit as "leave no stone unlearned" resolves. The wordplay becomes visual.</div>
+            </div>
+            <div class="concept-card">
+              <div class="concept-card-label">Silence architecture</div>
+              <div class="concept-card-title">18 seconds without narration.</div>
+              <div class="concept-card-desc">Narration cuts off at "In the pursuit of —" and doesn't return until "Move the world." at 0:46. The gap is the film's most deliberate decision.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="module">
+          <div class="module-pill">Shot-by-shot treatment — with final narration</div>
+          <div class="module-heading">The 60-second cut: structure, narration, and the reasoning behind each silence</div>
+          <div class="module-text"><p>The narration architecture is as deliberate as the visual one. The voice speaks, cuts off mid-sentence, disappears for 18 seconds through the film's emotional peak, then returns with three words. That absence is what makes the return land.</p></div>
+          <div class="narration-timeline">
+
+            <div class="nt-row">
+              <div class="nt-tc">0:00–0:04<br>4 sec</div>
+              <div class="nt-content">
+                <div class="nt-section">Open — cosmic</div>
+                <div class="nt-silence">[ silence — score only ]</div>
+                <div class="nt-note">Satellite → NCF logo → hard cut on beat. No narration on the first frame. The score carries orientation. Starting with voice signals "corporate admissions video" before the viewer has reason to stay.</div>
+              </div>
+            </div>
+
+            <div class="nt-row">
+              <div class="nt-tc">0:04–0:14<br>10 sec</div>
+              <div class="nt-content">
+                <div class="nt-section">Match cut — Antikythera → space station</div>
+                <div class="nt-narration">"In a complex world — so quickly changing —<br>to effect change requires a fixed point."</div>
+                <div class="nt-note">Original narration kept — it's the strongest writing in the brief. First line over the Antikythera device, pause during the morph, "fixed point" lands as the space station resolves. Archimedes quote appears on screen in silence after narration ends.</div>
+              </div>
+            </div>
+
+            <div class="nt-row">
+              <div class="nt-tc">0:14–0:28<br>14 sec</div>
+              <div class="nt-content">
+                <div class="nt-section">Giants sequence <span class="nt-badge nt-badge-changed">revised</span></div>
+                <div class="nt-narration">"We stand on the shoulders of giants.<br>And leave no stone unlearned.<br>In the pursuit of —"</div>
+                <div class="nt-note">David (shoulders) → Einstein + Curie → Sisyphus reaching the summit. "Leave no stone unlearned" lands on the Sisyphus summit moment — the wordplay becomes visual. The trailing "In the pursuit of —" is deliberately unfinished. Elon Musk removed; two settled historical figures only.</div>
+              </div>
+            </div>
+
+            <div class="nt-row">
+              <div class="nt-tc">0:28–0:39<br>11 sec</div>
+              <div class="nt-content">
+                <div class="nt-section">TRUTH sequence</div>
+                <div class="nt-silence">[ silence — text only, score swells ]</div>
+                <div class="nt-note">TRUTH appears after the narration cuts off mid-sentence. No voice makes the word more confrontational. Each sub-word (Discovers · Ignites · Frees · Nourishes · Lasts) holds 1.8 seconds with its own background world. Score builds underneath — no lyrics, no drop. "Lasts" needs to feel like it means it.</div>
+              </div>
+            </div>
+
+            <div class="nt-row">
+              <div class="nt-tc">0:39–0:46<br>7 sec</div>
+              <div class="nt-content">
+                <div class="nt-section">Student + campus <span class="nt-badge nt-badge-new">new</span></div>
+                <div class="nt-silence">[ silence continues — score holds ]</div>
+                <div class="nt-note">Student mid-thought (3–4 sec, eyes off camera) → 1–2 campus establishing shots. No narration by design — after the TRUTH sequence, a voice would break the spell. Silence runs from 0:28 to 0:46 (18 seconds total). The student face is the only human anchor in the film; without it the piece is entirely conceptual and the admissions audience has no one to project onto.</div>
+              </div>
+            </div>
+
+            <div class="nt-row">
+              <div class="nt-tc">0:46–0:52<br>6 sec</div>
+              <div class="nt-content">
+                <div class="nt-section">Payoff — lever <span class="nt-badge nt-badge-changed">revised</span></div>
+                <div class="nt-narration">"Move the world."</div>
+                <div class="nt-note">Three words. Narration has been absent since 0:28 — its return after 18 seconds of silence lands with full force. Hold the lever image 2 seconds before the line. After "Move the world," one beat of complete silence. This is the structural callback to "fixed point" and the on-screen Archimedes quote — the viewer makes the connection without being told to.</div>
+              </div>
+            </div>
+
+            <div class="nt-row">
+              <div class="nt-tc">0:52–1:00<br>8 sec</div>
+              <div class="nt-content">
+                <div class="nt-section">Close — logo on black</div>
+                <div class="nt-silence">[ silence — score out ]</div>
+                <div class="nt-note">Cut to black. "Classical Wisdom, Modern Skills" appears first — 2 seconds — then NCF wordmark. Score ends before the logo. The final frame is completely silent. Globe statue removed. The last thing the viewer carries out is silence.</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="module">
+          <div class="module-pill">Multi-audience architecture</div>
+          <div class="module-heading">How one film works across four audiences simultaneously</div>
+          <div class="module-text">
+            <p>The film is engineered to land differently for each viewer in the room without contradicting itself for any of them. Prospective students experience it as aspiration — the film tells them who they could become. Parents experience it as legitimacy — the visual register, the historical references, and the Heartland Emmy production standard signal that this is a serious institution making a serious argument. Current students experience it as pride — the film treats NCF's identity as something worth the production budget that confirms it. Alumni experience it as recognition — the values they absorbed are the values the film is made from.</p>
+            <p>A single-minded proposition that holds across all four registers: <strong>NCF is where intellectual courage becomes a life's work.</strong></p>
+          </div>
+        </div>
+
+        <div class="module">
+          <div class="module-pill">Key creative decisions — what changed and why</div>
+          <div class="module-heading">The five revisions that made the 60-second cut stronger than the 90-second brief</div>
+          <div class="principle-list">
+            <div class="principle-row"><div class="principle-num">01</div><div class="principle-text"><strong>Cut from 90 seconds to 60.</strong> The brief called for 90–120 seconds. The 60-second version is structurally tighter and better suited to the platform reality — Gen-Z scroll behaviour gives the film 3 seconds to earn the next 57. Every section that didn't pull narrative weight was cut. The logo open was reduced from 8 seconds to 4.</div></div>
+            <div class="principle-row"><div class="principle-num">02</div><div class="principle-text"><strong>Removed Elon Musk from the giants sequence.</strong> Einstein, Newton, Aristotle, da Vinci are settled historical giants. Musk is a living, actively polarising figure whose presence would pull a significant portion of the audience — in both directions — out of the film. Replaced with Curie. The sequence is stronger with two uncontested names than one contested one.</div></div>
+            <div class="principle-row"><div class="principle-num">03</div><div class="principle-text"><strong>Built the silence architecture.</strong> The original script had continuous narration. The revised version cuts narration at "In the pursuit of —" and doesn't return until "Move the world." 18 seconds of score-only is a bold structural choice — it makes the returning narration land with force it cannot generate if it never left.</div></div>
+            <div class="principle-row"><div class="principle-num">04</div><div class="principle-text"><strong>Added a student face.</strong> The original script was entirely conceptual — no human being on camera until the campus B-roll. One student mid-thought (not smiling at camera, eyes off-screen, in motion) gives the philosophical register a human anchor. Without it, the film has no one for a 17-year-old to project onto.</div></div>
+            <div class="principle-row"><div class="principle-num">05</div><div class="principle-text"><strong>Cut the globe statue. Ended on silence.</strong> The original ending used a statue of a figure holding a globe after the lever. It diluted the "Move the world" button. The revised close goes directly to black after the lever, then text, then logo — the final frame is completely silent. Silence is the last thing the viewer carries out.</div></div>
+          </div>
+        </div>
+
+        <div class="module">
+          <div class="module-pill">Creative director's reflection</div>
+          <div class="module-heading">What this brief demanded — and why it was built for persuasion, not taste</div>
+          <div class="module-text">
+            <p>The match cut is not a stylistic choice — it is the admissions argument. The moment the Antikythera device morphs into the space station, the viewer doesn't have to believe NCF's claim to an intellectual tradition. They see it. The structural device does persuasion work that copy cannot. That's why it was chosen: it converts, not just impresses.</p>
+          </div>
           <div class="takeaway">
             <div class="takeaway-label">Demonstrated competency</div>
-            <div class="takeaway-text">Luxury-register creative strategy applied to off-price retail — using the visual grammar of premium brands to reposition designer merchandise at accessible price points. Hook engineering, retention mechanics, and performance rationale fully developed.</div>
+            <div class="takeaway-text">Multi-audience admissions strategy resolved in a single film — script, narrative architecture, scene-level production treatment. One 60-second argument that answers "Why NCF?" for prospective students, parents, alumni, and the admissions team simultaneously, without compromising its emotional register for any of them.</div>
           </div>
         </div>
 
@@ -2019,24 +2407,48 @@ html.light .resume-bullets li { color: rgba(26,26,22,0.75); }
         <!-- ★ VIDEO SLOT 6 — Mood reel or storyboard -->
         <div class="video-block">
           <div class="video-label">Mood reel or storyboard treatment — "The 4am call"</div>
-          <div class="video-slot">
-            <div class="video-slot-icon"><svg viewBox="0 0 16 16"><path d="M6 3.5l7 4.5-7 4.5V3.5z"/></svg></div>
-            <div class="video-slot-label">Video available on request</div>
-            
+          <div class="video-embed-wrap"><iframe src="https://www.youtube-nocookie.com/embed/mugqAXYuUs0" allowfullscreen allow="autoplay; picture-in-picture; fullscreen" playsinline></iframe></div>
+        </div>
+
+        <div class="module">
+          <div class="module-pill">The brief</div>
+          <div class="module-heading">The reputational problem — and the campaign model that solves it.</div>
+          <div class="module-text">
+            <p>Palantir's existing brand communications fall into two registers: technical and product-forward (dashboards, data flows), or promotional and abstract ("the future of data" language). Both confirm the frame they need to dismantle. Useful surveillance is still surveillance — arguing against the distrust narrative in the same register as the accusation makes it worse.</p>
+            <p>The campaign model: don't address the accusation. Make it feel like a category error. Show 90 seconds of a nurse, a logistics manager, a disaster relief coordinator — and the moment where better information produced a better outcome for another human being. By the time the Palantir wordmark appears, the surveillance frame belongs to a different company.</p>
+          </div>
+          <div class="audit-grid" style="margin-top:14px;">
+            <div class="audit-card">
+              <div class="audit-body">
+                <div class="audit-label">Why the existing creative fails</div>
+                <div class="audit-text">It argues against the distrust narrative directly. The problem: useful surveillance is still surveillance. Addressing the accusation in the same register as the accusation confirms the frame rather than dismantling it.</div>
+              </div>
+            </div>
+            <div class="audit-card">
+              <div class="audit-body">
+                <div class="audit-label">Why this campaign works differently</div>
+                <div class="audit-text">It never mentions data privacy. It never addresses the accusation. It makes the surveillance narrative feel like a category error — as if the viewer just watched it apply to a completely different company.</div>
+              </div>
+            </div>
           </div>
         </div>
 
         <div class="module">
-          <div class="module-pill">Strategic diagnosis</div>
-          <div class="module-heading">Why conventional reputation management fails here</div>
-          <div class="module-text"><p>The instinct in reputation repair is to address the accusation directly — to produce content that says "here's what we actually do" and trust the audience to update their priors. That instinct is almost always wrong. People don't change their minds about brands because brands tell them to. They change their minds when they see something that makes their existing belief feel like it doesn't apply to the company they're watching.</p><p>The creative strategy here is not to fight the surveillance narrative — it's to make the surveillance narrative feel like it belongs to a completely different kind of company than the one you just watched spend 90 seconds on a nurse and a flood and a 4am phone call.</p></div>
+          <div class="module-pill">Audience intelligence + creative insight</div>
+          <div class="module-heading">The understanding that governed every strategic decision</div>
+          <div class="module-text">
+            <p><strong>The lazy observation:</strong> "People distrust Palantir because of its surveillance associations."<br>
+            <strong>The real insight:</strong> The audience that most needs to trust Palantir — government procurement officers, enterprise CIOs — is the same audience most primed to distrust surveillance technology on principle. Their distrust is not ignorance; it is a considered position. Brands don't change considered positions by arguing against them. They change them by making them structurally irrelevant.</p>
+          </div>
+          <div class="module-text" style="margin-top:16px;">
+            <p><strong>GET / TO / BY:</strong> Get government and enterprise decision-makers who hold a deeply embedded privacy-distrust frame around Palantir — to reassess that frame as not applicable — by showing them 90 seconds of human-consequence storytelling that makes the surveillance narrative feel like a category error.</p>
+          </div>
         </div>
 
         <div class="module">
           <div class="module-pill">Campaign platform</div>
-          <div class="module-heading">The insight that drives every execution</div>
-          <div class="module-text"><p>The campaign platform is built on a single reframe: Palantir doesn't collect data — it helps the institutions that already hold your data use it more humanely. Every execution puts a real person at the centre of a real decision. No dashboards. No servers. No abstract data visualisations. Just a nurse, a logistics manager, a disaster relief coordinator — and the moment where better information produced a better outcome for another human being.</p></div>
-          <div class="pull-quote">"Your data, working for you."</div>
+          <div class="module-heading">"Your data, working for you." — the idea and the executions</div>
+          <div class="module-text"><p>The platform reframe is simple: Palantir doesn't collect data — it helps the institutions that already hold your data use it more humanely. Every execution puts a real person at the centre of a real decision. No dashboards. No servers. A nurse, a logistics manager, a disaster coordinator — and the moment where better information changed a human outcome.</p></div>
           <div class="concept-grid">
             <div class="concept-card">
               <div class="concept-card-label">Hero film — 90 sec</div>
@@ -2103,18 +2515,34 @@ html.light .resume-bullets li { color: rgba(26,26,22,0.75); }
 
         <div class="module">
           <div class="module-pill">Creative director's reflection</div>
-          <div class="module-heading">Why this brief cannot be solved with conventional reputation management</div>
-          <div class="module-text"><p>People don't change their minds about brands because brands tell them to. They change their minds when they see something that makes their existing belief feel like it doesn't apply. The strategy here is not to fight the surveillance narrative — it's to make the surveillance narrative feel like it belongs to a completely different kind of company than the one you just watched spend 90 seconds on a nurse and a flood and a 4am phone call.</p></div>
+          <div class="module-heading">Why the execution model matters as much as the strategy</div>
+          <div class="module-text"><p>The scene breakdown exists to show the strategy has been thought through to the frame — not just articulated as a premise. The 4am call works because it withholds Palantir entirely until the wordmark appears at 0:54. By that point the viewer has spent 54 seconds with a nurse, a corridor, and a morning that went right. The brand earns its name. That sequencing is the strategy.</p></div>
+          <div class="perf-note">
+            <div class="perf-note-label">Measurement framework — connecting brand spend to business outcomes</div>
+            <div class="perf-note-text">
+              <strong>Leading indicators:</strong> (1) Brand trust lift score among target B2B segments — measured via brand lift study 6 weeks post-campaign. (2) Earned media sentiment ratio — surveillance-negative mentions as % of total coverage. (3) LinkedIn video completion rate — enterprise completion signals genuine interest, not passive scroll.<br><br>
+              <strong>Lagging indicators:</strong> (1) RFP pipeline growth in government + enterprise segments post-campaign. (2) Inbound partnership enquiry rate year-over-year.<br><br>
+              <strong>Decision rule:</strong> If brand trust lift exceeds +12 points in target segment, extend campaign. If LinkedIn completion rate falls below 45%, the opening 6 seconds are not earning the remaining 54.
+            </div>
+          </div>
           <div class="takeaway">
             <div class="takeaway-label">Demonstrated competency</div>
-            <div class="takeaway-text">Reputational reframe through creative strategy — building a campaign architecture that neutralises a deeply embedded public misconception not through argument or denial, but through sustained, human-centred storytelling that makes the misconception structurally irrelevant.</div>
+            <div class="takeaway-text">B2B reputational reframe through creative strategy — a campaign architecture that neutralises a deeply embedded misconception not through argument, but through storytelling that makes the misconception feel like it belongs to a different company. Measurement framework built to speak to a CFO, not just a CMO.</div>
           </div>
         </div>
 
       </div>
     </div><!-- end cs4 -->
 
-    <div style="padding-bottom: 80px;"></div>
+
+      <!-- ══ GET IN TOUCH CTA ══ -->
+      <div class="cta-block fade-up" style="margin: 48px 0 80px;">
+        <div>
+          <div class="cta-heading">Available for creative strategy engagements.</div>
+          <div class="cta-sub">Brand campaigns, editorial direction, and post-production — across agency, in-house, and independent project contexts. Based in the San Francisco Bay Area.</div>
+        </div>
+        <button class="cta-btn" data-email-protect-href>Get in touch</button>
+      </div>
 
   </div><!-- end site-wrap -->
 </div><!-- end page-work -->
@@ -2129,22 +2557,21 @@ html.light .resume-bullets li { color: rgba(26,26,22,0.75); }
 
       <div class="about-grid fade-up d1">
         <div class="headshot-col">
-          <div class="headshot">
-            <svg viewBox="0 0 20 20"><path d="M10 10a4 4 0 100-8 4 4 0 000 8zm-7 8a7 7 0 1114 0H3z"/></svg>
-            <div class="headshot-label">Insert headshot here</div>
+          <div class="headshot" style="border:none;background:transparent;padding:0;overflow:hidden;">
+            <img src="data:image/webp;base64,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" alt="Amir Razak" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;border-radius:4px;">
           </div>
           <div class="contact-block">
             <div class="contact-row">
               <div class="contact-icon">
                 <svg viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
               </div>
-              <span class="contact-text"><a href="/cdn-cgi/l/email-protection#7b1a1612093b1e161a121755181416"><span class="__cf_email__" data-cfemail="a5c4c8ccd7e5c0c8c4ccc98bc6cac8">[email&#160;protected]</span></a></span>
+              <span class="contact-text"><a href="#" data-email-protect>[email&nbsp;protected]</a></span>
             </div>
             <div class="contact-row">
               <div class="contact-icon">
-                <svg viewBox="0 0 20 20"><path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
               </div>
-              <span class="contact-text"><a href="#">@amirrazak</a></span>
+              <span class="contact-text"><a href="https://www.linkedin.com/in/amir-razak-90421a13b/" target="_blank" rel="noopener">LinkedIn</a></span>
             </div>
           </div>
         </div>
@@ -2152,12 +2579,23 @@ html.light .resume-bullets li { color: rgba(26,26,22,0.75); }
         <div class="bio-col">
           <div class="bio-eyebrow">Creative Strategist — San Francisco Bay Area</div>
           <div class="bio-name">Amir<br>Razak</div>
-          <div class="bio-role">Creative Strategy · Editorial Direction · Post-Production</div>
+          <div class="bio-role">Creative Strategist — brand positioning + performance creative — video-native</div>
           <div class="bio-body">
-            <p>Amir Razak is a creative strategist and editorial director whose practice is built at the intersection of analytical rigour and post-production craft — translating complex brand and audience intelligence into visual narratives that are both strategically precise and cinematically considered.</p>
-            <p>His path to creative strategy is unconventional by design. A rigorous quantitative background at NYU formed the analytical foundation; years of independent post-production practice — across documentary film, brand campaigns, literary publishing, and commercial advertising — built the editorial one. The result is a strategist who can read a data pipeline and a timeline with equal fluency.</p>
-            <p>Available for creative strategy, editorial direction, and performance creative roles across brand, agency, and in-house environments — with a demonstrated ability to drive measurable outcomes at every stage of the creative lifecycle.</p>
+            <p>Creative strategist and editorial director. The practice covers brand strategy, performance creative, and post-production — and the differentiator is that all three are the same person. A brief written by someone who has spent thousands of hours in the edit is a different document: production-aware, technically grounded, and built around the moments that actually move an audience.</p>
+            <p>Available for creative strategy, performance creative, and editorial direction across brand, agency, and in-house environments. Analytical foundation from NYU Mathematics. Post-production fluency across documentary, brand campaigns, and paid social. The result: work that performs in a dashboard and holds up in a reel.</p>
+            <p>Strategic method: 4C diagnosis → tension-rich audience insight → single-minded proposition → creative platform → measurable performance framework. Every engagement built to produce outcomes defensible in a boardroom, not just compelling in a deck.</p>
           </div>
+        </div>
+      </div>
+
+      <div class="hr"></div>
+
+      <div class="fade-up d2" style="margin-bottom: 48px;">
+        <div class="section-label">The unfair advantage</div>
+        <div class="philosophy-pull">"Most strategists can brief creative. I can brief it, direct it, and cut it — which means I catch in strategy what others only discover in the edit."</div>
+        <div class="philosophy-body">
+          <p>A strategist who has never sat in an edit suite writes briefs that are strategically coherent and practically impossible. An editor who has never written a brief produces executions that are technically accomplished and strategically inert. The translation between those two roles is where most campaigns lose precision.</p>
+          <p>The strategic method is commercial first: every creative decision is mapped to a metric before production begins — hook rate, 3-second hold rate, CTR, CVR, ROAS. The brief names the tension. The production resolves it. The edit honours both.</p>
         </div>
       </div>
 
@@ -2167,9 +2605,53 @@ html.light .resume-bullets li { color: rgba(26,26,22,0.75); }
         <div class="section-label">Editorial philosophy</div>
         <div class="philosophy-pull">"Editing is not assembly. It is authorship — and the moment that distinction is surrendered to automation, the work loses the one thing no algorithm can manufacture: a point of view."</div>
         <div class="philosophy-body">
-          <p>Razak approaches post-production as a discipline of consequence, not convenience. Every cut is a decision — about energy, about emotional register, about what the audience is permitted to feel and when. That decision-making capacity is the product of thousands of hours of practice, a developed sensitivity to the relationship between audio and image, and an editorial voice built independently rather than inherited from a curriculum or a preset library.</p>
-          <p>He holds a considered position on the role of artificial intelligence in the creative process: AI is a legitimate research, ideation, and logistical tool, but its application as a substitute for editorial judgement produces work that is technically functional and creatively inert. The grain match, the motivated camera move, the precise moment a cut lands against a line of audio — these are not problems that benefit from computational optimisation. They are the work.</p>
-          <p>This philosophy is not a rejection of technology — it is a defence of authorship. The brands and projects that benefit most from Razak's practice are those that understand the difference.</p>
+          <p>Every cut is a decision — about energy, emotional register, what the audience is permitted to feel and when. That capacity is the product of thousands of hours of practice and a developed sensitivity to the relationship between audio and image.</p>
+          <p>AI is a legitimate research and ideation tool. It is not a substitute for editorial judgement. The grain match, the motivated camera move, the precise moment a cut lands against a line of audio — these are not problems that benefit from optimisation. They are the work.</p>
+        </div>
+      </div>
+
+      <div class="hr"></div>
+
+      <div class="fade-up d3" style="margin-bottom: 48px;">
+        <div class="section-label">Three-sentence positioning</div>
+        <div class="philosophy-pull" style="font-size:20px;">"I build strategy that survives production. My background in mathematics gives me the analytical foundation to speak fluent CFO; my years in the edit suite give me the production literacy to write briefs that don't fall apart on set. The result is work that performs in a dashboard and holds up in a reel."</div>
+      </div>
+
+      <div class="hr"></div>
+
+      <div class="fade-up d3" style="margin-bottom: 48px;">
+        <div class="section-label">Strategic frameworks</div>
+        <div class="cred-grid">
+          <div class="cred-card">
+            <div class="cred-label">Diagnostic method</div>
+            <div class="cred-val">4C Audit</div>
+            <div class="cred-sub">Company · Category · Consumer · Culture — applied before every brief</div>
+          </div>
+          <div class="cred-card">
+            <div class="cred-label">Brief structure</div>
+            <div class="cred-val">GET / TO / BY</div>
+            <div class="cred-sub">Single-minded proposition framework — one sentence, no conjunctions</div>
+          </div>
+          <div class="cred-card">
+            <div class="cred-label">Insight standard</div>
+            <div class="cred-val">Tension-first</div>
+            <div class="cred-sub">Every insight must contain a paradox — observations don't move budgets</div>
+          </div>
+          <div class="cred-card">
+            <div class="cred-label">Measurement language</div>
+            <div class="cred-val">CFO-fluent</div>
+            <div class="cred-sub">Hook rate → CVR → ROAS → EBITDA impact — the full chain, articulated</div>
+          </div>
+          <div class="cred-card">
+            <div class="cred-label">Brand architecture</div>
+            <div class="cred-val">Platform + performance</div>
+            <div class="cred-sub">Brand platform brief + performance creative brief — same brand, different instruments</div>
+          </div>
+          <div class="cred-card">
+            <div class="cred-label">Testing methodology</div>
+            <div class="cred-val">Variable isolation</div>
+            <div class="cred-sub">One variable per test — hook, visual, CTA, format — with pre-built decision rules</div>
+          </div>
         </div>
       </div>
 
@@ -2181,7 +2663,7 @@ html.light .resume-bullets li { color: rgba(26,26,22,0.75); }
           <div class="cred-card">
             <div class="cred-label">Recognition</div>
             <div class="cred-val">Heartland Emmy Submission</div>
-            <div class="cred-sub">Best Documentary — Wolverines (2024)</div>
+            <div class="cred-sub">Best Documentary — What We Stand On (2024)</div>
           </div>
           <div class="cred-card">
             <div class="cred-label">Client impact</div>
@@ -2221,16 +2703,36 @@ html.light .resume-bullets li { color: rgba(26,26,22,0.75); }
           <span class="tool-tag">Editorial direction</span>
           <span class="tool-tag">Quantitative analysis</span>
         </div>
+        <div class="tools-section-label">Brand strategy tools</div>
+        <div class="tools-wrap">
+          <span class="tool-tag">4C audit</span>
+          <span class="tool-tag">GET / TO / BY briefs</span>
+          <span class="tool-tag">Positioning maps</span>
+          <span class="tool-tag">Brand spine development</span>
+          <span class="tool-tag">Distinctive asset theory</span>
+          <span class="tool-tag">Ansoff matrix</span>
+          <span class="tool-tag">Brand architecture mapping</span>
+          <span class="tool-tag">Workshop facilitation</span>
+        </div>
         <div class="tools-section-label">Analytics + performance tools</div>
         <div class="tools-wrap">
           <span class="tool-tag">Meta Ads Manager</span>
           <span class="tool-tag">Google Analytics 4</span>
           <span class="tool-tag">Google Ads</span>
           <span class="tool-tag">Looker Studio</span>
-          <span class="tool-tag">CTR · CPM · ROAS · CVR</span>
+          <span class="tool-tag">CTR · CPM · ROAS · CVR · ESOV</span>
           <span class="tool-tag">Retention curve analysis</span>
           <span class="tool-tag">Hook rate diagnostics</span>
           <span class="tool-tag">A/B creative testing</span>
+          <span class="tool-tag">Brand lift measurement</span>
+        </div>
+        <div class="tools-section-label">AI tools — research + production stack</div>
+        <div class="tools-wrap">
+          <span class="tool-tag">Claude / ChatGPT — brief writing + concept development</span>
+          <span class="tool-tag">Meta Ad Library — competitor creative intelligence</span>
+          <span class="tool-tag">TikTok Creative Center</span>
+          <span class="tool-tag">Motion — creative analytics</span>
+          <span class="tool-tag">Reddit + reviews mining — audience language</span>
         </div>
       </div>
 
@@ -2241,7 +2743,7 @@ html.light .resume-bullets li { color: rgba(26,26,22,0.75); }
           <div class="cta-heading">Available for creative strategy engagements.</div>
           <div class="cta-sub">Brand campaigns, editorial direction, and post-production — across agency, in-house, and independent project contexts. Based in the San Francisco Bay Area.</div>
         </div>
-        <button class="cta-btn" onclick="window.location.href='mailto:amir@email.com'">Get in touch</button>
+        <button class="cta-btn" data-email-protect-href>Get in touch</button>
       </div>
 
     </div>
@@ -2258,11 +2760,11 @@ html.light .resume-bullets li { color: rgba(26,26,22,0.75); }
 
       <div class="resume-header">
         <div class="resume-name">Amir Razak</div>
-        <div class="resume-title">Creative Strategist · Performance Creative Lead · Editorial Director</div>
+        <div class="resume-title">Creative Strategist — Brand Positioning + Performance Creative — Video-Native</div>
         <div class="resume-contact">
           <div class="resume-contact-item">
             <svg viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
-            <a href="/cdn-cgi/l/email-protection#fc9d91958ed28e9d869d97ccccbc9b919d9590d29f9391"><span class="__cf_email__" data-cfemail="27464a4e550955465d464c171767404a464e4b0944484a">[email&#160;protected]</span></a>
+            <a href="#" data-email-protect>[email&nbsp;protected]</a>
           </div>
           <div class="resume-contact-item">
             <svg viewBox="0 0 20 20"><path d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"/></svg>
@@ -2272,7 +2774,8 @@ html.light .resume-bullets li { color: rgba(26,26,22,0.75); }
       </div>
 
       <div class="resume-profile">
-        Creative strategist and editorial director with a background bridging quantitative analysis, post-production craft, and performance creative. Proven ability to develop brand-level campaign platforms, translate audience intelligence into measurable outcomes, and operate across the full creative lifecycle from strategic brief through picture lock. Fluent in the metrics that determine whether creative drives revenue: hook rate, CTR, CVR, ROAS, and retention curve analysis.
+        Creative strategist and editorial director. Brand strategy, performance creative, and post-production — in one practice. Demonstrated outcomes: +40% subscription growth (The New Criterion), Heartland Emmy submission (What We Stand On), multi-audience brand film strategy (New College of Florida via Beck &amp; Stone).<br><br>
+        Fluent in the metrics that determine whether creative drives revenue: hook rate, 3-second hold rate, CTR, CVR, ROAS, and retention curve analysis. Equally fluent in the brand architecture frameworks that determine lasting value: 4C diagnosis, positioning maps, single-minded propositions. Operates at CFO-level abstraction (EBITDA impact, CAC/LTV) and frame level (shot duration, grain match, audio-picture sync) — and knows when each register is required.
       </div>
 
       <div class="resume-section">
@@ -2285,11 +2788,11 @@ html.light .resume-bullets li { color: rgba(26,26,22,0.75); }
           </div>
           <div class="resume-entry-org">Beck &amp; Stone · Bay Area, CA</div>
           <ul class="resume-bullets">
-            <li>Developed performance-oriented creative strategy and video production across brand and paid social campaigns, contributing to measurable improvements in audience engagement and conversion metrics.</li>
-            <li>Produced A/B-tested video creatives optimised for funnel stage — iterating on retention curve data, hook performance, and downstream CVR to improve creative efficiency across active campaigns.</li>
-            <li>Produced creative assets for high-profile political and media clients, managing same-day turnarounds and delivering motion graphics, sound design, and video editing to broadcast standard.</li>
-            <li>Built a unified visual grammar — deliberate editorial pacing, warm cinematic grade, motivated camera movement — applied consistently across monthly content, annual tentpole campaigns, and gala production.</li>
-            <li>Documented visual standards and production framework enabling brand team continuity beyond the engagement.</li>
+            <li>Led end-to-end creative strategy across brand and paid social — 4C diagnosis through brief, production, and performance reporting — for political, media, and policy clients.</li>
+            <li>Drove +40% subscription growth for The New Criterion — built video identity from zero, sustained across monthly cadence; zero subscriber erosion over engagement period.</li>
+            <li>Directed creative strategy and production for New College of Florida admissions brand film — multi-audience brief (students, parents, alumni, Gen-Z Florida) resolved in a single 60-second cinematic argument. Platform: "Classical Wisdom, Modern Skills."</li>
+            <li>Produced A/B-tested paid social creatives with variable isolation (hook, visual, CTA, format) — iterated on retention curve data and 3-second hold rate; delivered performance reports translating analytics into budget reallocation recommendations.</li>
+            <li>Built unified visual grammar applied across monthly content, annual tentpole campaigns, and gala production for the Claremont Institute, The New Criterion, and AIER.</li>
           </ul>
         </div>
 
@@ -2300,11 +2803,10 @@ html.light .resume-bullets li { color: rgba(26,26,22,0.75); }
           </div>
           <div class="resume-entry-org">Independent · Multiple Clients · Remote / Bay Area, CA</div>
           <ul class="resume-bullets">
-            <li>Directed and produced documentary short <em>Becoming Babylon</em> in collaboration with Victory of USA — full creative direction, post-production, and editorial from pre-production through picture lock.</li>
-            <li>Created performance-optimised campaign advertisements and motion graphics for political and media clients, including same-day turnaround deliverables for live conference events with 100+ attendees.</li>
-            <li>Led design and video editing for Mint Money's paid social advertising campaign in the crypto/Web3 ecosystem, producing multiple ad creatives across NFT project launches.</li>
-            <li>Produced brand and social content for book, media, and advocacy clients — building motion graphics, sound design, and video strategy aligned to audience engagement goals.</li>
-            <li>Collaborated with NYU Tisch student filmmakers through the Tisch Student Crew network, building cross-disciplinary production experience across narrative and documentary formats.</li>
+            <li>Directed and produced documentary short <em>Becoming Babylon</em> — full creative direction, post-production, and editorial through picture lock.</li>
+            <li>Produced performance-optimised campaign ads and motion graphics for political and media clients — including same-day turnarounds for live conference events with 100+ attendees.</li>
+            <li>Led video editing and design for Mint Money's paid social campaign in the crypto/Web3 ecosystem — multiple ad creatives across NFT project launches.</li>
+            <li>Produced brand and social content for book, media, and advocacy clients — motion graphics, sound design, and video strategy aligned to engagement targets.</li>
           </ul>
         </div>
       </div>
@@ -2314,7 +2816,7 @@ html.light .resume-bullets li { color: rgba(26,26,22,0.75); }
 
         <div class="resume-entry">
           <div class="resume-entry-header">
-            <div class="resume-entry-title">Wolverines — Feature Documentary</div>
+            <div class="resume-entry-title">What We Stand On — Feature Documentary</div>
             <div class="resume-entry-date">2024</div>
           </div>
           <div class="resume-entry-org">Assistant Editor · Heartland Emmy Submission, Best Documentary</div>
@@ -2325,11 +2827,12 @@ html.light .resume-bullets li { color: rgba(26,26,22,0.75); }
 
         <div class="resume-entry">
           <div class="resume-entry-header">
-            <div class="resume-entry-title">Nordstrom Rack — Spec Campaign</div>
+            <div class="resume-entry-title">New College of Florida — Admissions Brand Film</div>
+            <div class="resume-entry-date">2024–2025</div>
           </div>
-          <div class="resume-entry-org">Creative Strategy + Direction</div>
+          <div class="resume-entry-org">Creative Strategy + Script + Production Direction · Via Beck &amp; Stone</div>
           <ul class="resume-bullets">
-            <li>Luxury-register brand film strategy — visual grammar of Tom Ford and Loro Piana applied to off-price retail, price revealed in the final seconds. Projected ~2–3× 3-second hold rate vs. category benchmark.</li>
+            <li>Multi-audience admissions brief (prospective students, parents, Gen-Z Florida, alumni) resolved with a single 90–120 sec brand film — strategic platform: "Classical Wisdom, Modern Skills." Built around a Kubrick-style match-cut motif (ancient artefacts → modern technology) and the Archimedes lever as the central campaign metaphor. Full script, scene-level production treatment, and creative direction delivered.</li>
           </ul>
         </div>
 
@@ -2352,7 +2855,7 @@ html.light .resume-bullets li { color: rgba(26,26,22,0.75); }
             <div class="resume-entry-date">2018 — 2022</div>
           </div>
           <div class="resume-entry-org">New York University · New York, NY</div>
-          <div class="resume-entry-note">Rigorous mathematics programme at one of the most selective quantitative faculties in the United States. Analytical foundation applied directly to creative strategy: audience modelling, performance metric analysis, and the rigour underlying all campaign work.</div>
+          <div class="resume-entry-note">NYU Mathematics — analytical foundation applied directly to creative strategy: audience modelling, performance metric analysis, and the quantitative rigour underlying all campaign work.</div>
         </div>
       </div>
 
@@ -2361,27 +2864,39 @@ html.light .resume-bullets li { color: rgba(26,26,22,0.75); }
         <div class="resume-skills-grid">
           <div class="resume-skill-group">
             <div class="resume-skill-label">Post-Production</div>
-            <div class="resume-skill-list">Adobe Premiere Pro · After Effects · DaVinci Resolve · Color grading · Motion graphics · Sound design</div>
+            <div class="resume-skill-list">Adobe Premiere Pro · After Effects · DaVinci Resolve · Color grading · Motion graphics · Sound design · Audio-led editorial methodology</div>
           </div>
           <div class="resume-skill-group">
             <div class="resume-skill-label">Creative Strategy</div>
-            <div class="resume-skill-list">Brand architecture · Campaign strategy · Audience segmentation · Content system design · Narrative architecture · Competitive audit</div>
+            <div class="resume-skill-list">4C audit · GET/TO/BY briefs · Single-minded proposition · Brand architecture · Campaign strategy · Audience segmentation · Tension-rich insight development · Competitive audit · Content system design · Narrative architecture</div>
           </div>
           <div class="resume-skill-group">
-            <div class="resume-skill-label">Analytics &amp; Performance</div>
-            <div class="resume-skill-list">Meta Ads Manager · Google Analytics 4 · Google Ads · Looker Studio · Hook rate diagnostics · Retention curve analysis · A/B creative testing</div>
+            <div class="resume-skill-label">Brand Strategy</div>
+            <div class="resume-skill-list">Brand platform development · Positioning maps · Brand spine + local adaptation · Distinctive asset theory · Brand personality frameworks · Workshop facilitation · Ansoff matrix · House of brands / branded house architecture</div>
           </div>
           <div class="resume-skill-group">
-            <div class="resume-skill-label">Metrics Fluency</div>
-            <div class="resume-skill-list">CTR · CPM · ROAS · CVR · 3-second view rate · Scroll-stop rate · Funnel-stage creative optimisation</div>
+            <div class="resume-skill-label">Performance Creative</div>
+            <div class="resume-skill-list">Hook engineering · Script architecture (PAS, Story-based, Testimonial) · Variable isolation testing · Creative scaling strategy · Retention curve analysis · A/B creative testing · Meta Ads Manager · TikTok creative strategy</div>
+          </div>
+          <div class="resume-skill-group">
+            <div class="resume-skill-label">Analytics &amp; Measurement</div>
+            <div class="resume-skill-list">Google Analytics 4 · Google Ads · Looker Studio · Hook rate diagnostics · ROAS · CVR · CTR · CPM · ESOV · Brand lift vs. sales lift · EBITDA impact framing · CAC/LTV analysis · Creative scorecard development</div>
+          </div>
+          <div class="resume-skill-group">
+            <div class="resume-skill-label">Commercial Fluency</div>
+            <div class="resume-skill-list">Financial report interpretation · Gross margin · EBITDA · ROIC · Signal-based measurement (decision filter, not dashboard) · Creative quality score · Boardroom-level brief presentation</div>
           </div>
         </div>
       </div>
 
-      <button class="resume-download" onclick="window.location.href='mailto:amir.razak00@gmail.com?subject=Resume Request'">
-        <svg viewBox="0 0 20 20"><path d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"/></svg>
-        Request full resume
-      </button>
+      <!-- ══ GET IN TOUCH CTA ══ -->
+      <div class="cta-block fade-up" style="margin: 48px 0 80px;">
+        <div>
+          <div class="cta-heading">Available for creative strategy engagements.</div>
+          <div class="cta-sub">Brand campaigns, editorial direction, and post-production — across agency, in-house, and independent project contexts. Based in the San Francisco Bay Area.</div>
+        </div>
+        <button class="cta-btn" data-email-protect-href>Get in touch</button>
+      </div>
 
     </div>
   </div>
@@ -2392,42 +2907,80 @@ html.light .resume-bullets li { color: rgba(26,26,22,0.75); }
 <footer>
   <div class="footer-inner">
     <span class="footer-name">Amir Razak</span>
-    <span class="footer-copy">Creative Strategy · Editorial Direction · Post-Production</span>
+    <span class="footer-copy">Brand Positioning · Performance Creative · Video-Native Strategy</span>
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // Theme toggle
+<script>
+  // ── THEME — runs immediately to prevent flash ──
+  (function() {
+    try {
+      if (localStorage.getItem('theme') === 'light') {
+        document.documentElement.classList.add('light');
+      }
+    } catch(e) {}
+  })();
+
   function toggleTheme() {
     var isLight = document.documentElement.classList.toggle('light');
     try { localStorage.setItem('theme', isLight ? 'light' : 'dark'); } catch(e) {}
   }
-  try {
-    if (localStorage.getItem('theme') === 'light') document.documentElement.classList.add('light');
-  } catch(e) {}
 
-  // Mobile menu
-  function toggleMenu() {
-    document.getElementById('nav-menu').classList.toggle('open');
+  // ── MOBILE MENU — all global so onclick="" attributes work ──
+  function openMenu() {
+    var menu = document.getElementById('nav-menu');
+    var btn  = document.getElementById('nav-hamburger-btn');
+    if (!menu || !btn) return;
+    menu.classList.add('open');
+    btn.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
   }
+
   function closeMenu() {
-    document.getElementById('nav-menu').classList.remove('open');
+    var menu = document.getElementById('nav-menu');
+    var btn  = document.getElementById('nav-hamburger-btn');
+    if (!menu || !btn) return;
+    menu.classList.remove('open');
+    btn.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
   }
 
-  // Page navigation — now handles work / about / resume
+  function toggleMenu() {
+    var menu = document.getElementById('nav-menu');
+    if (!menu) return;
+    if (menu.classList.contains('open')) { closeMenu(); } else { openMenu(); }
+  }
+
+  // Close when tapping outside the open menu
+  document.addEventListener('click', function(e) {
+    var menu = document.getElementById('nav-menu');
+    var btn  = document.getElementById('nav-hamburger-btn');
+    if (menu && btn && menu.classList.contains('open')) {
+      if (!menu.contains(e.target) && !btn.contains(e.target)) {
+        closeMenu();
+      }
+    }
+  });
+
+  // ── PAGE NAVIGATION ──
   function showPage(id) {
     document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
-    document.getElementById('page-' + id).classList.add('active');
+    var pg = document.getElementById('page-' + id);
+    if (pg) pg.classList.add('active');
     document.querySelectorAll('.nav-links a').forEach(function(a) { a.classList.remove('active'); });
     var navEl = document.getElementById('nav-' + id);
     if (navEl) navEl.classList.add('active');
     window.scrollTo(0, 0);
+    closeMenu();
   }
 
-  // Case study accordion
+  // ── CASE STUDY ACCORDION ──
   function toggleCS(id) {
     var card = document.getElementById(id);
     var body = document.getElementById(id + '-body');
+    if (!card || !body) return;
     var isOpen = card.classList.contains('open');
     document.querySelectorAll('.cs-card').forEach(function(c) { c.classList.remove('open'); });
     document.querySelectorAll('.cs-body').forEach(function(b) { b.classList.remove('open'); });
@@ -2438,13 +2991,20 @@ html.light .resume-bullets li { color: rgba(26,26,22,0.75); }
     }
   }
 
-  // Close mobile menu when clicking outside
-  document.addEventListener('click', function(e) {
-    var menu = document.getElementById('nav-menu');
-    var hamburger = document.querySelector('.nav-hamburger');
-    if (menu && menu.classList.contains('open') && !menu.contains(e.target) && !hamburger.contains(e.target)) {
-      closeMenu();
-    }
+  // ── EMAIL OBFUSCATION ──
+  document.addEventListener('DOMContentLoaded', function() {
+    var u = 'amir.razak00';
+    var d = 'gmail.com';
+    var email = u + '@' + d;
+    document.querySelectorAll('a[data-email-protect]').forEach(function(el) {
+      el.href = 'mailto:' + email;
+      el.textContent = email;
+    });
+    document.querySelectorAll('[data-email-protect-href]').forEach(function(el) {
+      el.addEventListener('click', function() {
+        window.location.href = 'mailto:' + email;
+      });
+    });
   });
 </script>
 </body>
