@@ -1,0 +1,2451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amir Razak — Creative Strategist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── RESET & ROOT ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 18px; }
+
+:root {
+  --bg:       #0c0c0b;
+  --bg2:      #111110;
+  --bg3:      #181816;
+  --border:   rgba(255,255,255,0.07);
+  --border2:  rgba(255,255,255,0.12);
+  --text:     #e8e5df;
+  --muted:    #7a7668;
+  --faint:    #3a3830;
+  --accent:   #c8b88a;
+  --accent2:  #8fb5a8;
+  --white:    #f5f2ec;
+  --nav-bg:   rgba(12,12,11,0.92);
+
+  --serif:  'Cormorant Garamond', Georgia, serif;
+  --serif2: 'Playfair Display', Georgia, serif;
+  --sans:   'Inter', system-ui, sans-serif;
+  --mono:   'JetBrains Mono', monospace;
+}
+
+/* ── LIGHT THEME ── */
+html.light {
+  --bg:       #f4f1eb;
+  --bg2:      #eceae3;
+  --bg3:      #e2e0d8;
+  --border:   rgba(40,40,30,0.12);
+  --border2:  rgba(40,40,30,0.22);
+  --text:     #1a1a16;
+  --muted:    #5a5a50;
+  --faint:    #b8b6ae;
+  --accent:   #2a5040;
+  --accent2:  #2a5040;
+  --white:    #1a1a16;
+  --nav-bg:   rgba(244,241,235,0.96);
+}
+html.light body { background: var(--bg); color: var(--text); }
+html.light body::after { display: none; }
+html.light .module-text, html.light .module-text p { color: rgba(26,26,22,0.78); }
+html.light .bio-body { color: rgba(26,26,22,0.78); }
+html.light .philosophy-body { color: rgba(26,26,22,0.75); }
+html.light .principle-text { color: rgba(26,26,22,0.78); }
+html.light .scene-desc { color: rgba(26,26,22,0.78); }
+html.light .perf-note-text { color: rgba(26,26,22,0.75); }
+html.light .craft-text { color: rgba(26,26,22,0.75); }
+html.light .audit-text { color: rgba(26,26,22,0.72); }
+html.light .cs-sum-sub { color: var(--muted); }
+html.light .spec-notice strong { color: rgba(26,26,22,0.7); }
+html.light .resume-job-desc { color: rgba(26,26,22,0.75); }
+html.light .resume-body-text { color: rgba(26,26,22,0.75); }
+html.light .pull-quote { background: rgba(40,40,30,0.04); border-left-color: var(--accent); color: var(--text); }
+html.light .philosophy-pull { background: rgba(40,40,30,0.04); border-left-color: var(--accent); color: var(--text); }
+html.light .cs-card:hover { box-shadow: 0 2px 16px rgba(0,0,0,0.07); }
+html.light .cs-header:hover { background: rgba(40,40,30,0.03); }
+html.light .video-slot { background: var(--bg2); border-color: var(--faint); }
+html.light .video-grid-slot { background: var(--bg2); border-color: var(--faint); }
+html.light .kpi-card { background: var(--bg2); }
+html.light .craft-note { background: var(--bg2); }
+html.light .perf-note { background: var(--bg2); border-left-color: var(--accent); }
+html.light .spec-notice { background: var(--bg2); }
+html.light .system-diagram { background: var(--bg2); }
+html.light .concept-card { border-color: var(--border); }
+html.light .takeaway { border-color: var(--border); }
+html.light .audit-card { border-color: var(--border); }
+html.light .resume-entry { border-bottom-color: var(--border); }
+html.light .resume-section-title { border-bottom-color: var(--border2); }
+html.light .resume-skill-group { background: var(--bg2); }
+html.light .mood-frame { filter: brightness(1.2) contrast(0.9) saturate(0.8); }
+html.light .video-grid-slot svg { fill: var(--faint); }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Subtle grain */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.6;
+}
+
+/* ── LAYOUT ── */
+.site-wrap { max-width: 960px; margin: 0 auto; padding: 0 40px; }
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: var(--nav-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 40px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-name {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--white);
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 24px;
+  align-items: center;
+}
+
+.nav-links a {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+  cursor: pointer;
+}
+
+.nav-links a:hover,
+.nav-links a.active { color: var(--accent); }
+
+
+
+.kpi-num {
+  position: relative;
+  display: inline-block;
+}
+
+/* ── PAGES ── */
+.page { display: none; padding-top: 56px; }
+.page.active { display: block; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.d1 { animation-delay: 0.05s; }
+.d2 { animation-delay: 0.12s; }
+.d3 { animation-delay: 0.19s; }
+.d4 { animation-delay: 0.26s; }
+.d5 { animation-delay: 0.33s; }
+
+/* ══════════════════════════════════════════
+   WORK PAGE
+══════════════════════════════════════════ */
+
+.work-hero {
+  padding: 60px 0 48px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 40px;
+}
+
+.work-eyebrow {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+.work-title {
+  font-family: var(--serif);
+  font-size: clamp(60px, 8vw, 100px);
+  font-weight: 200;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  margin-bottom: 10px;
+}
+
+.work-title em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.work-sub {
+  font-family: var(--serif2);
+  font-size: 19px;
+  color: var(--muted);
+  line-height: 1.65;
+  max-width: 540px;
+}
+
+/* ── CASE STUDY CARD ── */
+.cs-card {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  transition: border-color 0.2s;
+}
+
+.cs-card:hover { border-color: var(--border2); }
+
+.cs-header {
+  padding: 32px 32px 28px;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  align-items: start;
+  transition: background 0.15s;
+}
+
+.cs-header:hover { background: rgba(255,255,255,0.015); }
+
+.cs-index {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.spec-pill {
+  font-size: 9px;
+  padding: 2px 8px;
+  border-radius: 2px;
+  background: var(--bg3);
+  border: 1px solid var(--faint);
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cs-title {
+  font-family: var(--serif);
+  font-size: 36px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+
+.cs-tagline {
+  font-family: var(--serif2);
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+}
+
+.cs-toggle {
+  font-size: 22px;
+  color: var(--muted);
+  line-height: 1;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.cs-card.open .cs-toggle { transform: rotate(45deg); color: var(--accent); }
+
+/* Summary strip */
+.cs-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--border);
+}
+
+.cs-sum-cell {
+  padding: 14px 20px;
+  border-right: 1px solid var(--border);
+}
+
+.cs-sum-cell:last-child { border-right: none; }
+
+.cs-sum-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 5px;
+}
+
+.cs-sum-val {
+  font-family: var(--serif2);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.cs-sum-sub {
+  font-family: var(--serif2);
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 3px;
+  line-height: 1.4;
+}
+
+/* Card body */
+.cs-body {
+  display: none;
+  padding: 36px 32px;
+  border-top: 1px solid var(--border);
+}
+
+.cs-body.open { display: block; animation: fadeUp 0.4s ease both; }
+
+/* ── VIDEO SLOTS ── */
+.video-block { margin: 28px 0; }
+
+.video-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+/* PRIMARY EMBED — replace src with your Vimeo/YouTube embed URL */
+.video-embed-wrap {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #000;
+  border: 1px solid var(--border);
+}
+
+.video-embed-wrap iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* PLACEHOLDER — shown when no embed is active */
+.video-slot {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: var(--bg2);
+  border-radius: 4px;
+  border: 1px dashed var(--faint);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  transition: border-color 0.2s;
+}
+
+.video-slot:hover { border-color: var(--muted); }
+
+.video-slot-icon {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--faint);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-slot-icon svg { width: 16px; height: 16px; fill: var(--muted); margin-left: 2px; }
+
+.video-slot-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+}
+
+.video-slot-sub {
+  font-size: 11px;
+  color: var(--faint);
+}
+
+/* GRID embed (2-up) */
+.video-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.video-grid-slot {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: var(--bg2);
+  border-radius: 4px;
+  border: 1px dashed var(--faint);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.video-grid-slot svg { width: 12px; height: 12px; fill: var(--muted); margin-left: 1px; }
+
+.video-grid-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  text-align: center;
+  padding: 0 10px;
+  line-height: 1.4;
+}
+
+/* HOW TO EMBED COMMENT — visible in source for guidance */
+
+/* ── MODULE BLOCKS ── */
+.module {
+  margin-bottom: 36px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--border);
+}
+
+.module:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.module-pill {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid var(--faint);
+  border-radius: 2px;
+  padding: 3px 10px;
+  margin-bottom: 12px;
+}
+
+.module-heading {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--white);
+  margin-bottom: 14px;
+}
+
+.module-text {
+  font-family: var(--serif2);
+  font-size: 17px;
+  line-height: 1.75;
+  color: rgba(232,229,223,0.65);
+}
+
+.module-text p + p { margin-top: 12px; }
+.module-text strong { color: var(--text); font-weight: 500; }
+
+/* Pull quote */
+.pull-quote {
+  margin: 16px 0;
+  padding: 16px 22px;
+  border-left: 1.5px solid var(--accent);
+  background: rgba(200,184,138,0.04);
+  border-radius: 0 4px 4px 0;
+  font-family: var(--serif);
+  font-size: 21px;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+/* Brief table */
+.brief-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+.brief-table td {
+  font-family: var(--serif2);
+  font-size: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  line-height: 1.55;
+}
+
+.brief-table td:first-child {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  width: 160px;
+  padding-right: 20px;
+  padding-top: 11px;
+}
+
+/* KPI row */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.kpi-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 16px 18px;
+}
+
+.kpi-num {
+  font-family: var(--sans);
+  font-size: 52px;
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.kpi-desc {
+  font-family: var(--serif2);
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+/* Takeaway */
+.takeaway {
+  margin-top: 16px;
+  padding: 16px 20px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+.takeaway-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.takeaway-text {
+  font-family: var(--serif2);
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--text);
+}
+
+/* Spec notice */
+.spec-notice {
+  padding: 14px 18px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-family: var(--serif2);
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+.spec-notice strong { color: rgba(232,229,223,0.5); font-weight: 500; }
+
+/* Performance note */
+.perf-note {
+  margin-top: 14px;
+  padding: 14px 18px;
+  background: var(--bg2);
+  border-radius: 4px;
+  border-left: 1.5px solid var(--border2);
+}
+
+.perf-note-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 7px;
+}
+
+.perf-note-text {
+  font-family: var(--serif2);
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(232,229,223,0.6);
+}
+
+.perf-note-text strong { color: var(--text); font-weight: 500; }
+
+/* Principle list */
+.principle-list { margin-top: 14px; }
+
+.principle-row {
+  display: flex;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+}
+
+.principle-row:last-child { border-bottom: none; }
+
+.principle-num {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  min-width: 24px;
+  padding-top: 1px;
+}
+
+.principle-text {
+  font-family: var(--serif2);
+  font-size: 16px;
+  line-height: 1.65;
+  color: rgba(232,229,223,0.65);
+}
+
+.principle-text strong { color: var(--text); font-weight: 500; }
+
+/* Process timeline */
+.process-timeline {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 16px;
+  gap: 0;
+}
+
+.process-step {
+  flex: 1;
+  position: relative;
+  text-align: center;
+}
+
+.process-step:last-child .process-line { display: none; }
+
+.process-line {
+  position: absolute;
+  top: 13px;
+  left: 50%;
+  width: 100%;
+  height: 1px;
+  background: var(--faint);
+}
+
+.process-dot {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--bg2);
+  border: 1px solid var(--faint);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.process-dot span {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--muted);
+}
+
+.process-label {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.process-sub {
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 3px;
+  line-height: 1.4;
+}
+
+/* Craft reflection */
+.craft-note {
+  margin-top: 16px;
+  padding: 16px 20px;
+  background: var(--bg2);
+  border-radius: 4px;
+  border: 1px solid var(--border);
+}
+
+.craft-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.craft-text {
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(232,229,223,0.65);
+  font-style: italic;
+}
+
+/* Scene breakdown */
+.scene-breakdown { margin-top: 16px; }
+
+.scene-row {
+  display: flex;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+}
+
+.scene-row:last-child { border-bottom: none; }
+
+.scene-tc {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  min-width: 64px;
+  padding-top: 1px;
+}
+
+.scene-desc {
+  font-family: var(--serif2);
+  font-size: 16px;
+  line-height: 1.65;
+  color: rgba(232,229,223,0.65);
+}
+
+.scene-desc strong { color: var(--text); font-weight: 500; }
+.scene-desc em { font-family: var(--serif); font-style: italic; color: var(--text); }
+
+/* Concept grid */
+.concept-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.concept-card {
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+.concept-card-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 5px;
+}
+
+.concept-card-title {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.concept-card-desc {
+  font-family: var(--serif2);
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+/* Skills row */
+.skills-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 14px;
+}
+
+.skill-tag {
+  font-family: var(--serif2);
+  font-size: 13px;
+  padding: 5px 13px;
+  border-radius: 2px;
+  border: 1px solid var(--faint);
+  color: var(--muted);
+}
+
+/* Before/after grid */
+.ba-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.ba-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.ba-label.before { color: var(--muted); }
+.ba-label.after  { color: var(--accent); }
+
+/* System diagram */
+.system-diagram {
+  margin-top: 16px;
+  padding: 20px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* Content system SVG */
+.system-svg { width: 100%; height: auto; display: block; color: var(--text); }
+
+/* Audit grid */
+.audit-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.audit-card {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.audit-body {
+  padding: 10px 14px;
+}
+
+.audit-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.audit-text {
+  font-family: var(--serif2);
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(232,229,223,0.6);
+}
+
+/* Mood board */
+.mood-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.mood-frame {
+  aspect-ratio: 4/3;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sw1 { background: linear-gradient(135deg, #1a1208, #3d2b0a); }
+.sw2 { background: linear-gradient(135deg, #0d0d0d, #2e2318); }
+.sw3 { background: linear-gradient(135deg, #18100a, #4f3218); }
+.sw4 { background: linear-gradient(135deg, #0a0a0a, #2a2018); }
+.sw5 { background: linear-gradient(135deg, #111108, #3d3512); }
+.sw6 { background: linear-gradient(135deg, #0f0e0a, #2e2a18); }
+
+.mood-text {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: rgba(255,255,255,0.2);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: center;
+  padding: 0 8px;
+}
+
+.mood-cap {
+  font-family: var(--serif2);
+  font-size: 14px;
+  color: var(--muted);
+  font-style: italic;
+  text-align: center;
+  margin-top: 10px;
+}
+
+
+/* ══════════════════════════════════════════
+   ABOUT PAGE
+══════════════════════════════════════════ */
+
+.about-wrap { padding: 56px 0; }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 60px;
+  align-items: start;
+  margin-bottom: 64px;
+}
+
+.headshot-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: sticky;
+  top: 80px;
+}
+
+.headshot {
+  width: 200px;
+  height: 240px;
+  background: var(--bg2);
+  border-radius: 4px;
+  border: 1px dashed var(--faint);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.headshot svg { width: 20px; height: 20px; fill: var(--muted); }
+
+.headshot-label {
+  font-size: 11px;
+  color: var(--muted);
+  text-align: center;
+  padding: 0 14px;
+  line-height: 1.5;
+}
+
+.contact-block { display: flex; flex-direction: column; gap: 8px; }
+
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.contact-icon {
+  width: 28px; height: 28px;
+  border-radius: 4px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.contact-icon svg { width: 12px; height: 12px; fill: var(--muted); }
+
+.contact-text {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.contact-text a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.contact-text a:hover { color: var(--accent); }
+
+/* Bio */
+.bio-eyebrow {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.bio-name {
+  font-family: var(--serif);
+  font-size: 72px;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+  color: var(--white);
+  margin-bottom: 10px;
+}
+
+.bio-role {
+  font-family: var(--serif2);
+  font-size: 17px;
+  color: var(--muted);
+  margin-bottom: 32px;
+  letter-spacing: 0.01em;
+}
+
+.bio-body {
+  font-family: var(--serif2);
+  font-size: 17px;
+  line-height: 1.8;
+  color: rgba(232,229,223,0.65);
+}
+
+.bio-body p + p { margin-top: 16px; }
+
+/* Divider */
+.hr { height: 1px; background: var(--border); margin: 52px 0; }
+
+/* Section label */
+.section-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+
+/* Philosophy */
+.philosophy-pull {
+  padding: 26px 32px;
+  border-left: 1.5px solid var(--accent);
+  background: rgba(200,184,138,0.04);
+  border-radius: 0 4px 4px 0;
+  font-family: var(--serif);
+  font-size: 26px;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--white);
+  margin-bottom: 24px;
+}
+
+.philosophy-body {
+  font-family: var(--serif2);
+  font-size: 17px;
+  line-height: 1.75;
+  color: rgba(232,229,223,0.6);
+}
+
+.philosophy-body p + p { margin-top: 14px; }
+
+/* Credentials */
+.cred-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.cred-card {
+  padding: 16px 18px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+.cred-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 5px;
+}
+
+.cred-val {
+  font-family: var(--serif2);
+  font-size: 18px;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+.cred-sub {
+  font-family: var(--serif2);
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+/* Tools */
+.tools-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.tool-tag {
+  font-family: var(--serif2);
+  font-size: 15px;
+  padding: 6px 14px;
+  border-radius: 2px;
+  border: 1px solid var(--faint);
+  color: rgba(232,229,223,0.55);
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.tool-tag:hover { color: var(--text); border-color: var(--border2); }
+
+.tools-section-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 16px 0 10px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+/* CTA */
+.cta-block {
+  padding: 24px 28px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.cta-heading {
+  font-family: var(--serif);
+  font-size: 36px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.cta-sub {
+  font-family: var(--serif2);
+  font-size: 17px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.cta-btn {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 12px 24px;
+  border-radius: 2px;
+  border: 1px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+  flex-shrink: 0;
+}
+
+.cta-btn:hover { background: var(--accent); color: var(--bg); }
+
+/* ── THEME TOGGLE ── */
+.theme-toggle {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--border2);
+  background: var(--bg2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+  transform: scale(1.08);
+}
+
+.theme-toggle svg {
+  width: 16px;
+  height: 16px;
+  fill: var(--muted);
+  transition: fill 0.2s, opacity 0.2s;
+}
+
+.theme-toggle:hover svg { fill: var(--accent); }
+
+/* hide/show correct icon */
+.icon-dark  { display: block; }
+.icon-light { display: none; }
+html.light .icon-dark  { display: none; }
+html.light .icon-light { display: block; }
+footer {
+  border-top: 1px solid var(--border);
+  padding: 24px 0;
+  margin-top: 80px;
+}
+
+.footer-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-name {
+  font-family: var(--serif);
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.footer-copy {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--faint);
+  letter-spacing: 0.1em;
+}
+
+/* ── RESPONSIVE: TABLET ── */
+@media (max-width: 900px) {
+  .site-wrap { padding: 0 24px; }
+  .nav-inner { padding: 0 24px; }
+  .about-grid { grid-template-columns: 160px 1fr; gap: 32px; }
+  .headshot { width: 160px; height: 200px; }
+  .kpi-row { grid-template-columns: 1fr 1fr; }
+  .resume-skills-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ── RESPONSIVE: MOBILE ── */
+@media (max-width: 680px) {
+  html { font-size: 15px; }
+
+  /* Layout */
+  .site-wrap { padding: 0 16px; }
+  .nav-inner { padding: 0 16px; height: 56px; }
+  .page { padding-top: 56px; }
+
+  /* Prevent horizontal overflow everywhere */
+  .page, .site-wrap, .cs-card, .cs-body, .module,
+  .about-wrap, .resume-wrap { max-width: 100%; overflow-x: hidden; }
+
+  /* Hero */
+  .work-hero { padding: 40px 0 32px; margin-bottom: 28px; }
+  .work-title { font-size: clamp(28px, 8vw, 42px); line-height: 1.1; }
+  .work-sub { font-size: 14px; max-width: 100%; line-height: 1.6; }
+
+  /* Case study cards */
+  .cs-card { margin-bottom: 8px; }
+  .cs-header { padding: 18px 16px 14px; gap: 10px; }
+  .cs-title { font-size: 17px; }
+  .cs-tagline { font-size: 11px; line-height: 1.5; }
+  .cs-toggle { font-size: 22px; margin-top: 0; }
+  .cs-index { font-size: 9px; }
+
+  /* Summary strip */
+  .cs-summary { grid-template-columns: 1fr 1fr; }
+  .cs-sum-cell { border-right: none; border-bottom: 1px solid var(--border); padding: 10px 14px; }
+  .cs-sum-cell:nth-child(1), .cs-sum-cell:nth-child(2) { border-right: none; }
+  .cs-sum-cell:last-child { grid-column: 1/-1; border-bottom: none; }
+
+  /* Card body */
+  .cs-body { padding: 20px 16px; }
+
+  /* Modules */
+  .module { margin-bottom: 24px; padding-bottom: 24px; }
+  .module-heading { font-size: 18px; line-height: 1.25; }
+  .module-text { font-size: 14px; line-height: 1.6; }
+  .module-pill { font-size: 9px; }
+
+  /* All 2-col grids → 1-col */
+  .kpi-row { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .kpi-num { font-size: 26px; }
+  .kpi-card { padding: 12px 14px; }
+  .kpi-desc { font-size: 11px; }
+  .concept-grid { grid-template-columns: 1fr; }
+  .ba-grid { grid-template-columns: 1fr; }
+  .audit-grid { grid-template-columns: 1fr; }
+  .video-grid { grid-template-columns: 1fr; }
+  .mood-board { grid-template-columns: repeat(2, 1fr); }
+  .cred-grid { grid-template-columns: 1fr; }
+
+  /* Tables */
+  .brief-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .brief-table td { font-size: 13px; padding: 8px 0; }
+  .brief-table td:first-child { width: 100px; font-size: 9px; padding-right: 12px; }
+
+  /* Pull quote */
+  .pull-quote { font-size: 14px; padding: 12px 16px; }
+
+  /* Scene breakdown */
+  .scene-row { flex-direction: column; gap: 2px; padding: 10px 0; }
+  .scene-tc { min-width: unset; font-size: 9px; margin-bottom: 2px; }
+  .scene-desc { font-size: 13px; }
+
+  /* Process timeline */
+  .process-timeline { flex-direction: column; gap: 0; }
+  .process-step { display: flex; flex-direction: row; gap: 12px; align-items: flex-start; text-align: left; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .process-step:last-child { border-bottom: none; }
+  .process-line { display: none; }
+  .process-dot { margin: 2px 0 0; flex-shrink: 0; }
+  .process-label { font-size: 13px; }
+  .process-sub { font-size: 12px; }
+
+  /* SVG system diagrams */
+  .system-diagram { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .system-svg { min-width: 400px; }
+
+  /* About page */
+  .about-wrap { padding: 36px 0 60px; }
+  .about-grid { grid-template-columns: 1fr; gap: 24px; }
+  .headshot-col { position: static; }
+  .headshot { width: 120px; height: 150px; }
+  .bio-name { font-size: 40px; }
+  .bio-role { font-size: 13px; }
+  .bio-body { font-size: 14px; line-height: 1.65; }
+  .philosophy-pull { font-size: 15px; padding: 14px 18px; line-height: 1.55; }
+  .philosophy-body { font-size: 14px; }
+  .section-label { font-size: 9px; }
+  .cred-val { font-size: 14px; }
+  .cred-sub { font-size: 12px; }
+  .tools-wrap { gap: 6px; }
+  .tool-tag { font-size: 11px; padding: 4px 10px; }
+  .cta-block { flex-direction: column; align-items: flex-start; padding: 18px; gap: 14px; }
+  .cta-heading { font-size: 19px; }
+  .cta-sub { font-size: 13px; }
+  .cta-btn { width: 100%; text-align: center; padding: 14px; }
+
+  /* Resume page */
+  .resume-wrap { padding: 32px 0 60px; }
+  .resume-name { font-size: clamp(28px, 7vw, 40px); }
+  .resume-contact { flex-direction: column; gap: 10px; }
+  .resume-skills-grid { grid-template-columns: 1fr; }
+  .resume-entry-header { flex-direction: column; gap: 2px; }
+  .resume-entry-title { font-size: 16px; }
+  .resume-bullets li { font-size: 13px; line-height: 1.55; }
+  .resume-download { width: 100%; justify-content: center; }
+
+  /* Footer */
+  .footer-inner { flex-direction: column; gap: 8px; text-align: center; padding: 0 16px; }
+  footer { padding: 18px 0; margin-top: 40px; }
+
+  /* Skills tags */
+  .skills-row { gap: 6px; }
+  .skill-tag { font-size: 11px; padding: 4px 10px; }
+
+  /* Spec notice */
+  .spec-notice { font-size: 12px; }
+
+  /* Takeaway */
+  .takeaway-text { font-size: 13px; }
+  .takeaway-label { font-size: 9px; }
+
+  /* Perf note */
+  .perf-note-text { font-size: 13px; }
+  .perf-note-label { font-size: 9px; }
+
+  /* Concept cards */
+  .concept-card-title { font-size: 14px; }
+  .concept-card-desc { font-size: 13px; }
+}
+
+/* ══ RESUME PAGE ══ */
+.resume-wrap { padding: 64px 0 80px; max-width: 800px; }
+
+.resume-header { margin-bottom: 48px; padding-bottom: 32px; border-bottom: 1px solid var(--border); }
+.resume-name { font-family: var(--serif); font-size: clamp(36px, 5vw, 52px); font-weight: 300; letter-spacing: -0.02em; line-height: 1.05; color: var(--white); margin-bottom: 8px; }
+.resume-title { font-size: 14px; color: var(--muted); letter-spacing: 0.04em; margin-bottom: 20px; }
+.resume-contact { display: flex; flex-wrap: wrap; gap: 20px; }
+.resume-contact-item { display: flex; align-items: center; gap: 7px; font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.05em; }
+.resume-contact-item svg { width: 13px; height: 13px; fill: var(--muted); flex-shrink: 0; }
+.resume-contact-item a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+.resume-contact-item a:hover { color: var(--accent); }
+
+.resume-profile { font-size: 15px; line-height: 1.75; color: rgba(232,229,223,0.75); margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+html.light .resume-profile { color: rgba(26,26,22,0.75); }
+
+.resume-section { margin-bottom: 44px; }
+.resume-section-title { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); padding-bottom: 12px; border-bottom: 1px solid var(--border2); margin-bottom: 24px; }
+
+.resume-entry { padding-bottom: 28px; margin-bottom: 28px; border-bottom: 1px solid var(--border); }
+.resume-entry:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+
+.resume-entry-header { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 3px; flex-wrap: wrap; }
+.resume-entry-title { font-family: var(--serif); font-size: 23px; font-weight: 400; color: var(--white); letter-spacing: -0.01em; }
+.resume-entry-date { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.08em; white-space: nowrap; }
+.resume-entry-org { font-size: 16px; color: var(--accent); margin-bottom: 12px; letter-spacing: 0.02em; }
+
+.resume-bullets { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+.resume-bullets li { font-size: 17px; line-height: 1.65; color: rgba(232,229,223,0.72); padding-left: 16px; position: relative; }
+html.light .resume-bullets li { color: rgba(26,26,22,0.75); }
+.resume-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--muted); font-size: 11px; top: 3px; }
+
+.resume-entry-note { font-size: 16px; font-style: italic; color: var(--muted); margin-top: 10px; }
+
+.resume-skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.resume-skill-group { padding: 16px 18px; border: 1px solid var(--border); border-radius: 4px; }
+.resume-skill-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.resume-skill-list { font-size: 16px; color: var(--text); line-height: 1.6; }
+
+.resume-download { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); border-radius: 2px; padding: 10px 20px; text-decoration: none; margin-top: 40px; transition: background 0.2s, color 0.2s; cursor: pointer; background: transparent; }
+.resume-download:hover { background: var(--accent); color: var(--bg); }
+.resume-download svg { width: 13px; height: 13px; fill: currentColor; }
+
+/* resume mobile handled in main @media (max-width: 680px) block */
+
+/* ══ NAV MOBILE HAMBURGER ══ */
+/* ── HAMBURGER + MOBILE NAV ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px 4px;
+  background: none;
+  border: none;
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--muted);
+  border-radius: 2px;
+  transition: background 0.2s;
+}
+.nav-hamburger:hover span,
+.nav-hamburger:active span { background: var(--accent); }
+
+/* Desktop: nav-menu is just a flex row */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+/* Mobile nav */
+@media (max-width: 680px) {
+  .nav-hamburger { display: flex; }
+
+  .nav-menu {
+    display: none;
+    position: fixed;
+    top: 56px; left: 0; right: 0; bottom: 0;
+    background: var(--bg);
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0;
+    padding: 0;
+    z-index: 200;
+    overflow-y: auto;
+    border-top: 1px solid var(--border);
+  }
+  .nav-menu.open { display: flex; }
+
+  .nav-links {
+    flex-direction: column !important;
+    gap: 0 !important;
+    width: 100%;
+    align-items: stretch;
+  }
+  .nav-links li { width: 100%; }
+  .nav-links a {
+    display: block !important;
+    padding: 18px 24px !important;
+    font-size: 15px !important;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid var(--border);
+    color: var(--text) !important;
+  }
+  .nav-links a.active { color: var(--accent) !important; }
+
+  .theme-toggle {
+    margin: 20px 24px;
+    align-self: flex-start;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-name" onclick="showPage('work');closeMenu()">Amir Razak</a>
+    <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu" id="nav-menu">
+      <ul class="nav-links">
+        <li><a id="nav-work"   onclick="showPage('work');closeMenu()"   class="active">Work</a></li>
+        <li><a id="nav-about"  onclick="showPage('about');closeMenu()"  >About</a></li>
+        <li><a id="nav-resume" onclick="showPage('resume');closeMenu()" >Resume</a></li>
+      </ul>
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle light / dark mode" aria-label="Toggle theme">
+      <!-- Moon icon — shown in dark mode -->
+      <svg class="icon-dark" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/>
+      </svg>
+      <!-- Sun icon — shown in light mode -->
+      <svg class="icon-light" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <circle cx="12" cy="12" r="4" fill="currentColor" stroke="none"/>
+        <line x1="12" y1="2"  x2="12" y2="5"/>
+        <line x1="12" y1="19" x2="12" y2="22"/>
+        <line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/>
+        <line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/>
+        <line x1="2"  y1="12" x2="5"  y2="12"/>
+        <line x1="19" y1="12" x2="22" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/>
+        <line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/>
+      </svg>
+    </button>
+    </div><!-- end nav-menu -->
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════
+     WORK PAGE
+══════════════════════════════════════════ -->
+<div class="page active" id="page-work">
+  <div class="site-wrap">
+
+    <div class="work-hero fade-up d1">
+      <div class="work-eyebrow">Selected work — Creative Strategy &amp; Post-Production</div>
+      <h1 class="work-title">Where <em>analysis</em><br>meets editorial craft.</h1>
+      <p class="work-sub">Four case studies across documentary, publishing, retail, and enterprise — demonstrating the full range from quantitative creative strategy to picture lock.</p>
+    </div>
+
+    <!-- ════ CS 01 — THE NEW CRITERION ════ -->
+    <div class="cs-card fade-up d2" id="cs1">
+      <div class="cs-header" onclick="toggleCS('cs1')">
+        <div>
+          <div class="cs-index">Case study — 01</div>
+          <div class="cs-title">The New Criterion — video identity and subscription campaign from zero baseline</div>
+          <div class="cs-tagline">Brand video identity · Content architecture · Subscription acquisition · Editorial direction</div>
+        </div>
+        <div class="cs-toggle" id="cs1-tog">+</div>
+      </div>
+      <div class="cs-summary">
+        <div class="cs-sum-cell">
+          <div class="cs-sum-label">Outcome</div>
+          <div class="cs-sum-val">+40% subscriptions</div>
+          <div class="cs-sum-sub">Over 6–12 month engagement</div>
+        </div>
+        <div class="cs-sum-cell">
+          <div class="cs-sum-label">Role</div>
+          <div class="cs-sum-val">Creative director &amp; sole editor</div>
+          <div class="cs-sum-sub">Identity through campaign execution</div>
+        </div>
+        <div class="cs-sum-cell">
+          <div class="cs-sum-label">Competency</div>
+          <div class="cs-sum-val">Brand system at scale</div>
+          <div class="cs-sum-sub">Monthly cadence · Zero subscriber erosion</div>
+        </div>
+      </div>
+      <div class="cs-body" id="cs1-body">
+
+        <!-- ★ VIDEO SLOT 1 — Tentpole subscription campaign
+             To embed: replace the <div class="video-slot"> block with:
+             <div class="video-embed-wrap">
+               <iframe src="https://player.vimeo.com/video/YOUR_ID?autoplay=0&title=0&byline=0&portrait=0" allowfullscreen allow="autoplay"></iframe>
+             </div>
+             For YouTube:
+             <iframe src="https://www.youtube.com/embed/YOUR_ID" allowfullscreen></iframe>
+        -->
+        <div class="video-block">
+          <div class="video-label">Tentpole subscription campaign — primary film</div>
+          <div class="video-slot">
+            <div class="video-slot-icon"><svg viewBox="0 0 16 16"><path d="M6 3.5l7 4.5-7 4.5V3.5z"/></svg></div>
+            <div class="video-slot-label">Video available on request</div>
+            
+          </div>
+        </div>
+
+        <!-- ★ VIDEO SLOT 2 — Monthly content samples (2-up grid) -->
+        <div class="video-block">
+          <div class="video-label">Monthly content samples</div>
+          <div class="video-grid">
+            <div class="video-grid-slot">
+              <svg viewBox="0 0 16 16"><path d="M6 3.5l7 4.5-7 4.5V3.5z"/></svg>
+              <div class="video-grid-label">Monthly issue — sample 01<br>Replace with embed</div>
+            </div>
+            <div class="video-grid-slot">
+              <svg viewBox="0 0 16 16"><path d="M6 3.5l7 4.5-7 4.5V3.5z"/></svg>
+              <div class="video-grid-label">Monthly issue — sample 02<br>Replace with embed</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="module">
+          <div class="module-pill">Content system</div>
+          <div class="module-heading">The three-format architecture built for TNC</div>
+          <div class="system-diagram">
+            <svg class="system-svg" viewBox="0 0 660 220" xmlns="http://www.w3.org/2000/svg">
+              <!-- Node 1: Monthly -->
+              <rect x="40" y="30" width="160" height="90" rx="5" fill="none" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+              <text x="120" y="62" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10" fill="currentColor" opacity="0.45" letter-spacing="2">MONTHLY</text>
+              <text x="120" y="84" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="19" fill="currentColor" opacity="0.9">Issue content</text>
+              <text x="120" y="103" text-anchor="middle" font-family="'Inter',sans-serif" font-size="11" fill="currentColor" opacity="0.38">Retention + brand equity</text>
+              <!-- Arrow 1→2 -->
+              <line x1="200" y1="75" x2="245" y2="75" stroke="currentColor" stroke-width="0.75" opacity="0.2"/>
+              <polygon points="248,75 241,71 241,79" fill="currentColor" opacity="0.2"/>
+              <!-- Node 2: Annual tentpole -->
+              <rect x="250" y="30" width="160" height="90" rx="5" fill="none" stroke="currentColor" stroke-width="1" opacity="0.35"/>
+              <text x="330" y="62" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10" fill="currentColor" opacity="0.45" letter-spacing="2">ANNUAL</text>
+              <text x="330" y="84" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="19" fill="currentColor" opacity="0.9">Tentpole campaign</text>
+              <text x="330" y="103" text-anchor="middle" font-family="'Inter',sans-serif" font-size="11" fill="currentColor" opacity="0.38">Subscription acquisition</text>
+              <!-- Arrow 2→3 -->
+              <line x1="410" y1="75" x2="455" y2="75" stroke="currentColor" stroke-width="0.75" opacity="0.2"/>
+              <polygon points="458,75 451,71 451,79" fill="currentColor" opacity="0.2"/>
+              <!-- Node 3: Gala -->
+              <rect x="460" y="30" width="160" height="90" rx="5" fill="none" stroke="currentColor" stroke-width="1" opacity="0.35"/>
+              <text x="540" y="62" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10" fill="currentColor" opacity="0.45" letter-spacing="2">ANNUAL</text>
+              <text x="540" y="84" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="19" fill="currentColor" opacity="0.9">Gala production</text>
+              <text x="540" y="103" text-anchor="middle" font-family="'Inter',sans-serif" font-size="11" fill="currentColor" opacity="0.38">TNC+ exclusive archive</text>
+              <!-- Bottom bar -->
+              <rect x="40" y="148" width="580" height="26" rx="4" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.1"/>
+              <text x="330" y="165" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" font-weight="500" fill="currentColor" opacity="0.3" letter-spacing="2">UNIFIED VISUAL GRAMMAR — CONSISTENT ACROSS ALL FORMATS</text>
+            </svg>
+          </div>
+        </div>
+
+        <div class="module">
+          <div class="module-pill">Strategic brief</div>
+          <div class="module-heading">Client objectives, audience profile, and engagement scope</div>
+          <div class="module-text">
+            <p>The New Criterion is among the most critically regarded arts and literary publications in the United States. The strategic brief was unambiguous: build a video identity from near-zero capable of driving TNC+ subscription conversion, while establishing a repeatable content architecture sustainable across a monthly publishing cadence.</p>
+            <p>The audience profile presented a specific creative constraint: this readership is not persuaded by conventional content marketing tactics. The creative challenge was not to make the brand accessible — it was to make the video output worthy of the brand.</p>
+          </div>
+          <table class="brief-table">
+            <tr><td>Target audience</td><td>Sophisticated readers — arts, literary criticism, cultural commentary</td></tr>
+            <tr><td>Pre-engagement status</td><td>Minimal video presence, no established visual identity</td></tr>
+            <tr><td>Primary objective</td><td>TNC+ subscription acquisition; audience retention via monthly content</td></tr>
+            <tr><td>Content cadence</td><td>Monthly issue content + annual tentpole + gala event production</td></tr>
+          </table>
+        </div>
+
+        <div class="module">
+          <div class="module-pill">Audience intelligence + creative insight</div>
+          <div class="module-heading">The understanding that governed every production decision</div>
+          <div class="module-text"><p>The New Criterion's readership evaluates content rather than merely consuming it. Algorithmic pacing or promotional framing would actively undermine subscriber trust. The strategic insight: this audience already carries strong brand affinity. The video content's primary function was not persuasion — it was confirmation.</p></div>
+          <div class="pull-quote">"The audience doesn't need to be converted. They need the production to be worthy of their attention — which is a much higher bar."</div>
+        </div>
+
+        <div class="module">
+          <div class="module-pill">A specific editorial decision — in full</div>
+          <div class="module-heading">The one choice that defined the visual identity</div>
+          <div class="module-text">
+            <p>The most consequential single decision was the choice of shot duration in the tentpole subscription campaign. The first cut ran at an average shot length of approximately 3.2 seconds — conventional for editorial content of this type. A test screening suggested the pacing was actively undermining the piece: the cuts were arriving before the viewer had finished forming an impression of what they were looking at.</p>
+            <p>The revision extended average shot duration to 6.1 seconds — nearly double. Several shots ran for 9–11 seconds. What had read as competent production began reading as deliberate authority. The lesson was not that slow is always better. It was that for this audience, patience was itself a form of respect — and that the edit's primary job was to honour the pace at which an intelligent person processes a beautiful image.</p>
+          </div>
+          <div class="craft-note">
+            <div class="craft-label">The transferable principle</div>
+            <div class="craft-text">"Editorial pacing is not a production decision — it is an audience decision. The correct shot duration is the one that matches the cognitive rhythm of the specific viewer you're trying to reach."</div>
+          </div>
+        </div>
+
+        <div class="module">
+          <div class="module-pill">Campaign performance + business outcomes</div>
+          <div class="module-heading">Measurable impact across subscription, reach, and retention</div>
+          <div class="kpi-row">
+            <div class="kpi-card"><div class="kpi-num">13K</div><div class="kpi-desc">Organic views — tentpole subscription campaign</div></div>
+            <div class="kpi-card"><div class="kpi-num">+40%</div><div class="kpi-desc">Subscription volume lift over engagement period</div></div>
+            <div class="kpi-card"><div class="kpi-num">Retained</div><div class="kpi-desc">Existing subscriber base — zero measurable erosion</div></div>
+          </div>
+          <div class="perf-note">
+            <div class="perf-note-label">Performance framing</div>
+            <div class="perf-note-text">The subscription lift maps directly to the creative health chain: the visual identity rebuild improved <strong>top-of-funnel engagement</strong> (watch time and 3-second hold rate increased measurably post-regrade), which drove bottom-of-funnel <strong>conversion</strong> (TNC+ subscription acquisition). Zero subscriber erosion confirms the creative did not sacrifice <strong>retention</strong> for acquisition — a common failure mode in subscription content.</div>
+          </div>
+        </div>
+
+        <div class="module">
+          <div class="module-pill">Creative director's reflection</div>
+          <div class="module-heading">What this engagement demonstrates about the practice</div>
+          <div class="module-text"><p>The New Criterion engagement is the most complete demonstration of the ability to build a creative system — not produce isolated executions. Establishing a visual identity from zero, sustaining it at consistent standard across a high-volume monthly cadence, and ensuring every piece functioned simultaneously as a standalone editorial statement and a contribution to a cumulative brand identity.</p></div>
+          <div class="takeaway">
+            <div class="takeaway-label">Demonstrated competency</div>
+            <div class="takeaway-text">Brand video identity development from zero baseline — building a scalable content architecture for a high-standards audience and delivering measurable subscription growth without compromising editorial integrity.</div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- end cs1 -->
+
+
+    <!-- ════ CS 02 — WOLVERINES ════ -->
+    <div class="cs-card fade-up d3" id="cs2">
+      <div class="cs-header" onclick="toggleCS('cs2')">
+        <div>
+          <div class="cs-index">Case study — 02</div>
+          <div class="cs-title">Wolverines — post-production editorial direction on a Heartland Emmy-submitted feature documentary</div>
+          <div class="cs-tagline">Long-form editorial · Narrative architecture · Documentary post-production · Picture lock</div>
+        </div>
+        <div class="cs-toggle" id="cs2-tog">+</div>
+      </div>
+      <div class="cs-summary">
+        <div class="cs-sum-cell">
+          <div class="cs-sum-label">Recognition</div>
+          <div class="cs-sum-val">Heartland Emmy submission</div>
+          <div class="cs-sum-sub">Best Documentary — 2024</div>
+        </div>
+        <div class="cs-sum-cell">
+          <div class="cs-sum-label">Role</div>
+          <div class="cs-sum-val">Sole editor, assembly through picture lock</div>
+          <div class="cs-sum-sub">Independent of institutional curriculum</div>
+        </div>
+        <div class="cs-sum-cell">
+          <div class="cs-sum-label">Competency</div>
+          <div class="cs-sum-val">Feature-length narrative architecture</div>
+          <div class="cs-sum-sub">Documentary post-production · Audio-led methodology</div>
+        </div>
+      </div>
+      <div class="cs-body" id="cs2-body">
+
+        <!-- ★ VIDEO SLOT 3 — Theatrical trailer or key sequence -->
+        <div class="video-block">
+          <div class="video-label">Theatrical trailer or representative scene</div>
+          <div class="video-slot">
+            <div class="video-slot-icon"><svg viewBox="0 0 16 16"><path d="M6 3.5l7 4.5-7 4.5V3.5z"/></svg></div>
+            <div class="video-slot-label">Video available on request</div>
+            
+          </div>
+        </div>
+
+        <div class="module">
+          <div class="module-pill">Project overview</div>
+          <div class="module-heading">Scope, subject matter, and editorial mandate</div>
+          <div class="module-text">
+            <p>Wolverines is a feature-length documentary following the Westview Wolverines — a high school football program in Omaha, Nebraska — across a complete competitive season. The film operates simultaneously as a season narrative and as a cultural portrait of the structural role athletics play in midwestern community identity.</p>
+            <p>Razak served as sole editor from assembly through picture lock, working from raw field production without a supervising editor or institutional framework. The editorial mandate was to construct a throughline that honoured the temporal stakes of the season arc while sustaining a macro-level cultural argument that extended well beyond any single game.</p>
+          </div>
+          <table class="brief-table">
+            <tr><td>Subject</td><td>Westview Wolverines football program, Omaha NE</td></tr>
+            <tr><td>Thematic scope</td><td>Community identity, adolescent development, midwestern sports culture</td></tr>
+            <tr><td>Editorial role</td><td>Sole editor — assembly cut through picture lock, independent engagement</td></tr>
+            <tr><td>Festival submission</td><td>Heartland Emmy Awards — Best Documentary category, 2024</td></tr>
+          </table>
+        </div>
+
+        <div class="module">
+          <div class="module-pill">Production process</div>
+          <div class="module-heading">From raw footage to picture lock</div>
+          <div class="process-timeline">
+            <div class="process-step">
+              <div class="process-line"></div>
+              <div class="process-dot"><span>01</span></div>
+              <div class="process-label">Footage review</div>
+              <div class="process-sub">Audio-led assessment</div>
+            </div>
+            <div class="process-step">
+              <div class="process-line"></div>
+              <div class="process-dot"><span>02</span></div>
+              <div class="process-label">Assembly cut</div>
+              <div class="process-sub">Throughline established</div>
+            </div>
+            <div class="process-step">
+              <div class="process-line"></div>
+              <div class="process-dot"><span>03</span></div>
+              <div class="process-label">Rough cut</div>
+              <div class="process-sub">Dual narrative locked</div>
+            </div>
+            <div class="process-step">
+              <div class="process-line"></div>
+              <div class="process-dot"><span>04</span></div>
+              <div class="process-label">Fine cut</div>
+              <div class="process-sub">Pacing calibrated</div>
+            </div>
+            <div class="process-step">
+              <div class="process-dot"><span>05</span></div>
+              <div class="process-label">Picture lock</div>
+              <div class="process-sub">Emmy submission master</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="module">
+          <div class="module-pill">Editorial methodology + narrative architecture</div>
+          <div class="module-heading">Structural approach and audio-picture synchronisation</div>
+          <div class="module-text">
+            <p>The primary editorial problem was emotional sync — identifying gameplay and vérité footage that carried the same emotional register as the corresponding interview content, so that image and audio function as a unified statement rather than an illustrated narration.</p>
+            <p>The working methodology was audio-led from assembly through picture lock: the energy, dynamic range, and tonal register of the audio track governed picture selection and shot duration at every stage — producing edits that feel organically paced rather than rhythmically imposed.</p>
+          </div>
+          <div class="pull-quote">"In documentary, the edit is not an arrangement of images. It is an argument — and the audio is the thesis."</div>
+          <div class="principle-list">
+            <div class="principle-row"><div class="principle-num">01</div><div class="principle-text"><strong>Audio-driven shot selection.</strong> The dynamic energy and tonal register of the audio track governs the kinetic load a given image can sustain. Misalignment produces subconscious viewer dissonance — this ratio is actively managed at every cut point.</div></div>
+            <div class="principle-row"><div class="principle-num">02</div><div class="principle-text"><strong>Controlled energy escalation.</strong> Energy is introduced incrementally and withdrawn before it becomes perceptible as craft. The threshold between emotionally effective and editorially self-conscious is narrow — disciplined restraint is the primary tool.</div></div>
+            <div class="principle-row"><div class="principle-num">03</div><div class="principle-text"><strong>Motivated camera movement.</strong> Camera moves are selected in reference to the directional and kinetic language of adjacent shots — creating continuity of motion that renders cut points perceptually invisible.</div></div>
+            <div class="principle-row"><div class="principle-num">04</div><div class="principle-text"><strong>Grain and artifact matching.</strong> Digital origination is treated with matching grain structure and analog artifacts to achieve tonal continuity across mixed-source timelines.</div></div>
+            <div class="principle-row"><div class="principle-num">05</div><div class="principle-text"><strong>Depth of field as editorial direction.</strong> Focus plane and depth of field are used as primary tools for viewer attention management — guiding the eye within the frame without requiring additional cutting.</div></div>
+          </div>
+        </div>
+
+        <div class="module">
+          <div class="module-pill">Craft reflection — what I got wrong first</div>
+          <div class="module-heading">An honest account of a significant editorial revision</div>
+          <div class="module-text">
+            <p>The assembly cut front-loaded the season arc — four of the first six sequences were game footage, with character and community material arriving late. The logic was intuitive: establish stakes early, deepen later. In practice it produced a film that felt like sports coverage with cultural commentary attached, rather than a cultural document that happened to use a football season as its spine.</p>
+            <p>The revision reversed the structural priority. The first act became almost entirely character and community — the football was withheld until the viewer had been given a reason to care about the people playing it. It required cutting approximately 11 minutes from the first third and rebuilding the game footage hierarchy entirely. The result was a film that sustained its argument from the opening frame rather than arriving at it.</p>
+          </div>
+          <div class="craft-note">
+            <div class="craft-label">The lesson</div>
+            <div class="craft-text">"The instinct to establish stakes immediately through action is almost always wrong in documentary. Restraint in the first act is the most important structural decision an editor makes — it determines whether the audience is watching a story or enduring one."</div>
+          </div>
+        </div>
+
+        <div class="module">
+          <div class="module-pill">Creative director's reflection</div>
+          <div class="module-heading">What this project demonstrates about the editorial practice</div>
+          <div class="module-text"><p>Wolverines represents the most complete expression of Razak's editorial voice — because the visual language was not inherited from a pre-existing brand framework, it was developed in response to the material itself.</p></div>
+          <div class="takeaway">
+            <div class="takeaway-label">Demonstrated competency</div>
+            <div class="takeaway-text">Feature-length narrative architecture and a fully articulated editorial methodology — developed independently, validated at Heartland Emmy submission level, and demonstrably revised under real production conditions.</div>
+          </div>
+          <div class="perf-note">
+            <div class="perf-note-label">Performance framing</div>
+            <div class="perf-note-text">Documentary editorial applies the same diagnostic logic as performance creative: <strong>retention curve analysis</strong> (where does the audience disengage and why?), <strong>hook engineering</strong> (the first 90 seconds must earn the next 60 minutes), and <strong>A/B structural testing</strong> (the first-act rebuild described above). The methodology transfers directly to paid creative at any length.</div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- end cs2 -->
+
+
+    <!-- ════ CS 03 — NORDSTROM RACK ════ -->
+    <div class="cs-card fade-up d4" id="cs3">
+      <div class="cs-header" onclick="toggleCS('cs3')">
+        <div>
+          <div class="cs-index">Case study — 03 <span class="spec-pill">Spec concept</span></div>
+          <div class="cs-title">Nordstrom Rack — shooting designer brands like designer brands, then revealing the price</div>
+          <div class="cs-tagline">Brand film direction · Luxury-register creative · Integrated campaign strategy · Off-price retail</div>
+        </div>
+        <div class="cs-toggle" id="cs3-tog">+</div>
+      </div>
+      <div class="cs-summary">
+        <div class="cs-sum-cell">
+          <div class="cs-sum-label">The problem</div>
+          <div class="cs-sum-val">Premium product, discount advertising</div>
+          <div class="cs-sum-sub">Designer labels sold like clearance events</div>
+        </div>
+        <div class="cs-sum-cell">
+          <div class="cs-sum-label">The strategy</div>
+          <div class="cs-sum-val">Shoot it like Tom Ford. Reveal the price at the end.</div>
+          <div class="cs-sum-sub">The contrast is the campaign</div>
+        </div>
+        <div class="cs-sum-cell">
+          <div class="cs-sum-label">Competency</div>
+          <div class="cs-sum-val">Luxury-register brand strategy</div>
+          <div class="cs-sum-sub">Off-price retail · Editorial direction</div>
+        </div>
+      </div>
+      <div class="cs-body" id="cs3-body">
+        <div class="spec-notice"><strong>Independently developed spec concept.</strong> Not commissioned by or produced in collaboration with Nordstrom Rack. An unsolicited strategic exercise demonstrating methodology, creative range, and analytical approach across the off-price retail category.</div>
+
+        <!-- ★ VIDEO SLOT 4 — Spec edit -->
+        <div class="video-block">
+          <div class="video-label">Spec re-edit — luxury-register 30-second execution</div>
+          <div class="video-slot">
+            <div class="video-slot-icon"><svg viewBox="0 0 16 16"><path d="M6 3.5l7 4.5-7 4.5V3.5z"/></svg></div>
+            <div class="video-slot-label">Video available on request</div>
+            
+          </div>
+        </div>
+
+        <div class="module">
+          <div class="module-pill">Creative audit — before + after</div>
+          <div class="module-heading">Diagnosing the existing creative and reframing the visual platform</div>
+          <div class="module-text"><p>The existing Nordstrom Rack advertising operates in the visual grammar of off-price retail — high energy, price-forward, promotional. The product being advertised is not off-price in character: it is designer merchandise at off-price. The creative audit reveals a category-wide failure to distinguish between these two things, and an opportunity to build a brand identity that exploits that gap directly.</p></div>
+
+          <!-- ★ VIDEO SLOT 5 — Competitive audit embeds (2-up) -->
+          <div class="audit-grid">
+            <div class="audit-card">
+              <div class="video-grid-slot" style="border-radius: 0; border: none; aspect-ratio: 16/9; background: #000;">
+                <!-- Replace with: <iframe src="YOUR_EMBED_URL" ...></iframe> -->
+                <svg viewBox="0 0 16 16" style="width:12px;height:12px;fill:#3a3830;margin-left:1px;"><path d="M6 3.5l7 4.5-7 4.5V3.5z"/></svg>
+              </div>
+              <div class="audit-body">
+                <div class="audit-label">Existing creative</div>
+                <div class="audit-text">High energy, promotional framing. Price-forward. Indistinguishable from category competitors. Hook rate hypothesis: average or below — no pattern interrupt.</div>
+              </div>
+            </div>
+            <div class="audit-card">
+              <div class="video-grid-slot" style="border-radius: 0; border: none; aspect-ratio: 16/9; background: #000;">
+                <!-- Replace with: <iframe src="YOUR_EMBED_URL" ...></iframe> -->
+                <svg viewBox="0 0 16 16" style="width:12px;height:12px;fill:#3a3830;margin-left:1px;"><path d="M6 3.5l7 4.5-7 4.5V3.5z"/></svg>
+              </div>
+              <div class="audit-body">
+                <div class="audit-label">Luxury benchmark</div>
+                <div class="audit-text">Loro Piana, Tom Ford, Celine register. Long shot duration. Texture-led. No price communication. This is what the product deserves — and what the audience responds to.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="module">
+          <div class="module-pill">The strategic insight</div>
+          <div class="module-heading">Why the contrast is the campaign</div>
+          <div class="module-text"><p>The price reveal mechanism works because it exploits a cognitive gap: if the viewer spends 22 seconds forming the impression that this is a $3,000 brand film, the price reveal creates a genuine moment of surprise. That surprise is the emotional hook. The product has not changed — only the visual frame around it. The creative strategy is to make the visual frame do the selling, and let the price close it.</p></div>
+          <div class="pull-quote">"The hook psychology: pattern interrupt — it doesn't look like a Nordstrom Rack ad. Curiosity gap — what brand is this? Payoff — the price reveal closes the loop."</div>
+        </div>
+
+        <div class="module">
+          <div class="module-pill">The edit — production brief</div>
+          <div class="module-heading">Execution framework for the 30-second spec</div>
+          <div class="module-text">
+            <p><strong>Structure:</strong> Open on texture — not product. No cut before 2 seconds. Grade: warm shadows, pulled highlights, 15–20% grain. Music: sparse piano or ambient strings, no lyrics. Hold the final wide shot one beat longer than feels natural. Price super at 22s: white text, no animation, 2 full seconds alone. Logo at 26s. Out.</p>
+            <p><strong>Reference films:</strong> Loro Piana Fall 2024 · Tom Ford Winter 2024 Shanghai · Gucci × Gosling Road Trip · Celine / Hedi Slimane. Note average shot duration in each. Match it.</p>
+          </div>
+        </div>
+
+        <div class="module">
+          <div class="module-pill">Mood board — visual register</div>
+          <div class="module-heading">The aesthetic target for the spec edit</div>
+          <div class="mood-board">
+            <div class="mood-frame sw1"><div class="mood-text">Texture / grain</div></div>
+            <div class="mood-frame sw2"><div class="mood-text">Dark register</div></div>
+            <div class="mood-frame sw3"><div class="mood-text">Warm shadow</div></div>
+            <div class="mood-frame sw4"><div class="mood-text">Pulled highlights</div></div>
+            <div class="mood-frame sw5"><div class="mood-text">Long hold</div></div>
+            <div class="mood-frame sw6"><div class="mood-text">Price reveal</div></div>
+          </div>
+          <div class="mood-cap">Tonal palette target — warm shadows, pulled highlights, long shot duration</div>
+        </div>
+
+        <div class="module">
+          <div class="module-pill">Performance rationale</div>
+          <div class="module-heading">Why this creative approach outperforms the category</div>
+          <div class="module-text"><p>Luxury-register visual grammar drives stronger upper-funnel performance in off-price retail because it creates a genuine pattern interrupt: the viewer registers a mismatch between the visual tone and the category expectation. That cognitive gap is attention. The price reveal converts that attention into surprise — one of the most effective triggers for both sharing behaviour and purchase intent.</p><p>The 3-second view rate is the first filter any paid social creative must clear. Luxury-register content passes at a structurally higher rate because it does not immediately read as an advertisement. The CTR premium comes from the reveal — which rewards viewers who stayed through the hold.</p></div>
+          <div class="takeaway">
+            <div class="takeaway-label">Demonstrated competency</div>
+            <div class="takeaway-text">Luxury-register creative strategy applied to off-price retail — using the visual grammar of premium brands to reposition designer merchandise at accessible price points. Hook engineering, retention mechanics, and performance rationale fully developed.</div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- end cs3 -->
+
+
+    <!-- ════ CS 04 — PALANTIR ════ -->
+    <div class="cs-card fade-up d5" id="cs4">
+      <div class="cs-header" onclick="toggleCS('cs4')">
+        <div>
+          <div class="cs-index">Case study — 04 <span class="spec-pill">Spec concept</span></div>
+          <div class="cs-title">Palantir — reframing a decade of public distrust through human-consequence storytelling</div>
+          <div class="cs-tagline">Enterprise brand strategy · Reputational reframe · B2B integrated creative · Campaign architecture</div>
+        </div>
+        <div class="cs-toggle" id="cs4-tog">+</div>
+      </div>
+      <div class="cs-summary">
+        <div class="cs-sum-cell">
+          <div class="cs-sum-label">The problem</div>
+          <div class="cs-sum-val">Decade of surveillance perception</div>
+          <div class="cs-sum-sub">Data privacy fear embedded in public consciousness</div>
+        </div>
+        <div class="cs-sum-cell">
+          <div class="cs-sum-label">The platform</div>
+          <div class="cs-sum-val">"Your data, working for you"</div>
+          <div class="cs-sum-sub">Human-consequence storytelling at scale</div>
+        </div>
+        <div class="cs-sum-cell">
+          <div class="cs-sum-label">Competency</div>
+          <div class="cs-sum-val">B2B brand strategy + reputational reframe</div>
+          <div class="cs-sum-sub">Enterprise creative · Multi-audience architecture</div>
+        </div>
+      </div>
+      <div class="cs-body" id="cs4-body">
+        <div class="spec-notice"><strong>Independently developed spec concept.</strong> Not commissioned by or produced in collaboration with Palantir. A strategic exercise demonstrating B2B reputational reframe methodology and enterprise campaign architecture.</div>
+
+        <!-- ★ VIDEO SLOT 6 — Mood reel or storyboard -->
+        <div class="video-block">
+          <div class="video-label">Mood reel or storyboard treatment — "The 4am call"</div>
+          <div class="video-slot">
+            <div class="video-slot-icon"><svg viewBox="0 0 16 16"><path d="M6 3.5l7 4.5-7 4.5V3.5z"/></svg></div>
+            <div class="video-slot-label">Video available on request</div>
+            
+          </div>
+        </div>
+
+        <div class="module">
+          <div class="module-pill">Strategic diagnosis</div>
+          <div class="module-heading">Why conventional reputation management fails here</div>
+          <div class="module-text"><p>The instinct in reputation repair is to address the accusation directly — to produce content that says "here's what we actually do" and trust the audience to update their priors. That instinct is almost always wrong. People don't change their minds about brands because brands tell them to. They change their minds when they see something that makes their existing belief feel like it doesn't apply to the company they're watching.</p><p>The creative strategy here is not to fight the surveillance narrative — it's to make the surveillance narrative feel like it belongs to a completely different kind of company than the one you just watched spend 90 seconds on a nurse and a flood and a 4am phone call.</p></div>
+        </div>
+
+        <div class="module">
+          <div class="module-pill">Campaign platform</div>
+          <div class="module-heading">The insight that drives every execution</div>
+          <div class="module-text"><p>The campaign platform is built on a single reframe: Palantir doesn't collect data — it helps the institutions that already hold your data use it more humanely. Every execution puts a real person at the centre of a real decision. No dashboards. No servers. No abstract data visualisations. Just a nurse, a logistics manager, a disaster relief coordinator — and the moment where better information produced a better outcome for another human being.</p></div>
+          <div class="pull-quote">"Your data, working for you."</div>
+          <div class="concept-grid">
+            <div class="concept-card">
+              <div class="concept-card-label">Hero film — 90 sec</div>
+              <div class="concept-card-title">It was already there</div>
+              <div class="concept-card-desc">A hospital already had the data to prevent a medication error. A city already had the data to reroute emergency services faster. The information existed. Palantir helped the people responsible for your care actually use it.</div>
+            </div>
+            <div class="concept-card">
+              <div class="concept-card-label">Campaign spot — 60 sec</div>
+              <div class="concept-card-title">The 4am call</div>
+              <div class="concept-card-desc">A hospital administrator receives a critical resource alert at 4am. The spot shows what that call means for the patients on the floor by morning. No software. No data. Just the human consequence of an institution that could see what was coming.</div>
+            </div>
+            <div class="concept-card">
+              <div class="concept-card-label">Campaign spot — 60 sec</div>
+              <div class="concept-card-title">Same data. Different decision.</div>
+              <div class="concept-card-desc">Two versions of the same flood relief scenario — identical data, two teams. One sees the pattern. One doesn't. The difference is not the information. It's the ability to act on it in time.</div>
+            </div>
+            <div class="concept-card">
+              <div class="concept-card-label">Campaign series — LinkedIn + pre-roll</div>
+              <div class="concept-card-title">The people in the room</div>
+              <div class="concept-card-desc">Real practitioners describing a decision that went better because they could see more clearly. No Palantir branding until the final frame. The credibility is earned before the name appears.</div>
+            </div>
+          </div>
+          <div class="skills-row" style="margin-top: 16px;">
+            <span class="skill-tag">Enterprise brand strategy</span>
+            <span class="skill-tag">Technical narrative development</span>
+            <span class="skill-tag">Multi-audience campaign architecture</span>
+            <span class="skill-tag">B2B integrated creative</span>
+            <span class="skill-tag">Data-informed storytelling</span>
+            <span class="skill-tag">Quantitative creative strategy</span>
+          </div>
+        </div>
+
+        <div class="module">
+          <div class="module-pill">Scene breakdown — "The 4am call"</div>
+          <div class="module-heading">Shot-by-shot treatment for the 60-second lead execution</div>
+          <div class="module-text"><p>The following breakdown illustrates the execution at production level — demonstrating that the strategic concept has been thought through to the frame, not merely articulated as a premise.</p></div>
+          <div class="scene-breakdown">
+            <div class="scene-row">
+              <div class="scene-tc">0:00–0:06</div>
+              <div class="scene-desc"><strong>A hospital corridor. 4:07am.</strong> Timestamp visible on a wall clock. The corridor is empty except for a single nurse at the end of the frame, back to camera, moving away. No dialogue. Ambient sound only.</div>
+            </div>
+            <div class="scene-row">
+              <div class="scene-tc">0:06–0:14</div>
+              <div class="scene-desc"><strong>A phone lights up on a desk.</strong> Close on the screen — a resource alert. The administrator's face in the background, out of focus, turns toward it. She picks it up. We see her reading, not the content. Her expression shifts — not alarm. Recognition.</div>
+            </div>
+            <div class="scene-row">
+              <div class="scene-tc">0:14–0:28</div>
+              <div class="scene-desc"><strong>A series of quiet, unhurried actions.</strong> A phone call made. A whiteboard updated. A colleague notified by text. None dramatised — shown at the pace at which they actually happen. The score enters: a single sustained cello note.</div>
+            </div>
+            <div class="scene-row">
+              <div class="scene-tc">0:28–0:48</div>
+              <div class="scene-desc"><strong>Six hours later. The same corridor, now busy.</strong> The morning shift. A patient being moved. Two nurses in conversation. The administrator walking the opposite direction — not looking at her phone now. <em>The visual argument: the 4am call was the reason this morning is ordinary.</em></div>
+            </div>
+            <div class="scene-row">
+              <div class="scene-tc">0:48–0:54</div>
+              <div class="scene-desc"><strong>Cut to black.</strong> White text, no animation: <em>"The data was already there."</em> Two seconds of silence. The weight of the statement settles.</div>
+            </div>
+            <div class="scene-row">
+              <div class="scene-tc">0:54–1:00</div>
+              <div class="scene-desc"><strong>Palantir wordmark. White on black.</strong> No strapline. No product shot. No URL. The name is the final word — and by this point, it has earned the right to be.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="module">
+          <div class="module-pill">Creative director's reflection</div>
+          <div class="module-heading">Why this brief cannot be solved with conventional reputation management</div>
+          <div class="module-text"><p>People don't change their minds about brands because brands tell them to. They change their minds when they see something that makes their existing belief feel like it doesn't apply. The strategy here is not to fight the surveillance narrative — it's to make the surveillance narrative feel like it belongs to a completely different kind of company than the one you just watched spend 90 seconds on a nurse and a flood and a 4am phone call.</p></div>
+          <div class="takeaway">
+            <div class="takeaway-label">Demonstrated competency</div>
+            <div class="takeaway-text">Reputational reframe through creative strategy — building a campaign architecture that neutralises a deeply embedded public misconception not through argument or denial, but through sustained, human-centred storytelling that makes the misconception structurally irrelevant.</div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- end cs4 -->
+
+    <div style="padding-bottom: 80px;"></div>
+
+  </div><!-- end site-wrap -->
+</div><!-- end page-work -->
+
+
+<!-- ══════════════════════════════════════════
+     ABOUT PAGE
+══════════════════════════════════════════ -->
+<div class="page" id="page-about">
+  <div class="site-wrap">
+    <div class="about-wrap">
+
+      <div class="about-grid fade-up d1">
+        <div class="headshot-col">
+          <div class="headshot">
+            <svg viewBox="0 0 20 20"><path d="M10 10a4 4 0 100-8 4 4 0 000 8zm-7 8a7 7 0 1114 0H3z"/></svg>
+            <div class="headshot-label">Insert headshot here</div>
+          </div>
+          <div class="contact-block">
+            <div class="contact-row">
+              <div class="contact-icon">
+                <svg viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+              </div>
+              <span class="contact-text"><a href="/cdn-cgi/l/email-protection#7b1a1612093b1e161a121755181416"><span class="__cf_email__" data-cfemail="a5c4c8ccd7e5c0c8c4ccc98bc6cac8">[email&#160;protected]</span></a></span>
+            </div>
+            <div class="contact-row">
+              <div class="contact-icon">
+                <svg viewBox="0 0 20 20"><path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84"/></svg>
+              </div>
+              <span class="contact-text"><a href="#">@amirrazak</a></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bio-col">
+          <div class="bio-eyebrow">Creative Strategist — San Francisco Bay Area</div>
+          <div class="bio-name">Amir<br>Razak</div>
+          <div class="bio-role">Creative Strategy · Editorial Direction · Post-Production</div>
+          <div class="bio-body">
+            <p>Amir Razak is a creative strategist and editorial director whose practice is built at the intersection of analytical rigour and post-production craft — translating complex brand and audience intelligence into visual narratives that are both strategically precise and cinematically considered.</p>
+            <p>His path to creative strategy is unconventional by design. A rigorous quantitative background at NYU formed the analytical foundation; years of independent post-production practice — across documentary film, brand campaigns, literary publishing, and commercial advertising — built the editorial one. The result is a strategist who can read a data pipeline and a timeline with equal fluency.</p>
+            <p>Available for creative strategy, editorial direction, and performance creative roles across brand, agency, and in-house environments — with a demonstrated ability to drive measurable outcomes at every stage of the creative lifecycle.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hr"></div>
+
+      <div class="fade-up d2" style="margin-bottom: 48px;">
+        <div class="section-label">Editorial philosophy</div>
+        <div class="philosophy-pull">"Editing is not assembly. It is authorship — and the moment that distinction is surrendered to automation, the work loses the one thing no algorithm can manufacture: a point of view."</div>
+        <div class="philosophy-body">
+          <p>Razak approaches post-production as a discipline of consequence, not convenience. Every cut is a decision — about energy, about emotional register, about what the audience is permitted to feel and when. That decision-making capacity is the product of thousands of hours of practice, a developed sensitivity to the relationship between audio and image, and an editorial voice built independently rather than inherited from a curriculum or a preset library.</p>
+          <p>He holds a considered position on the role of artificial intelligence in the creative process: AI is a legitimate research, ideation, and logistical tool, but its application as a substitute for editorial judgement produces work that is technically functional and creatively inert. The grain match, the motivated camera move, the precise moment a cut lands against a line of audio — these are not problems that benefit from computational optimisation. They are the work.</p>
+          <p>This philosophy is not a rejection of technology — it is a defence of authorship. The brands and projects that benefit most from Razak's practice are those that understand the difference.</p>
+        </div>
+      </div>
+
+      <div class="hr"></div>
+
+      <div class="fade-up d3" style="margin-bottom: 48px;">
+        <div class="section-label">Selected credentials</div>
+        <div class="cred-grid">
+          <div class="cred-card">
+            <div class="cred-label">Recognition</div>
+            <div class="cred-val">Heartland Emmy Submission</div>
+            <div class="cred-sub">Best Documentary — Wolverines (2024)</div>
+          </div>
+          <div class="cred-card">
+            <div class="cred-label">Client impact</div>
+            <div class="cred-val">+40% Subscription Growth</div>
+            <div class="cred-sub">The New Criterion — 6–12 month engagement</div>
+          </div>
+          <div class="cred-card">
+            <div class="cred-label">Academic background</div>
+            <div class="cred-val">Quantitative Analyst Background</div>
+            <div class="cred-sub">NYU Mathematics — analytical foundation for creative strategy</div>
+          </div>
+          <div class="cred-card">
+            <div class="cred-label">Experience base</div>
+            <div class="cred-val">Brand Consultancy + Freelance</div>
+            <div class="cred-sub">Documentary, retail, publishing, enterprise technology</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hr"></div>
+
+      <div class="fade-up d4" style="margin-bottom: 48px;">
+        <div class="section-label">Production disciplines + tools</div>
+        <div class="tools-wrap">
+          <span class="tool-tag">Adobe Premiere Pro</span>
+          <span class="tool-tag">After Effects</span>
+          <span class="tool-tag">DaVinci Resolve</span>
+          <span class="tool-tag">Color grading</span>
+          <span class="tool-tag">Motion graphics</span>
+          <span class="tool-tag">Documentary post-production</span>
+          <span class="tool-tag">Brand film direction</span>
+          <span class="tool-tag">Paid social creative</span>
+          <span class="tool-tag">Content architecture</span>
+          <span class="tool-tag">Audience segmentation</span>
+          <span class="tool-tag">Campaign strategy</span>
+          <span class="tool-tag">Narrative architecture</span>
+          <span class="tool-tag">Editorial direction</span>
+          <span class="tool-tag">Quantitative analysis</span>
+        </div>
+        <div class="tools-section-label">Analytics + performance tools</div>
+        <div class="tools-wrap">
+          <span class="tool-tag">Meta Ads Manager</span>
+          <span class="tool-tag">Google Analytics 4</span>
+          <span class="tool-tag">Google Ads</span>
+          <span class="tool-tag">Looker Studio</span>
+          <span class="tool-tag">CTR · CPM · ROAS · CVR</span>
+          <span class="tool-tag">Retention curve analysis</span>
+          <span class="tool-tag">Hook rate diagnostics</span>
+          <span class="tool-tag">A/B creative testing</span>
+        </div>
+      </div>
+
+      <div class="hr"></div>
+
+      <div class="cta-block fade-up d5">
+        <div>
+          <div class="cta-heading">Available for creative strategy engagements.</div>
+          <div class="cta-sub">Brand campaigns, editorial direction, and post-production — across agency, in-house, and independent project contexts. Based in the San Francisco Bay Area.</div>
+        </div>
+        <button class="cta-btn" onclick="window.location.href='mailto:amir@email.com'">Get in touch</button>
+      </div>
+
+    </div>
+  </div>
+</div><!-- end page-about -->
+
+
+<!-- ══════════════════════════════════════════
+     RESUME PAGE
+══════════════════════════════════════════ -->
+<div class="page" id="page-resume">
+  <div class="site-wrap">
+    <div class="resume-wrap fade-up d1">
+
+      <div class="resume-header">
+        <div class="resume-name">Amir Razak</div>
+        <div class="resume-title">Creative Strategist · Performance Creative Lead · Editorial Director</div>
+        <div class="resume-contact">
+          <div class="resume-contact-item">
+            <svg viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+            <a href="/cdn-cgi/l/email-protection#fc9d91958ed28e9d869d97ccccbc9b919d9590d29f9391"><span class="__cf_email__" data-cfemail="27464a4e550955465d464c171767404a464e4b0944484a">[email&#160;protected]</span></a>
+          </div>
+          <div class="resume-contact-item">
+            <svg viewBox="0 0 20 20"><path d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"/></svg>
+            San Francisco Bay Area
+          </div>
+        </div>
+      </div>
+
+      <div class="resume-profile">
+        Creative strategist and editorial director with a background bridging quantitative analysis, post-production craft, and performance creative. Proven ability to develop brand-level campaign platforms, translate audience intelligence into measurable outcomes, and operate across the full creative lifecycle from strategic brief through picture lock. Fluent in the metrics that determine whether creative drives revenue: hook rate, CTR, CVR, ROAS, and retention curve analysis.
+      </div>
+
+      <div class="resume-section">
+        <div class="resume-section-title">Experience</div>
+
+        <div class="resume-entry">
+          <div class="resume-entry-header">
+            <div class="resume-entry-title">Creative Strategist &amp; Video Editor</div>
+            <div class="resume-entry-date">May 2024 — Dec 2025</div>
+          </div>
+          <div class="resume-entry-org">Beck &amp; Stone · Bay Area, CA</div>
+          <ul class="resume-bullets">
+            <li>Developed performance-oriented creative strategy and video production across brand and paid social campaigns, contributing to measurable improvements in audience engagement and conversion metrics.</li>
+            <li>Produced A/B-tested video creatives optimised for funnel stage — iterating on retention curve data, hook performance, and downstream CVR to improve creative efficiency across active campaigns.</li>
+            <li>Produced creative assets for high-profile political and media clients, managing same-day turnarounds and delivering motion graphics, sound design, and video editing to broadcast standard.</li>
+            <li>Built a unified visual grammar — deliberate editorial pacing, warm cinematic grade, motivated camera movement — applied consistently across monthly content, annual tentpole campaigns, and gala production.</li>
+            <li>Documented visual standards and production framework enabling brand team continuity beyond the engagement.</li>
+          </ul>
+        </div>
+
+        <div class="resume-entry">
+          <div class="resume-entry-header">
+            <div class="resume-entry-title">Freelance Creative &amp; Video Producer</div>
+            <div class="resume-entry-date">2020 — 2024</div>
+          </div>
+          <div class="resume-entry-org">Independent · Multiple Clients · Remote / Bay Area, CA</div>
+          <ul class="resume-bullets">
+            <li>Directed and produced documentary short <em>Becoming Babylon</em> in collaboration with Victory of USA — full creative direction, post-production, and editorial from pre-production through picture lock.</li>
+            <li>Created performance-optimised campaign advertisements and motion graphics for political and media clients, including same-day turnaround deliverables for live conference events with 100+ attendees.</li>
+            <li>Led design and video editing for Mint Money's paid social advertising campaign in the crypto/Web3 ecosystem, producing multiple ad creatives across NFT project launches.</li>
+            <li>Produced brand and social content for book, media, and advocacy clients — building motion graphics, sound design, and video strategy aligned to audience engagement goals.</li>
+            <li>Collaborated with NYU Tisch student filmmakers through the Tisch Student Crew network, building cross-disciplinary production experience across narrative and documentary formats.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="resume-section">
+        <div class="resume-section-title">Selected Work</div>
+
+        <div class="resume-entry">
+          <div class="resume-entry-header">
+            <div class="resume-entry-title">Wolverines — Feature Documentary</div>
+            <div class="resume-entry-date">2024</div>
+          </div>
+          <div class="resume-entry-org">Assistant Editor · Heartland Emmy Submission, Best Documentary</div>
+          <ul class="resume-bullets">
+            <li>Editor from assembly cut through picture lock — audio-led editorial methodology applied across a dual-register narrative sustaining both a season arc and a macro-level cultural argument simultaneously.</li>
+          </ul>
+        </div>
+
+        <div class="resume-entry">
+          <div class="resume-entry-header">
+            <div class="resume-entry-title">Nordstrom Rack — Spec Campaign</div>
+          </div>
+          <div class="resume-entry-org">Creative Strategy + Direction</div>
+          <ul class="resume-bullets">
+            <li>Luxury-register brand film strategy — visual grammar of Tom Ford and Loro Piana applied to off-price retail, price revealed in the final seconds. Projected ~2–3× 3-second hold rate vs. category benchmark.</li>
+          </ul>
+        </div>
+
+        <div class="resume-entry">
+          <div class="resume-entry-header">
+            <div class="resume-entry-title">Palantir Technologies — Spec Campaign</div>
+          </div>
+          <div class="resume-entry-org">Creative Strategy + Campaign Architecture</div>
+          <ul class="resume-bullets">
+            <li>Full reputational reframe campaign — competitive audit, audience strategy, scene-level production treatment, and projected brand trust metrics addressing a decade of data-privacy public misconception.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="resume-section">
+        <div class="resume-section-title">Education</div>
+        <div class="resume-entry">
+          <div class="resume-entry-header">
+            <div class="resume-entry-title">Mathematics</div>
+            <div class="resume-entry-date">2018 — 2022</div>
+          </div>
+          <div class="resume-entry-org">New York University · New York, NY</div>
+          <div class="resume-entry-note">Rigorous mathematics programme at one of the most selective quantitative faculties in the United States. Analytical foundation applied directly to creative strategy: audience modelling, performance metric analysis, and the rigour underlying all campaign work.</div>
+        </div>
+      </div>
+
+      <div class="resume-section">
+        <div class="resume-section-title">Skills &amp; Tools</div>
+        <div class="resume-skills-grid">
+          <div class="resume-skill-group">
+            <div class="resume-skill-label">Post-Production</div>
+            <div class="resume-skill-list">Adobe Premiere Pro · After Effects · DaVinci Resolve · Color grading · Motion graphics · Sound design</div>
+          </div>
+          <div class="resume-skill-group">
+            <div class="resume-skill-label">Creative Strategy</div>
+            <div class="resume-skill-list">Brand architecture · Campaign strategy · Audience segmentation · Content system design · Narrative architecture · Competitive audit</div>
+          </div>
+          <div class="resume-skill-group">
+            <div class="resume-skill-label">Analytics &amp; Performance</div>
+            <div class="resume-skill-list">Meta Ads Manager · Google Analytics 4 · Google Ads · Looker Studio · Hook rate diagnostics · Retention curve analysis · A/B creative testing</div>
+          </div>
+          <div class="resume-skill-group">
+            <div class="resume-skill-label">Metrics Fluency</div>
+            <div class="resume-skill-list">CTR · CPM · ROAS · CVR · 3-second view rate · Scroll-stop rate · Funnel-stage creative optimisation</div>
+          </div>
+        </div>
+      </div>
+
+      <button class="resume-download" onclick="window.location.href='mailto:amir.razak00@gmail.com?subject=Resume Request'">
+        <svg viewBox="0 0 20 20"><path d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"/></svg>
+        Request full resume
+      </button>
+
+    </div>
+  </div>
+</div><!-- end page-resume -->
+
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-inner">
+    <span class="footer-name">Amir Razak</span>
+    <span class="footer-copy">Creative Strategy · Editorial Direction · Post-Production</span>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Theme toggle
+  function toggleTheme() {
+    var isLight = document.documentElement.classList.toggle('light');
+    try { localStorage.setItem('theme', isLight ? 'light' : 'dark'); } catch(e) {}
+  }
+  try {
+    if (localStorage.getItem('theme') === 'light') document.documentElement.classList.add('light');
+  } catch(e) {}
+
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('nav-menu').classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('nav-menu').classList.remove('open');
+  }
+
+  // Page navigation — now handles work / about / resume
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+    document.getElementById('page-' + id).classList.add('active');
+    document.querySelectorAll('.nav-links a').forEach(function(a) { a.classList.remove('active'); });
+    var navEl = document.getElementById('nav-' + id);
+    if (navEl) navEl.classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  // Case study accordion
+  function toggleCS(id) {
+    var card = document.getElementById(id);
+    var body = document.getElementById(id + '-body');
+    var isOpen = card.classList.contains('open');
+    document.querySelectorAll('.cs-card').forEach(function(c) { c.classList.remove('open'); });
+    document.querySelectorAll('.cs-body').forEach(function(b) { b.classList.remove('open'); });
+    if (!isOpen) {
+      card.classList.add('open');
+      body.classList.add('open');
+      setTimeout(function() { card.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 50);
+    }
+  }
+
+  // Close mobile menu when clicking outside
+  document.addEventListener('click', function(e) {
+    var menu = document.getElementById('nav-menu');
+    var hamburger = document.querySelector('.nav-hamburger');
+    if (menu && menu.classList.contains('open') && !menu.contains(e.target) && !hamburger.contains(e.target)) {
+      closeMenu();
+    }
+  });
+</script>
+</body>
+</html>
