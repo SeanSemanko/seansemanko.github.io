@@ -107,7 +107,7 @@ body::after {
 nav {
   position: fixed;
   top: 0; left: 0; right: 0;
-  z-index: 100;
+  z-index: 10001;
   background: var(--nav-bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -271,12 +271,34 @@ nav {
 
 .cs-title {
   font-family: var(--serif);
-  font-size: 36px;
   font-weight: 400;
   letter-spacing: -0.02em;
   line-height: 1.15;
   color: var(--white);
   margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.cs-title-brand {
+  font-size: 42px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  color: var(--white);
+  display: block;
+}
+
+.cs-title-sub {
+  font-family: var(--serif2);
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  line-height: 1.45;
+  color: var(--muted);
+  display: block;
+  font-style: italic;
 }
 
 .cs-tagline {
@@ -1105,35 +1127,36 @@ html.light .nt-note { color: rgba(26,26,22,0.5); }
    ABOUT PAGE
 ══════════════════════════════════════════ */
 
-.about-wrap { padding: 56px 0; }
+.about-wrap { padding: 60px 0 80px; }
 
 .about-grid {
   display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 60px;
+  grid-template-columns: 220px 1fr;
+  gap: 64px;
   align-items: start;
-  margin-bottom: 64px;
+  margin-bottom: 60px;
 }
 
 .headshot-col {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
   position: sticky;
   top: 80px;
 }
 
 .headshot {
-  width: 200px;
-  height: 240px;
+  width: 220px;
+  height: 268px;
   background: var(--bg2);
-  border-radius: 4px;
-  border: 1px dashed var(--faint);
+  border-radius: 6px;
+  border: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 10px;
+  overflow: hidden;
 }
 
 .headshot svg { width: 20px; height: 20px; fill: var(--muted); }
@@ -1187,38 +1210,40 @@ html.light .nt-note { color: rgba(26,26,22,0.5); }
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--muted);
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .bio-name {
   font-family: var(--serif);
-  font-size: 72px;
+  font-size: 80px;
   font-weight: 300;
-  letter-spacing: -0.03em;
-  line-height: 1.02;
+  letter-spacing: -0.04em;
+  line-height: 1.0;
   color: var(--white);
-  margin-bottom: 10px;
+  margin-bottom: 14px;
 }
 
 .bio-role {
   font-family: var(--serif2);
-  font-size: 17px;
+  font-size: 16px;
+  font-style: italic;
   color: var(--muted);
-  margin-bottom: 32px;
+  margin-bottom: 36px;
   letter-spacing: 0.01em;
+  line-height: 1.5;
 }
 
 .bio-body {
   font-family: var(--serif2);
   font-size: 17px;
-  line-height: 1.8;
-  color: rgba(232,229,223,0.65);
+  line-height: 1.85;
+  color: rgba(232,229,223,0.7);
 }
 
-.bio-body p + p { margin-top: 16px; }
+.bio-body p + p { margin-top: 18px; }
 
 /* Divider */
-.hr { height: 1px; background: var(--border); margin: 52px 0; }
+.hr { height: 1px; background: var(--border); margin: 56px 0; }
 
 /* Section label */
 .section-label {
@@ -1368,29 +1393,33 @@ html.light .tool-tag:hover { color: var(--accent); border-color: var(--accent); 
 
 /* ── THEME TOGGLE ── */
 .theme-toggle {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  border: 1px solid var(--border2);
-  background: var(--bg2);
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
   flex-shrink: 0;
 }
 
 .theme-toggle:hover {
   border-color: var(--accent);
-  transform: scale(1.08);
+  background: rgba(200,184,138,0.07);
+}
+
+html.light .theme-toggle:hover {
+  background: rgba(42,80,64,0.07);
 }
 
 .theme-toggle svg {
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 15px;
   fill: var(--muted);
-  transition: fill 0.2s, opacity 0.2s;
+  transition: fill 0.2s;
 }
 
 .theme-toggle:hover svg { fill: var(--accent); }
@@ -1444,7 +1473,8 @@ footer {
 
   /* Case studies */
   .cs-header { padding: 26px 24px 22px; }
-  .cs-title { font-size: 28px; }
+  .cs-title-brand { font-size: 32px; }
+  .cs-title-sub { font-size: 14px; }
   .cs-tagline { font-size: 13px; }
   .cs-body { padding: 28px 24px; }
   .cs-summary { grid-template-columns: repeat(3, 1fr); }
@@ -1486,148 +1516,206 @@ footer {
 
 /* ── RESPONSIVE: MOBILE ── */
 @media (max-width: 680px) {
-  html { font-size: 15px; }
+  html { font-size: 16px; }
 
   /* Layout */
-  .site-wrap { padding: 0 16px; }
-  .nav-inner { padding: 0 16px; height: 56px; }
+  .site-wrap { padding: 0 20px; }
+  .nav-inner { padding: 0 20px; height: 56px; }
   .page { padding-top: 56px; }
 
   /* Prevent horizontal overflow everywhere */
   .page, .site-wrap, .cs-card, .cs-body, .module,
   .about-wrap, .resume-wrap { max-width: 100%; overflow-x: hidden; }
 
-  /* Hero */
-  .work-hero { padding: 40px 0 32px; margin-bottom: 28px; }
-  .work-title { font-size: clamp(28px, 8vw, 42px); line-height: 1.1; }
-  .work-sub { font-size: 14px; max-width: 100%; line-height: 1.6; }
+  /* ── HERO ── */
+  .work-hero { padding: 36px 0 28px; margin-bottom: 32px; }
+  .work-eyebrow { font-size: 11px; margin-bottom: 16px; }
+  .work-title { font-size: clamp(34px, 9vw, 46px); line-height: 1.08; letter-spacing: -0.02em; }
+  .work-sub { font-size: 15px; max-width: 100%; line-height: 1.7; margin-top: 14px; }
 
-  /* Case study cards */
-  .cs-card { margin-bottom: 8px; }
-  .cs-header { padding: 18px 16px 14px; gap: 10px; }
-  .cs-title { font-size: 17px; }
-  .cs-tagline { font-size: 11px; line-height: 1.5; }
-  .cs-toggle { font-size: 22px; margin-top: 0; }
-  .cs-index { font-size: 9px; }
+  /* ── STRATEGIC POSITIONING STRIP ── */
+  /* Stack the 3-col positioning strip to 1-col */
+  .fade-up.d2 > div[style*="grid-template-columns:repeat(3,1fr)"],
+  div[style*="grid-template-columns:repeat(3,1fr)"] {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  div[style*="grid-template-columns:repeat(3,1fr)"] > div {
+    border-right: none !important;
+    border-bottom: 1px solid var(--border) !important;
+  }
+  div[style*="grid-template-columns:repeat(3,1fr)"] > div:last-child {
+    border-bottom: none !important;
+  }
 
-  /* Summary strip */
-  .cs-summary { grid-template-columns: 1fr 1fr; }
-  .cs-sum-cell { border-right: none; border-bottom: 1px solid var(--border); padding: 10px 14px; }
-  .cs-sum-cell:nth-child(1), .cs-sum-cell:nth-child(2) { border-right: none; }
-  .cs-sum-cell:last-child { grid-column: 1/-1; border-bottom: none; }
+  /* ── STRATEGIC POSITIONING STRIP ── */
+  .positioning-strip {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .positioning-cell {
+    border-right: none !important;
+    border-bottom: 1px solid var(--border) !important;
+    padding: 14px 18px !important;
+  }
+  .positioning-cell:last-child {
+    border-bottom: none !important;
+  }
+
+  /* ── CASE STUDY CARDS ── */
+  .cs-card { margin-bottom: 10px; }
+  .cs-header { padding: 20px 18px 16px; gap: 12px; }
+  .cs-title { gap: 4px; margin-bottom: 10px; }
+  .cs-title-brand { font-size: 24px; }
+  .cs-title-sub { font-size: 13px; line-height: 1.5; }
+  .cs-tagline { font-size: 12px; line-height: 1.55; margin-top: 6px; }
+  .cs-toggle { font-size: 24px; margin-top: 0; flex-shrink: 0; }
+  .cs-index { font-size: 10px; margin-bottom: 10px; }
+
+  /* Summary strip — 1-col on mobile */
+  .cs-summary { grid-template-columns: 1fr; }
+  .cs-sum-cell { border-right: none; border-bottom: 1px solid var(--border); padding: 12px 18px; }
+  .cs-sum-cell:last-child { border-bottom: none; }
+  .cs-sum-val { font-size: 15px; }
+  .cs-sum-sub { font-size: 13px; }
 
   /* Card body */
-  .cs-body { padding: 20px 16px; }
+  .cs-body { padding: 24px 18px 28px; }
 
-  /* Modules */
-  .module { margin-bottom: 24px; padding-bottom: 24px; }
-  .module-heading { font-size: 18px; line-height: 1.25; }
-  .module-text { font-size: 14px; line-height: 1.6; }
-  .module-pill { font-size: 9px; }
+  /* ── MODULES ── */
+  .module { margin-bottom: 28px; padding-bottom: 28px; }
+  .module-heading { font-size: 19px; line-height: 1.3; margin-bottom: 12px; }
+  .module-text { font-size: 15px; line-height: 1.7; }
+  .module-text p + p { margin-top: 14px; }
+  .module-pill { font-size: 10px; margin-bottom: 10px; }
 
-  /* All 2-col grids → 1-col */
-  .kpi-row { grid-template-columns: 1fr 1fr; gap: 8px; }
-  .kpi-num { font-size: 26px; }
-  .kpi-card { padding: 12px 14px; }
-  .kpi-desc { font-size: 11px; }
-  .concept-grid { grid-template-columns: 1fr; }
+  /* ── GRIDS → 1-col ── */
+  .kpi-row { grid-template-columns: 1fr; gap: 10px; }
+  .kpi-num { font-size: 42px; }
+  .kpi-card { padding: 16px 18px; }
+  .kpi-desc { font-size: 13px; }
+  .concept-grid { grid-template-columns: 1fr; gap: 10px; }
   .ba-grid { grid-template-columns: 1fr; }
-  .audit-grid { grid-template-columns: 1fr; }
-  .video-grid { grid-template-columns: 1fr; }
+  .audit-grid { grid-template-columns: 1fr; gap: 10px; }
+  .video-grid { grid-template-columns: 1fr; gap: 10px; }
+  .video-compare { grid-template-columns: 1fr; gap: 16px; }
   .mood-board { grid-template-columns: repeat(2, 1fr); }
-  .cred-grid { grid-template-columns: 1fr; }
+  .cred-grid { grid-template-columns: 1fr; gap: 10px; }
 
-  /* Tables */
+  /* ── TABLES ── */
   .brief-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .brief-table td { font-size: 13px; padding: 8px 0; }
-  .brief-table td:first-child { width: 100px; font-size: 9px; padding-right: 12px; }
+  .brief-table td { font-size: 14px; padding: 10px 0; }
+  .brief-table td:first-child { width: 90px; font-size: 10px; padding-right: 12px; }
 
-  /* Pull quote */
-  .pull-quote { font-size: 14px; padding: 12px 16px; }
+  /* ── PULL QUOTE ── */
+  .pull-quote { font-size: 15px; padding: 14px 18px; line-height: 1.6; }
 
-  /* Scene breakdown */
-  .scene-row { flex-direction: column; gap: 2px; padding: 10px 0; }
-  .scene-tc { min-width: unset; font-size: 9px; margin-bottom: 2px; }
-  .scene-desc { font-size: 13px; }
+  /* ── SCENE BREAKDOWN ── */
+  .scene-row { flex-direction: column; gap: 4px; padding: 12px 0; }
+  .scene-tc { min-width: unset; font-size: 10px; margin-bottom: 2px; opacity: 0.7; }
+  .scene-desc { font-size: 14px; line-height: 1.65; }
 
-  /* Process timeline */
+  /* ── PROCESS TIMELINE ── */
   .process-timeline { flex-direction: column; gap: 0; }
-  .process-step { display: flex; flex-direction: row; gap: 12px; align-items: flex-start; text-align: left; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .process-step { display: flex; flex-direction: row; gap: 14px; align-items: flex-start; text-align: left; padding: 12px 0; border-bottom: 1px solid var(--border); }
   .process-step:last-child { border-bottom: none; }
   .process-line { display: none; }
   .process-dot { margin: 2px 0 0; flex-shrink: 0; }
-  .process-label { font-size: 13px; }
-  .process-sub { font-size: 12px; }
+  .process-label { font-size: 14px; }
+  .process-sub { font-size: 13px; }
 
-  /* SVG system diagrams */
+  /* ── SVG DIAGRAMS ── */
   .system-diagram { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .system-svg { min-width: 400px; }
+  .system-svg { min-width: 380px; }
 
-  /* About page */
-  .about-wrap { padding: 36px 0 60px; }
-  .about-grid { grid-template-columns: 1fr; gap: 24px; }
-  .headshot-col { position: static; }
-  .headshot { width: 120px; height: 150px; }
-  .bio-name { font-size: 40px; }
-  .bio-role { font-size: 13px; }
-  .bio-body { font-size: 14px; line-height: 1.65; }
-  .philosophy-pull { font-size: 15px; padding: 14px 18px; line-height: 1.55; }
-  .philosophy-body { font-size: 14px; }
-  .section-label { font-size: 9px; }
-  .cred-val { font-size: 14px; }
-  .cred-sub { font-size: 12px; }
-  .tools-wrap { gap: 6px; }
-  .tool-tag { font-size: 11px; padding: 4px 10px; }
-  .cta-block { flex-direction: column; align-items: flex-start; padding: 18px; gap: 14px; }
-  .cta-heading { font-size: 19px; }
-  .cta-sub { font-size: 13px; }
-  .cta-btn { width: 100%; text-align: center; padding: 14px; }
+  /* ── PERF NOTES & TAKEAWAYS ── */
+  .perf-note { padding: 16px 16px; }
+  .perf-note-text { font-size: 14px; line-height: 1.7; }
+  .perf-note-label { font-size: 10px; margin-bottom: 8px; }
+  .takeaway { padding: 16px 18px; }
+  .takeaway-text { font-size: 14px; line-height: 1.65; }
+  .takeaway-label { font-size: 10px; }
+  .craft-note { padding: 16px 18px; }
+  .craft-text { font-size: 15px; }
+  .spec-notice { font-size: 13px; padding: 14px 16px; }
 
-  /* Resume page */
-  .resume-wrap { padding: 32px 0 60px; }
-  .resume-name { font-size: clamp(32px, 8vw, 44px); }
-  .resume-title { font-size: 14px; }
-  .resume-contact { flex-direction: column; gap: 12px; }
-  .resume-skills-grid { grid-template-columns: 1fr; }
-  .resume-entry-header { flex-direction: column; gap: 4px; }
-  .resume-entry-title { font-size: 19px; }
-  .resume-entry-org { font-size: 13px; }
-  .resume-bullets { gap: 10px; }
-  .resume-bullets li { font-size: 14px; line-height: 1.65; }
-  .resume-profile { font-size: 15px; }
-  .resume-download { width: 100%; justify-content: center; }
+  /* ── CONCEPT CARDS ── */
+  .concept-card { padding: 14px 16px; }
+  .concept-card-title { font-size: 15px; }
+  .concept-card-desc { font-size: 14px; }
 
-  /* Footer */
-  .footer-inner { flex-direction: column; gap: 8px; text-align: center; padding: 0 16px; }
-  footer { padding: 18px 0; margin-top: 40px; }
+  /* ── ABOUT PAGE ── */
+  .about-wrap { padding: 32px 0 60px; }
+  .about-grid { grid-template-columns: 1fr; gap: 0; margin-bottom: 40px; }
+  .headshot-col { position: static; flex-direction: row; align-items: flex-start; gap: 20px; margin-bottom: 28px; }
+  .headshot { width: 96px; height: 118px; flex-shrink: 0; border-radius: 4px; }
+  .contact-block { justify-content: flex-start; }
+  .bio-eyebrow { font-size: 10px; margin-bottom: 10px; }
+  .bio-name { font-size: 44px; letter-spacing: -0.03em; margin-bottom: 10px; }
+  .bio-role { font-size: 14px; margin-bottom: 22px; }
+  .bio-body { font-size: 15px; line-height: 1.75; }
+  .bio-body p + p { margin-top: 14px; }
+  .philosophy-pull { font-size: 17px; padding: 18px 20px; line-height: 1.6; margin-bottom: 18px; }
+  .philosophy-body { font-size: 15px; line-height: 1.75; }
+  .section-label { font-size: 10px; margin-bottom: 18px; }
+  .hr { margin: 36px 0; }
+  .cred-grid { grid-template-columns: 1fr; gap: 10px; }
+  .cred-card { padding: 14px 16px; }
+  .cred-val { font-size: 15px; }
+  .cred-sub { font-size: 13px; }
+  .tools-wrap { gap: 7px; }
+  .tool-tag { font-size: 13px; padding: 6px 12px; }
+  .cta-block { flex-direction: column; align-items: flex-start; padding: 20px; gap: 16px; }
+  .cta-heading { font-size: 22px; }
+  .cta-sub { font-size: 14px; line-height: 1.65; }
+  .cta-btn { width: 100%; text-align: center; padding: 15px; font-size: 13px; }
 
-  /* Skills tags */
-  .skills-row { gap: 6px; }
-  .skill-tag { font-size: 11px; padding: 4px 10px; }
+  /* ── RESUME PAGE ── */
+  .resume-wrap { padding: 28px 0 60px; }
+  .resume-name { font-size: clamp(34px, 9vw, 46px); }
+  .resume-title { font-size: 14px; line-height: 1.6; margin-bottom: 20px; }
+  .resume-contact { flex-direction: column; gap: 14px; }
+  .resume-contact-item { font-size: 13px; }
+  .resume-profile { font-size: 15px; line-height: 1.8; margin-bottom: 36px; padding-bottom: 36px; }
+  .resume-section { margin-bottom: 36px; }
+  .resume-section-title { font-size: 10px; padding-bottom: 12px; margin-bottom: 24px; }
+  .resume-skills-grid { grid-template-columns: 1fr; gap: 10px; }
+  .resume-skill-group { padding: 16px 18px; }
+  .resume-skill-label { font-size: 10px; margin-bottom: 8px; }
+  .resume-skill-list { font-size: 14px; line-height: 1.75; }
+  .resume-entry { padding-bottom: 28px; margin-bottom: 28px; }
+  .resume-entry-header { flex-direction: column; gap: 6px; margin-bottom: 8px; }
+  .resume-entry-title { font-size: 20px; }
+  .resume-entry-date { font-size: 11px; }
+  .resume-entry-org { font-size: 13px; margin-bottom: 14px; }
+  .resume-bullets { gap: 12px; }
+  .resume-bullets li { font-size: 14px; line-height: 1.7; padding-left: 18px; }
+  .resume-entry-note { font-size: 14px; }
+  .resume-download { width: 100%; justify-content: center; margin-top: 32px; }
 
-  /* Spec notice */
-  .spec-notice { font-size: 12px; }
+  /* ── SKILLS ROW ── */
+  .skills-row { gap: 7px; }
+  .skill-tag { font-size: 12px; padding: 5px 11px; }
 
-  /* Takeaway */
-  .takeaway-text { font-size: 13px; }
-  .takeaway-label { font-size: 9px; }
+  /* ── NARRATION TIMELINE ── */
+  .nt-row { grid-template-columns: 60px 1fr; gap: 12px; padding: 14px 0; }
+  .nt-tc { font-size: 10px; }
+  .nt-narration { font-size: 15px; padding-left: 10px; }
+  .nt-note { font-size: 13px; }
+  .nt-silence { font-size: 12px; }
 
-  /* Perf note */
-  .perf-note-text { font-size: 13px; }
-  .perf-note-label { font-size: 9px; }
-
-  /* Concept cards */
-  .concept-card-title { font-size: 14px; }
-  .concept-card-desc { font-size: 13px; }
+  /* ── FOOTER ── */
+  .footer-inner { flex-direction: column; gap: 8px; text-align: center; padding: 0 20px; }
+  footer { padding: 20px 0; margin-top: 40px; }
 }
 
 /* ══ RESUME PAGE ══ */
 .resume-wrap { padding: 72px 0 100px; max-width: 820px; }
 
-.resume-header { margin-bottom: 56px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
-.resume-name { font-family: var(--serif); font-size: clamp(42px, 6vw, 64px); font-weight: 300; letter-spacing: -0.02em; line-height: 1.05; color: var(--white); margin-bottom: 10px; }
-.resume-title { font-family: var(--serif2); font-size: 17px; color: var(--muted); letter-spacing: 0.02em; margin-bottom: 28px; line-height: 1.5; }
-.resume-contact { display: flex; flex-wrap: wrap; gap: 24px; }
+.resume-header { margin-bottom: 52px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+.resume-name { font-family: var(--serif); font-size: clamp(48px, 6vw, 72px); font-weight: 300; letter-spacing: -0.03em; line-height: 1.0; color: var(--white); margin-bottom: 12px; }
+.resume-title { font-family: var(--serif2); font-size: 16px; font-style: italic; color: var(--muted); letter-spacing: 0.01em; margin-bottom: 28px; line-height: 1.55; }
+.resume-contact { display: flex; flex-wrap: wrap; gap: 20px; }
 .resume-contact-item { display: flex; align-items: center; gap: 9px; font-family: var(--mono); font-size: 12px; color: var(--muted); letter-spacing: 0.05em; }
 .resume-contact-item svg { width: 14px; height: 14px; fill: var(--muted); flex-shrink: 0; }
 .resume-contact-item a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
@@ -1667,7 +1755,6 @@ html.light .resume-skill-list { color: rgba(26,26,22,0.82); }
 /* resume mobile handled in main @media (max-width: 680px) block */
 
 /* ══ NAV MOBILE HAMBURGER ══ */
-/* ── HAMBURGER + MOBILE NAV ── */
 .nav-hamburger {
   display: none;
   flex-direction: column;
@@ -1686,22 +1773,84 @@ html.light .resume-skill-list { color: rgba(26,26,22,0.82); }
   height: 2px;
   background: var(--muted);
   border-radius: 2px;
-  transition: background 0.2s;
+  transition: transform 0.25s ease, opacity 0.2s ease, background 0.2s;
 }
-.nav-hamburger:hover span,
-.nav-hamburger:active span { background: var(--accent); }
-
-/* Hamburger open animation */
 .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); background: var(--accent); }
 .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--accent); }
-.nav-hamburger span { transition: transform 0.25s ease, opacity 0.2s ease, background 0.2s; }
 
-/* Desktop: nav-menu is just a flex row */
-.nav-menu {
+/* Desktop nav row */
+.nav-desktop {
   display: flex;
   align-items: center;
   gap: 28px;
+}
+
+/* ── MOBILE DRAWER ── */
+#mobile-drawer {
+  display: none; /* hidden on desktop */
+  position: sticky;
+  top: 56px;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border2);
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.32s cubic-bezier(0.16,1,0.3,1);
+}
+#mobile-drawer.open {
+  max-height: 400px;
+}
+.mobile-nav-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.mobile-nav-links li {
+  border-bottom: 1px solid var(--border);
+}
+.mobile-nav-links a {
+  display: block;
+  padding: 20px 24px;
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.15s, color 0.15s;
+  line-height: 1.1;
+}
+.mobile-nav-links a:active,
+.mobile-nav-links a:hover { background: var(--bg2); }
+.mobile-nav-links a.active { color: var(--accent); }
+.mobile-drawer-footer {
+  padding: 16px 24px 20px;
+}
+.theme-toggle-mobile {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 8px !important;
+  border: 1px solid var(--border2) !important;
+  background: transparent !important;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.theme-toggle-mobile:hover {
+  border-color: var(--accent) !important;
+  background: rgba(200,184,138,0.07) !important;
+}
+
+.theme-toggle-mobile svg {
+  width: 20px;
+  height: 20px;
 }
 
 /* ── TABLET NAV (681–900px) ── */
@@ -1711,93 +1860,58 @@ html.light .resume-skill-list { color: rgba(26,26,22,0.82); }
   .nav-links a { font-size: 11px; }
 }
 
-/* Mobile nav */
+/* ── MOBILE NAV (≤680px) ── */
 @media (max-width: 680px) {
   .nav-hamburger { display: flex; }
+  .nav-desktop { display: none; }
+  #mobile-drawer { display: block; }
 
-  .nav-menu {
-    display: none;
-    position: fixed;
-    top: 56px; left: 0; right: 0; bottom: 0;
-    background: var(--bg);
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: flex-start;
-    gap: 0;
-    padding: 0;
-    z-index: 200;
-    overflow-y: auto;
-    border-top: 1px solid var(--border);
-    -webkit-overflow-scrolling: touch;
-  }
-  .nav-menu.open { display: flex; }
-
-  .nav-links {
-    flex-direction: column !important;
-    gap: 0 !important;
-    width: 100%;
-    align-items: stretch;
-  }
-  .nav-links li { width: 100%; }
-  .nav-links a {
-    display: block !important;
-    padding: 20px 24px !important;
-    font-size: 16px !important;
-    letter-spacing: 0.08em;
-    border-bottom: 1px solid var(--border);
-    color: var(--text) !important;
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-  }
-  .nav-links a:active { background: var(--bg2); }
-  .nav-links a.active { color: var(--accent) !important; }
-
-  .theme-toggle {
-    margin: 24px 24px 0;
-    align-self: flex-start;
-    width: 44px;
-    height: 44px;
-    touch-action: manipulation;
-  }
+  /* Offset pages by nav height only (no extra padding — drawer is in flow) */
+  .page { padding-top: 56px; }
 }
 </style>
 </head>
 <body>
 
 <!-- ══ NAV ══ -->
-<nav>
+<nav id="main-nav">
   <div class="nav-inner">
-    <a class="nav-name" onclick="showPage('work');closeMenu()">Amir Razak</a>
+    <a class="nav-name" href="javascript:void(0)" onclick="showPage('work')">Amir Razak</a>
+
+    <!-- Desktop links + theme toggle -->
+    <div class="nav-desktop">
+      <ul class="nav-links">
+        <li><a id="nav-work"   href="javascript:void(0)" onclick="showPage('work')"   class="active">Work</a></li>
+        <li><a id="nav-about"  href="javascript:void(0)" onclick="showPage('about')"  >About</a></li>
+        <li><a id="nav-resume" href="javascript:void(0)" onclick="showPage('resume')" >Resume</a></li>
+      </ul>
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme" aria-label="Toggle theme">
+        <svg class="icon-dark" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+        <svg class="icon-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4" fill="currentColor" stroke="none"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/></svg>
+      </button>
+    </div>
+
+    <!-- Hamburger (mobile only) -->
     <button class="nav-hamburger" id="nav-hamburger-btn" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
-    <div class="nav-menu" id="nav-menu">
-      <ul class="nav-links">
-        <li><a id="nav-work"   onclick="showPage('work');closeMenu()"   class="active">Work</a></li>
-        <li><a id="nav-about"  onclick="showPage('about');closeMenu()"  >About</a></li>
-        <li><a id="nav-resume" onclick="showPage('resume');closeMenu()" >Resume</a></li>
-      </ul>
-      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle light / dark mode" aria-label="Toggle theme">
-      <!-- Moon icon — shown in dark mode -->
-      <svg class="icon-dark" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/>
-      </svg>
-      <!-- Sun icon — shown in light mode -->
-      <svg class="icon-light" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-        <circle cx="12" cy="12" r="4" fill="currentColor" stroke="none"/>
-        <line x1="12" y1="2"  x2="12" y2="5"/>
-        <line x1="12" y1="19" x2="12" y2="22"/>
-        <line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/>
-        <line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/>
-        <line x1="2"  y1="12" x2="5"  y2="12"/>
-        <line x1="19" y1="12" x2="22" y2="12"/>
-        <line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/>
-        <line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/>
-      </svg>
-    </button>
-    </div><!-- end nav-menu -->
   </div>
 </nav>
+
+<!-- ══ MOBILE DRAWER — lives in normal doc flow, not inside fixed nav ══ -->
+<div id="mobile-drawer">
+  <ul class="mobile-nav-links">
+    <li><a href="javascript:void(0)" onclick="showPage('work');closeMenu()"   id="mob-nav-work"   class="active">Work</a></li>
+    <li><a href="javascript:void(0)" onclick="showPage('about');closeMenu()"  id="mob-nav-about"  >About</a></li>
+    <li><a href="javascript:void(0)" onclick="showPage('resume');closeMenu()" id="mob-nav-resume" >Resume</a></li>
+  </ul>
+  <div class="mobile-drawer-footer">
+    <button class="theme-toggle theme-toggle-mobile" onclick="toggleTheme()" aria-label="Toggle theme">
+      <svg class="icon-dark" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+      <svg class="icon-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4" fill="currentColor" stroke="none"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/></svg>
+    </button>
+  </div>
+</div>
 
 <!-- ══════════════════════════════════════════
      WORK PAGE
@@ -1809,6 +1923,28 @@ html.light .resume-skill-list { color: rgba(26,26,22,0.82); }
       <div class="work-eyebrow">Creative Strategy · Performance Creative · Editorial Direction</div>
       <h1 class="work-title">I build strategy<br><em>that survives production.</em></h1>
       <p class="work-sub">Creative strategist and editorial director who briefs, shapes, and cuts work across brand, documentary, and performance campaigns. The brief is written by someone who knows what survives contact with the edit — which means nothing gets lost in translation.</p>
+
+    </div>
+
+    <!-- ══ STRATEGIC POSITIONING STRIP ══ -->
+    <div class="fade-up d2" style="margin-bottom:40px;">
+      <div class="positioning-strip" style="display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--border);border-radius:4px;overflow:hidden;">
+        <div class="positioning-cell" style="padding:18px 22px;border-right:1px solid var(--border);">
+          <div class="cs-sum-label">Positioning</div>
+          <div class="cs-sum-val" style="font-size:15px;line-height:1.4;">Strategy that survives production</div>
+          <div class="cs-sum-sub">Brand · Performance · Editorial</div>
+        </div>
+        <div class="positioning-cell" style="padding:18px 22px;border-right:1px solid var(--border);">
+          <div class="cs-sum-label">Differentiator</div>
+          <div class="cs-sum-val" style="font-size:15px;line-height:1.4;">Video-native creative strategist</div>
+          <div class="cs-sum-sub">Briefs what I can also cut</div>
+        </div>
+        <div class="positioning-cell" style="padding:18px 22px;">
+          <div class="cs-sum-label">Track record</div>
+          <div class="cs-sum-val" style="font-size:15px;line-height:1.4;">+40% subscriptions · Emmy submission</div>
+          <div class="cs-sum-sub">B2B strategy · Political campaign delivery</div>
+        </div>
+      </div>
     </div>
 
     <!-- ════ CS 01 — THE NEW CRITERION ════ -->
@@ -1816,7 +1952,7 @@ html.light .resume-skill-list { color: rgba(26,26,22,0.82); }
       <div class="cs-header" onclick="toggleCS('cs1')">
         <div>
           <div class="cs-index">Case study — 01</div>
-          <div class="cs-title">The New Criterion — +40% subscription growth, built from a zero video baseline</div>
+          <div class="cs-title"><span class="cs-title-brand">The New Criterion</span><span class="cs-title-sub">+40% subscription growth, built from a zero video baseline</span></div>
           <div class="cs-tagline">Brand video identity · Content architecture · Subscription acquisition · Editorial direction</div>
         </div>
         <div class="cs-toggle" id="cs1-tog">+</div>
@@ -1997,6 +2133,17 @@ html.light .resume-skill-list { color: rgba(26,26,22,0.82); }
           </div>
         </div>
 
+        <div class="module">
+          <div class="module-pill">Portfolio architecture — business problem → outcome</div>
+          <div class="module-heading">The strategic thread from brief to measurable result</div>
+          <div class="module-text">
+            <p><strong>Business problem:</strong> No video presence. An audience that rejects conventional content marketing on contact. Building from zero meant the first piece had to be worthy of the brand — not just adequate for the platform.</p>
+            <p><strong>Strategic insight:</strong> TNC's readership uses media consumption as a form of self-definition. Video that reads as content marketing doesn't just fail to convert — it signals the brand doesn't understand who they are. The real insight is not "they want quality" — it's that quality is <em>identity-confirming or identity-threatening</em>.</p>
+            <p><strong>Creative solution:</strong> Rebuilt the visual identity from the frame level up. Average shot duration extended from 3.2s to 6.1s. Three-format content architecture built to sustain monthly cadence without drift.</p>
+            <p><strong>Measurable outcome:</strong> 13K organic views on the tentpole campaign. +40% subscription lift. Zero subscriber erosion — acquisition creative did not cannibalise retention. In CAC/LTV terms: acquisition cost held while lifetime value improved.</p>
+          </div>
+        </div>
+
       </div>
     </div><!-- end cs1 -->
 
@@ -2006,7 +2153,7 @@ html.light .resume-skill-list { color: rgba(26,26,22,0.82); }
       <div class="cs-header" onclick="toggleCS('cs2')">
         <div>
           <div class="cs-index">Case study — 02</div>
-          <div class="cs-title">What We Stand On — rebuilding the structure of a Heartland Emmy-submitted feature to make the argument land</div>
+          <div class="cs-title"><span class="cs-title-brand">What We Stand On</span><span class="cs-title-sub">rebuilding the structure of a Heartland Emmy-submitted feature to make the argument land</span></div>
           <div class="cs-tagline">Long-form editorial · Narrative architecture · Documentary post-production · Picture lock</div>
         </div>
         <div class="cs-toggle" id="cs2-tog">+</div>
@@ -2131,6 +2278,17 @@ html.light .resume-skill-list { color: rgba(26,26,22,0.82); }
           </div>
         </div>
 
+        <div class="module">
+          <div class="module-pill">Portfolio architecture — business problem → outcome</div>
+          <div class="module-heading">The strategic thread from editorial problem to broadcast-standard result</div>
+          <div class="module-text">
+            <p><strong>Business problem:</strong> A feature documentary with a structural flaw — the assembly cut front-loaded sports footage before the audience had been given a reason to care about the people playing it. The film needed to function as both a sports narrative and a cultural argument simultaneously.</p>
+            <p><strong>Strategic insight:</strong> Restraint in the first act is not a stylistic preference — it is the most important structural decision an editor makes. Audiences don't engage with stakes they haven't been given context to care about. Withhold the football until the human story earns it.</p>
+            <p><strong>Creative solution:</strong> Reversed the structural priority. First act rebuilt around character and community — approximately 11 minutes cut from the first third, game footage hierarchy rebuilt. Audio-led methodology applied throughout.</p>
+            <p><strong>Measurable outcome:</strong> Heartland Emmy submission, Best Documentary category 2024. The editorial rebuild that earned the submission is documented above.</p>
+          </div>
+        </div>
+
       </div>
     </div><!-- end cs2 -->
 
@@ -2140,7 +2298,7 @@ html.light .resume-skill-list { color: rgba(26,26,22,0.82); }
       <div class="cs-header" onclick="toggleCS('cs3')">
         <div>
           <div class="cs-index">Case study — 03</div>
-          <div class="cs-title">New College of Florida — one 60-second film built to answer "Why NCF?" for four audiences at once</div>
+          <div class="cs-title"><span class="cs-title-brand">New College of Florida</span><span class="cs-title-sub">one 60-second film built to answer "Why NCF?" for four audiences at once</span></div>
           <div class="cs-tagline">Brand film direction · Admissions campaign strategy · Script development · Higher education</div>
         </div>
         <div class="cs-toggle" id="cs3-tog">+</div>
@@ -2369,6 +2527,17 @@ html.light .resume-skill-list { color: rgba(26,26,22,0.82); }
           </div>
         </div>
 
+        <div class="module">
+          <div class="module-pill">Portfolio architecture — business problem → outcome</div>
+          <div class="module-heading">The strategic thread from admissions brief to multi-audience film</div>
+          <div class="module-text">
+            <p><strong>Business problem:</strong> NCF's existing admissions creative was indistinguishable from forty other Florida college videos. For a school positioning itself as the most intellectually serious public institution in the state, the creative gap was the diagnosis.</p>
+            <p><strong>Strategic insight:</strong> Gen-Z admissions audiences don't convert on testimonials — they convert on identity. The film needed to show prospective students who they <em>could become</em>, not what NCF offers. A single-minded proposition that holds across four audience registers: <em>NCF is where intellectual courage becomes a life's work.</em></p>
+            <p><strong>Creative solution:</strong> Script, narrative architecture, and scene-level treatment developed for Beck & Stone. Cut from the 90-second brief to 60 seconds — tighter structure, better suited to platform reality. Five specific creative revisions documented above, each with strategic rationale.</p>
+            <p><strong>Measurable outcome:</strong> A film built to convert four audiences simultaneously without contradicting itself for any of them — the highest difficulty brief in institutional brand film. Produced under Beck & Stone engagement.</p>
+          </div>
+        </div>
+
       </div>
     </div><!-- end cs3 -->
 
@@ -2378,7 +2547,7 @@ html.light .resume-skill-list { color: rgba(26,26,22,0.82); }
       <div class="cs-header" onclick="toggleCS('cs4')">
         <div>
           <div class="cs-index">Case study — 04 <span class="spec-pill">Spec concept</span></div>
-          <div class="cs-title">Palantir — reframing a decade of public distrust through human-consequence storytelling</div>
+          <div class="cs-title"><span class="cs-title-brand">Palantir</span><span class="cs-title-sub">reframing a decade of public distrust through human-consequence storytelling</span></div>
           <div class="cs-tagline">Enterprise brand strategy · Reputational reframe · B2B integrated creative · Campaign architecture</div>
         </div>
         <div class="cs-toggle" id="cs4-tog">+</div>
@@ -2530,8 +2699,20 @@ html.light .resume-skill-list { color: rgba(26,26,22,0.82); }
           </div>
         </div>
 
+        <div class="module">
+          <div class="module-pill">Portfolio architecture — business problem → outcome</div>
+          <div class="module-heading">The strategic thread from reputational brief to campaign platform</div>
+          <div class="module-text">
+            <p><strong>Business problem:</strong> A decade of embedded public perception — surveillance, data privacy, contractor controversy. Existing creative addresses the accusation directly, which confirms the frame rather than dismantling it.</p>
+            <p><strong>Strategic insight:</strong> The audience that most needs to trust Palantir — government procurement officers, enterprise CIOs — is the same audience most primed to distrust surveillance technology on principle. Their distrust is not ignorance; it is a considered position. Brands don't change considered positions by arguing against them. They change them by making the frame <em>structurally irrelevant</em>.</p>
+            <p><strong>Creative solution:</strong> "Your data, working for you." A human-consequence creative platform that never addresses the surveillance narrative directly. The Palantir wordmark appears only in the final frame — by which point the viewer has spent 54 seconds with a nurse, a logistics manager, a disaster coordinator, and the moments where better information changed a human outcome.</p>
+            <p><strong>Measurable outcome:</strong> Spec concept. Performance measurement framework documented above — brand trust lift study (target: +12 points in enterprise segment), earned media sentiment ratio, LinkedIn completion rate (target: ≥45%), and RFP pipeline growth as lagging indicator.</p>
+          </div>
+        </div>
+
       </div>
     </div><!-- end cs4 -->
+
 
 
       <!-- ══ GET IN TOUCH CTA ══ -->
@@ -2769,7 +2950,12 @@ html.light .resume-skill-list { color: rgba(26,26,22,0.82); }
             <svg viewBox="0 0 20 20"><path d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"/></svg>
             San Francisco Bay Area
           </div>
+          <div class="resume-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <a href="https://www.linkedin.com/in/amir-razak-90421a13b/" target="_blank" rel="noopener" style="color:var(--muted);text-decoration:none;">linkedin.com/in/amir-razak</a>
+          </div>
         </div>
+
       </div>
 
       <div class="resume-profile">
@@ -2906,7 +3092,7 @@ html.light .resume-skill-list { color: rgba(26,26,22,0.82); }
 <footer>
   <div class="footer-inner">
     <span class="footer-name">Amir Razak</span>
-    <span class="footer-copy">Brand Positioning · Performance Creative · Video-Native Strategy</span>
+    <span class="footer-copy">Brand Positioning · Performance Creative · Video-Native Strategy · <a href="#" onclick="showPage('work')" style="color:var(--muted);text-decoration:none;">amirrazak.com</a></span>
   </div>
 </footer>
 
@@ -2925,52 +3111,49 @@ html.light .resume-skill-list { color: rgba(26,26,22,0.82); }
     try { localStorage.setItem('theme', isLight ? 'light' : 'dark'); } catch(e) {}
   }
 
-  // ── MOBILE MENU — all global so onclick="" attributes work ──
+  // ── MOBILE MENU ──
+  var _menuOpen = false;
+
   function openMenu() {
-    var menu = document.getElementById('nav-menu');
-    var btn  = document.getElementById('nav-hamburger-btn');
-    if (!menu || !btn) return;
-    menu.classList.add('open');
+    var drawer = document.getElementById('mobile-drawer');
+    var btn    = document.getElementById('nav-hamburger-btn');
+    if (!drawer || !btn) return;
+    _menuOpen = true;
+    drawer.classList.add('open');
     btn.classList.add('open');
     btn.setAttribute('aria-expanded', 'true');
-    document.body.style.overflow = 'hidden';
   }
 
   function closeMenu() {
-    var menu = document.getElementById('nav-menu');
-    var btn  = document.getElementById('nav-hamburger-btn');
-    if (!menu || !btn) return;
-    menu.classList.remove('open');
+    var drawer = document.getElementById('mobile-drawer');
+    var btn    = document.getElementById('nav-hamburger-btn');
+    if (!drawer || !btn) return;
+    _menuOpen = false;
+    drawer.classList.remove('open');
     btn.classList.remove('open');
     btn.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
   }
 
   function toggleMenu() {
-    var menu = document.getElementById('nav-menu');
-    if (!menu) return;
-    if (menu.classList.contains('open')) { closeMenu(); } else { openMenu(); }
+    if (_menuOpen) { closeMenu(); } else { openMenu(); }
   }
-
-  // Close when tapping outside the open menu
-  document.addEventListener('click', function(e) {
-    var menu = document.getElementById('nav-menu');
-    var btn  = document.getElementById('nav-hamburger-btn');
-    if (menu && btn && menu.classList.contains('open')) {
-      if (!menu.contains(e.target) && !btn.contains(e.target)) {
-        closeMenu();
-      }
-    }
-  });
 
   // ── PAGE NAVIGATION ──
   function showPage(id) {
     document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
     var pg = document.getElementById('page-' + id);
     if (pg) pg.classList.add('active');
+
+    // Sync desktop nav active
     document.querySelectorAll('.nav-links a').forEach(function(a) { a.classList.remove('active'); });
     var navEl = document.getElementById('nav-' + id);
     if (navEl) navEl.classList.add('active');
+
+    // Sync mobile nav active
+    document.querySelectorAll('.mobile-nav-links a').forEach(function(a) { a.classList.remove('active'); });
+    var mobEl = document.getElementById('mob-nav-' + id);
+    if (mobEl) mobEl.classList.add('active');
+
     window.scrollTo(0, 0);
     closeMenu();
   }
